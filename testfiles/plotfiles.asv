@@ -1,0 +1,8 @@
+files = importdata("files.txt");
+
+for i = 1:size(files)
+    figure();
+    y = importdata(files(i)(1));
+    n = 0:(size(y)-1);
+    plot(n,y);    
+end

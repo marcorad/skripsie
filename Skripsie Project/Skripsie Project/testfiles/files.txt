@@ -1,0 +1,5 @@
+exp.txt
+sin.txt
+saw.txt
+tri.txt
+square.txt

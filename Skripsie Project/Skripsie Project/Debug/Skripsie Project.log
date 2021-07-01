@@ -1,0 +1,8 @@
+﻿  test.cpp
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\init_tables.h(41,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\init_tables.h(44,26): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\init_tables.h(55,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\init_tables.h(73,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\init_tables.h(83,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\test.cpp(28,20): warning C4018: '<': signed/unsigned mismatch
+  Skripsie Project.vcxproj -> C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Debug\Skripsie Project.exe
