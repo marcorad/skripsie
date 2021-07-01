@@ -1,0 +1,11 @@
+fs = 8;
+tmax = 3;
+nmax = tmax * fs;
+n = 1:nmax;
+n_act = 1:(nmax*100) ;
+n_act = n_act/100;
+y = (nthroot(1/3, n_act));
+y_approx = (nthroot(1/3, n));
+hold on;
+plot(n_act,y);
+stem(n, y_approx);
