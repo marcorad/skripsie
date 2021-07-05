@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="init_tables.h">
+    <ClInclude Include="init_luts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LUT.h">
@@ -33,6 +33,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="notes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

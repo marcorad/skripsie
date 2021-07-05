@@ -143,8 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes.h" />
+    <ClInclude Include="notes.h" />
     <ClInclude Include="wavetable.h" />
-    <ClInclude Include="init_tables.h" />
+    <ClInclude Include="init_luts.h" />
     <ClInclude Include="LUT.h" />
     <ClInclude Include="predefined_luts.h" />
   </ItemGroup>
