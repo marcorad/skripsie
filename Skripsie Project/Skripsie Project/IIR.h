@@ -57,11 +57,11 @@ inline Qnum filter_opt(IIR* filter, Qnum x_in) {
 	return (Qnum)(filter->ym1);
 }
 
-inline void filter_buffer(IIR* iir, Qnum* buf, uint16_t N) {
-	for (int i = 0; i < N; i++) {
-		buf[i] = filter(iir, buf[i]);
-	}
-}
+//inline void filter_buffer(IIR* iir, Qnum* buf, uint16_t N) {
+//	for (int i = 0; i < N; i++) {
+//		buf[i] = filter(iir, buf[i]);
+//	}
+//}
 
 inline void filter_buffer_opt(IIR* iir, Qnum* buf, uint16_t N) {
 	for (int i = 0; i < N; i++) {
@@ -69,46 +69,44 @@ inline void filter_buffer_opt(IIR* iir, Qnum* buf, uint16_t N) {
 	}
 }
 
-//THIS MUST BE FASTER!!!
-inline void iir_calc_lp_coeff(IIR* filter, float f0, float q) {
-	//constants
-	float w0 = TWO_PI * f0 / FS;
-	float cosw0 = cosf(w0); //LOOKUP TABLES? w0 will be provided by an envelope
-	float sinw0 = sinf(w0);
-	float alpha = sinw0 / 2.0f / q;
-	float a0, a1, a2, b0, b1, b2;
-
-	b1 = (1.0f - cosw0);
-	b0 = b1 / 2.0f;
-	b2 = b0;
-	a0 = 1.0f + alpha;
-	a1 = -2.0f * cosw0;
-	a2 = 1.0f - alpha;
-	
-	float N0r = b0 / a0;
-	//float factor = N0r;
-	float N1r = b1 / a0 / 2.0f; 
-	//factor = fmaxf(factor, N1r);
-	float N2r = b2 / a0;
-	//factor = fmaxf(factor, N2r);
-
-	float range = (float)(Q_MAX); //SEE IF Q NUMBERS CAN RATHER BE USED
-	float n0, n1, n2, d1, d2;
-	float scale = range;
-	n0 = N0r * scale;
-	n1 = N1r * scale;
-	n2 = N2r * scale;
-	d1 = (a1 / a0 / -2.0f) * range;
-	d2 = (-a2 / a0) * range;
-
-	filter->n0 = (int32_t)n0;
-	filter->n1 = (int32_t)n1;
-	filter->n2 = (int32_t)n2;
-	filter->d1 = (int32_t)d1;
-	filter->d2 = (int32_t)d2;
-}
-
-
+////THIS MUST BE FASTER!!!
+//inline void iir_calc_lp_coeff(IIR* filter, float f0, float q) {
+//	//constants
+//	float w0 = TWO_PI * f0 / FS;
+//	float cosw0 = cosf(w0); //LOOKUP TABLES? w0 will be provided by an envelope
+//	float sinw0 = sinf(w0);
+//	float alpha = sinw0 / 2.0f / q;
+//	float a0, a1, a2, b0, b1, b2;
+//
+//	b1 = (1.0f - cosw0);
+//	b0 = b1 / 2.0f;
+//	b2 = b0;
+//	a0 = 1.0f + alpha;
+//	a1 = -2.0f * cosw0;
+//	a2 = 1.0f - alpha;
+//	
+//	float N0r = b0 / a0;
+//	//float factor = N0r;
+//	float N1r = b1 / a0 / 2.0f; 
+//	//factor = fmaxf(factor, N1r);
+//	float N2r = b2 / a0;
+//	//factor = fmaxf(factor, N2r);
+//
+//	float range = (float)(Q_MAX); //SEE IF Q NUMBERS CAN RATHER BE USED
+//	float n0, n1, n2, d1, d2;
+//	float scale = range;
+//	n0 = N0r * scale;
+//	n1 = N1r * scale;
+//	n2 = N2r * scale;
+//	d1 = (a1 / a0 / -2.0f) * range;
+//	d2 = (-a2 / a0) * range;
+//
+//	filter->n0 = (int32_t)n0;
+//	filter->n1 = (int32_t)n1;
+//	filter->n2 = (int32_t)n2;
+//	filter->d1 = (int32_t)d1;
+//	filter->d2 = (int32_t)d2;
+//}
 
 
 //q_recip is Q14, f0 is Q16 [0, 1/2) unsigned
@@ -118,7 +116,7 @@ inline void iir_calc_lp_coeff_opt(IIR* filter, uint16_t f0, int32_t q_recip) {
 	int32_t cosw = cos_lookup(f0);
 	int32_t sinw = sin_lookup(f0);
 	int32_t alpha = sinw * q_recip >> (Q_IIR + 1); //[-1/10,1]
-	int32_t a0_recip = (Q_IIR_ONE << Q_IIR) / (alpha + Q_IIR_ONE); //[1/2, 10/9]
+	int32_t a0_recip = (Q_IIR_ONE << Q_IIR) / (alpha + Q_IIR_ONE); //[1/2, 10/9], max 12 + 2 cycles
 	int32_t b0, b1, b2, a1, a2;
 	b1 = (int32_t)(Q_IIR_ONE - cosw); //[0,2]
 	b0 = b1 >> 1;

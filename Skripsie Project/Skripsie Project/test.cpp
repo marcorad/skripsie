@@ -91,22 +91,13 @@ int main() {
 
 	
 
-	IIR slow;
 	IIR opt;
 	float f0 = 5000.0f;
 	float q = 2.0f;
 
-	iir_calc_lp_coeff(&slow, f0, q);
 	iir_calc_lp_coeff_opt(&opt, iir_freq_float_to_int(f0), iir_Q_float_to_int_recip(q));
 
-	cout << "SLOW\n";
-	print_filter_slow(slow);
-	cout << "OPTIMISED\n";
 	print_filter_opt(opt);
-
-	generate_n_samples(samples, &basic, N);
-	filter_buffer(&slow, samples, N);
-	write_samples(samples, N, "slow filter.txt");
 
 	generate_n_samples(samples, &basic, N);
 	filter_buffer_opt(&opt, samples, N);

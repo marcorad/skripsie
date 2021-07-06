@@ -10,8 +10,9 @@ struct voice {
 	wavetable wt_right;
 	wavetable wt_center;
 	IIR filter_left;
-	IIR filter_left;
+	IIR filter_right;
 	ADSR envelope_amplitude;
 	ADSR envelope_filter;
 	mapped_index detune;
+	Qnum detune_volume;
 };
