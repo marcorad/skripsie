@@ -159,6 +159,5 @@ C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie 
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\predefined_luts.h(65,43): warning C4309: 'initializing': truncation of constant value
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\predefined_luts.h(65,50): warning C4838: conversion from 'int' to 'const int16_t' requires a narrowing conversion
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\predefined_luts.h(65,50): warning C4309: 'initializing': truncation of constant value
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\init_luts.h(91,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\test.cpp(109,49): warning C4307: '+': signed integral constant overflow
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\init_luts.h(80,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Skripsie Project.vcxproj -> C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Debug\Skripsie Project.exe

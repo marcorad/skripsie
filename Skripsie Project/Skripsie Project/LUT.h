@@ -3,29 +3,7 @@
 #include <stdint.h>
 #include <stdlib.h> 
 
-#define LERP
-
-//lut defs
-#define B_lut 32 //precision of mapped index
-#define mapped_index uint32_t
-#define index uint16_t
-#define MAPPED_INDEX_MAX 0xFFFFFFFF
-#define HALF_MAPPED_INDEX_MAX 0x7FFFFFFF
-
-#define b 9 //buffer size power
-#define LUT_SIZE 1<<b //512
-#define K (B_lut-b)
-
-
-
-
-//Q number defs
-#define Q 15
-#define Qnum int16_t
-#define Qnum_buf int32_t
-#define Q_MAX 0x7FFF
-#define HALF_Q_MAX (Q_MAX >> 1)
-#define Q_MUL_ROUND   (1 << (Q - 1))
+#include "defines.h"
 
 struct LUT
 {
@@ -41,10 +19,11 @@ LUT create_LUT(uint8_t k){
     return lut;
 }
 
+//for Q15 numbers
 inline Qnum q_mul(Qnum a, Qnum k){
     Qnum_buf temp;
     temp = ((Qnum_buf)a) * ((Qnum_buf)k);
-    temp += Q_MUL_ROUND;
+    temp += Q_MUL_ROUND; //THIS MIGHT NOT BE NECESSARY!
     return (Qnum) (temp >> Q); //SHIFTING NEGATIVE NUMBERS MIGHT NOT BE AN ARITHMETIC SHIFT FOR SOME COMPILERS
 }
 

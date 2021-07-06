@@ -38,5 +38,23 @@
     <ClInclude Include="notes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IIR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ADSR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IIR_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trig_buff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="voice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

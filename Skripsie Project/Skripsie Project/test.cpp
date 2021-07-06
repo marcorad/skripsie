@@ -7,6 +7,8 @@
 #include "predefined_luts.h"
 #include "wavetable.h"
 #include "notes.h"
+#include "IIR.h"
+#include "ADSR.h"
 
 using namespace std;
 
@@ -19,6 +21,16 @@ void write_file_names() {
 		file << s << "\n";
 	}
 	file.close();
+}
+
+void print_filter_slow(IIR& filter) {
+	cout << "[ " << filter.n0 << ", 2*" << filter.n1 << ", " << filter.n2 << " ] , ";
+	cout << "[ " << (1<<Q) << ", -2*" << filter.d1 << ", -" << filter.d2 << " ]\n";
+}
+
+void print_filter_opt(IIR& filter) {
+	cout << "[ " << filter.n0 << ", " << filter.n1 << ", " << filter.n2 << " ] , ";
+	cout << "[ " << (1 << Q_IIR) << ", -" << filter.d1 << ", -" << filter.d2 << " ]\n";
 }
 
 
@@ -42,76 +54,66 @@ void write_samples(Qnum* samples, int N, string name) {
 	files.push_back(name);
 }
 
-//n'th LUT and a position from [0,1)
-mapped_index get_wt_pos(mapped_index n, float pos) {
-	mapped_index offset = (mapped_index)((float)(1 << (B_lut - 2)) * pos);
-	return offset + (n << (B_lut - 2));
-}
 
 
-int main() {
-	//LUT lut_exp = create_LUT(6);
-	//int N_luts = 8;//2 3 4 5 6 7 8 9
-	//LUT* lut_saw = create_luts(); 
-	//LUT* lut_tri = create_luts();
-	//LUT* lut_square = create_luts();
-	//LUT* lut_sin = create_luts();
 
-	//LUT** luts = new LUT*[4] { lut_sin , lut_tri , lut_saw , lut_square };
-	//
-
-	//load_basic_luts(lut_sin, lut_tri, lut_saw, lut_square, N_luts);
-	//load_exp_decay(&lut_exp);
-
-	//write_lut(lut_exp, "exp.txt");
-	//write_lut(lut_sin[7], "sin.txt"); 
-	//write_lut(lut_tri[2], "tri.txt");
-	//write_lut(lut_square[7], "square.txt");
-
-	//
-	
-	//wavetable wt;
-	//wt.luts = luts;
-	//int note = 0;
-	//int wave = 0;
-
-	//note = 69; //concert A
-	//wt.stride = note_stride[note];
-	//wt.table_harmonic_index = harmonic_table_indices[note];
-	//generate_n_samples(samples, &wt, N, wave);
-	//write_samples(samples, N, "concert A.txt");
-
-
-	//note = 100; //E7
-	//wt.stride = note_stride[note];
-	//wt.table_harmonic_index = harmonic_table_indices[note];
-	//generate_n_samples(samples, &wt, N, wave);
-	//write_samples(samples, N, "E7.txt");
-
-	//note = 15; //A0
-	//wt.stride = note_stride[note];
-	//wt.table_harmonic_index = harmonic_table_indices[note];
-	//generate_n_samples(samples, &wt, N, wave);
-	//write_samples(samples, N, "A0.txt");
+int main() {	
 
 	wavetable basic = load_basic_wavetable();
-
-
-	//write_lut(basic.luts[SAWTOOTH][7], "saw.txt");
-	//write_lut(basic.luts[TRIANGLE][7], "tri.txt");
-
-	
+		
 	int N = 10000;
 	Qnum* samples = new Qnum[N];
 
-	mapped_index wtpos = get_wt_pos(3,0.0f);
-	wt_note(&basic, E3, wtpos);
-	wt_set_dutycyle(&basic, HALF_MAPPED_INDEX_MAX  + (HALF_MAPPED_INDEX_MAX >> 1));
-	generate_n_samples(samples, &basic, N);
-	write_samples(samples, N, "concert A.txt");
+	mapped_index wtpos = wt_float_to_mapped_index(3,0.0f);
+	wt_note(&basic, A4, wtpos);
+	wt_set_dutycyle(&basic, wt_duty_cycle_from_float(0.5f));
 
+
+	//IIR filter;
+
+	//iir_calc_lp_coeff(&filter, 1000.0f, 0.50f);
+
+
+	ADSR adsr;
+
+	LUT exp = create_LUT(0);
+	adsr.exp_decay = &exp;
+	load_exp_decay(adsr.exp_decay);
+
+	adsr_init(&adsr, 0.001f, 0.1f, 0.8f, 0.05f);
+	adsr_note_on(&adsr, 0xFF);
+	adsr_write_n_samples(&adsr, samples, N - 2000);
+	adsr_off(&adsr);
+	adsr_write_n_samples(&adsr, samples + 8000, 2000);
+	write_samples(samples, N, "adsr.txt");
+	write_lut(exp, "exp.txt");
+
+
+	
+
+	IIR slow;
+	IIR opt;
+	float f0 = 5000.0f;
+	float q = 2.0f;
+
+	iir_calc_lp_coeff(&slow, f0, q);
+	iir_calc_lp_coeff_opt(&opt, iir_freq_float_to_int(f0), iir_Q_float_to_int_recip(q));
+
+	cout << "SLOW\n";
+	print_filter_slow(slow);
+	cout << "OPTIMISED\n";
+	print_filter_opt(opt);
+
+	generate_n_samples(samples, &basic, N);
+	filter_buffer(&slow, samples, N);
+	write_samples(samples, N, "slow filter.txt");
+
+	generate_n_samples(samples, &basic, N);
+	filter_buffer_opt(&opt, samples, N);
+	write_samples(samples, N, "fast filter.txt");
 
 	write_file_names();
+
 	cout << "DONE";
 	return 0;
 }

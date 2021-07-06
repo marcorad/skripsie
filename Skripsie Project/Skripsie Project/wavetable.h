@@ -5,12 +5,6 @@
 #include "init_luts.h"
 
 
-
-struct ADSR {
-	mapped_index phase;
-	mapped_index A, D, S, R;
-};
-
 struct wavetable {
 	uint8_t table_harmonic_index = 0;
 	mapped_index pos; //wavetable position mapped from 0 to 2^32-1
@@ -24,15 +18,30 @@ struct wavetable {
 	LUT** luts;
 };
 
+//n'th LUT and a position from [0,1)
+inline mapped_index wt_float_to_mapped_index(mapped_index n, float pos) {
+	mapped_index offset = (mapped_index)((float)(1 << (B_lut - 2)) * pos);
+	return offset + (n << (B_lut - 2));
+}
+
+inline mapped_index wt_duty_cycle_from_float(float d) {
+	return (mapped_index)((float)(MAPPED_INDEX_MAX)*d);
+}
+
 //could this be faster?
 inline mapped_index duty_cycle_index(wavetable* wt) {
-	mapped_index dc = wt->duty_cycle;
-	mapped_index i = wt->phase;
-	if (i <= dc) {
-		return (mapped_index)(wt->duty_cycle_m1 * (float)(i));
+	if (wt->table_harmonic_index > 2) {
+		mapped_index dc = wt->duty_cycle;
+		mapped_index i = wt->phase;
+		if (i <= dc) {
+			return (mapped_index)(wt->duty_cycle_m1 * (float)(i));
+		}
+		else {
+			return (mapped_index)(wt->duty_cycle_m2 * (float)(i - dc)) + HALF_MAPPED_INDEX_MAX;
+		}
 	}
 	else {
-		return (mapped_index)(wt->duty_cycle_m2 * (float)(i - dc)) + HALF_MAPPED_INDEX_MAX;
+		return wt->phase;
 	}
 }
 
@@ -46,9 +55,15 @@ inline Qnum wt_sample(wavetable* wt) {
 	uint8_t np1 = fast_mod(n + 1, wt->num_tables); //should not wrap. This must be ensured.
 	LUT lut1 = wt->luts[n][wt->table_harmonic_index];
 	LUT lut2 = wt->luts[np1][wt->table_harmonic_index];
+		
+#ifdef DUTY
+	mapped_index dc_lookup = duty_cycle_index(wt);
+#endif // DUTY
 
-	//lookup with duty cycle
+#ifndef DUTY
 	mapped_index dc_lookup = wt->phase;
+#endif // !DUTY
+	
 	Qnum s1 = lut_lookup(&lut1, dc_lookup);
 	Qnum s2 = lut_lookup(&lut2, dc_lookup);
 
