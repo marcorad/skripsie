@@ -1,6 +1,6 @@
 #include <iostream>
-#include <fstream>
 #include <string>
+#include <fstream>
 #include <vector>
 
 #include "LUT.h"
@@ -9,16 +9,17 @@
 #include "notes.h"
 #include "IIR.h"
 #include "ADSR.h"
+#include "voice.h"
+
 
 using namespace std;
 
 vector<string> files;
 
 void write_file_names() {
-	ofstream file;
-	file.open("../../testfiles/files.txt");
+	ofstream file("../../testfiles/files.txt", std::ios::out);
 	for (string s : files) {
-		file << s << "\n";
+		file << s << endl;
 	}
 	file.close();
 }
@@ -34,7 +35,7 @@ void print_filter_opt(IIR& filter) {
 }
 
 
-void write_lut(LUT& lut, string name) {
+void write_lut(LUT& lut, const string& name) {
 	ofstream file;
 	file.open("../../testfiles/" + name);
 	for (int i = 0; i < lut.buf_size; i++) {
@@ -44,29 +45,33 @@ void write_lut(LUT& lut, string name) {
 	files.push_back(name);
 }
 
-void write_samples(Qnum* samples, int N, string name) {
-	ofstream file;
-	file.open("../../testfiles/" + name);
-	for (int i = 0; i < N; i++) {
-		file << samples[i] << "\n";
+void write_samples(Qnum samples[], uint32_t N, const char* name) {
+	FILE* file = NULL;
+	char fname[128];
+	snprintf(fname, sizeof(fname), "../../testfiles/%s", name);
+	if (fopen_s(&file, fname, "w") == 0) {
+		for (int i = 0; i < N; i++) {
+			fprintf(file, "%d\n", samples[i]);
+		}
+		remove(fname);
+		fclose(file);
+		files.push_back(name);
 	}
-	file.close();
-	files.push_back(name);
 }
 
 
 
 
 int main() {	
+	init_basic_luts(); //ALWAYS DO THIS
+			
+	uint32_t N = 3*44100;
+	//Qnum* samples = new Qnum[N];
 
-	wavetable basic = load_basic_wavetable();
-		
-	int N = 10000;
-	Qnum* samples = new Qnum[N];
+	Qnum* L = new Qnum[N];
+	Qnum* R = new Qnum[N];
 
-	mapped_index wtpos = wt_float_to_mapped_index(3,0.0f);
-	wt_note(&basic, A4, wtpos);
-	wt_set_dutycyle(&basic, wt_duty_cycle_from_float(0.5f));
+	//mapped_index wtpos = wt_float_to_mapped_index(1,0.5f);
 
 
 	//IIR filter;
@@ -74,38 +79,59 @@ int main() {
 	//iir_calc_lp_coeff(&filter, 1000.0f, 0.50f);
 
 
-	ADSR adsr;
+	//ADSR adsr;
 
-	LUT exp = create_LUT(0);
-	adsr.exp_decay = &exp;
-	load_exp_decay(adsr.exp_decay);
+	//LUT exp = create_LUT(0);
+	//adsr.exp_decay = &exp;
+	//load_exp_decay(adsr.exp_decay);
 
-	adsr_init(&adsr, 0.001f, 0.1f, 0.8f, 0.05f);
-	adsr_note_on(&adsr, 0xFF);
+	/*adsr_init(&adsr, 0.01f, 0.1f, 0.8f, 0.05f);
+	adsr_note_on(&adsr);
 	adsr_write_n_samples(&adsr, samples, N - 2000);
 	adsr_off(&adsr);
-	adsr_write_n_samples(&adsr, samples + 8000, 2000);
-	write_samples(samples, N, "adsr.txt");
-	write_lut(exp, "exp.txt");
+	adsr_write_n_samples(&adsr, samples + 8000, 2000);*/
+	//write_samples(samples, N, "adsr.txt");
+	//write_lut(exp, "exp.txt");
 
 
 	
 
-	IIR opt;
-	float f0 = 5000.0f;
-	float q = 2.0f;
+	//IIR opt;
+	//float f0 = 500.0f;
+	//float q = 5.1f;
 
-	iir_calc_lp_coeff_opt(&opt, iir_freq_float_to_int(f0), iir_Q_float_to_int_recip(q));
+	//iir_calc_lp_coeff_opt(&opt, iir_freq_float_to_int(f0), iir_Q_float_to_int_recip(q));
 
-	print_filter_opt(opt);
+	//print_filter_opt(opt);
 
-	generate_n_samples(samples, &basic, N);
-	filter_buffer_opt(&opt, samples, N);
-	write_samples(samples, N, "fast filter.txt");
+	//generate_n_samples(samples, &basic, N);
+	//filter_buffer_opt(&opt, samples, N);
+
+	voice v;
+	voice_init_default(&v);
+
+	voice_configure_detune(&v, 0.75f, 0.01f);
+	voice_configure_volume_envelope(&v, 0.1f, 0.3f, 0.8f, 0.1f);
+	voice_configure_freq_envelope(&v, 1.0f, 0.5f, 0.5f, 0.1f);
+	voice_configure_filter_freq_params(&v, 1.0f, 256.0f);
+	voice_configure_wt_position(&v, 2, 0.75f);
+	voice_configure_filter_q(&v, 0.7071f);
+
+	voice_note_on_relative_filter_freq(&v, A0, 127);
+
+
+	generate_n_voice_samples(&v, L, R, N);
+
+	write_samples(L, N, "voiceL.txt");
+	write_samples(R, N, "voiceR.txt");
 
 	write_file_names();
 
 	cout << "DONE";
+	//delete[] L;
+	//delete[] R;
+	//delete[] basic_luts;
+	
 	return 0;
 }
 

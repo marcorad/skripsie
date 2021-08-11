@@ -90,3 +90,27 @@ static LUT* create_luts() {
     }
     return luts;
 }
+
+
+LUT* lut_saw;
+LUT* lut_tri; 
+LUT* lut_square; 
+LUT* lut_sin;
+
+LUT exp_decay;
+
+LUT** basic_luts;
+
+void init_basic_luts() {
+
+    
+    lut_saw = create_luts();
+    lut_tri = create_luts();
+    lut_square = create_luts();
+    lut_sin = create_luts();
+    basic_luts = new LUT*[]{ lut_sin, lut_tri, lut_saw , lut_square };
+    load_basic_luts(lut_sin, lut_tri, lut_saw, lut_square, 8);
+
+    exp_decay = create_LUT(0);
+    load_exp_decay(&exp_decay);
+}

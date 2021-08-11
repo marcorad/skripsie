@@ -1,0 +1,23 @@
+#volume envelope
+#adsrvol A D S R [in seconds]
+adsrvol 0.1 0.5 0.8 0.3
+
+#filter envelope
+#adsrfilt A D S R f_start f_end [in seconds and relative to the fundamental (1=fundamental)]
+adsrfilt 0.8 0.5 0.8 0.3 0.9 5.2
+
+#filter Q
+#filtq Q [specify Q > 0.5]
+filtq 1.2
+
+#note on
+#on NOTE VEL [notes like A3 or Eb2 (flats only), velocity 0-127]
+on A4 127
+
+#wait
+#wait T [time in seconds]
+wait 1
+
+#note off
+#off NOTE
+off A4

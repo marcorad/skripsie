@@ -1,2 +1,2 @@
-slow filter.txt
-fast filter.txt
+voiceL.txt
+voiceR.txt

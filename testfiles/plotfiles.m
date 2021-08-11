@@ -2,6 +2,7 @@ files = importdata("files.txt");
 fs = 44100;
 noisefloor = -6.02 * 12;
 
+
 for i = 1:size(files)
     f = char(files(i));
     figure(i);
@@ -10,6 +11,7 @@ for i = 1:size(files)
     N = size(y);
     N = N(1);
     y = y/2^15;
+    s(i) = y;
     Y = abs(fft(y));
     n = 0:(N-1); 
     k = n;
@@ -19,5 +21,6 @@ for i = 1:size(files)
     semilogx(k/max(k)*fs,20*log10(Y/N*2));
     xlim([0,fs/2])
     ylim([noisefloor,0]);
-    title(f); 
+    title(f);     
 end
+sound(y, fs);

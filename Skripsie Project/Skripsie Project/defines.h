@@ -40,6 +40,9 @@
 //IIR
 #define Q_IIR 14
 #define Q_IIR_ONE 0x3FFF
-#define TWO_PI_TRIG_BUF (((int32_t)(TWO_PI * (float)(0x0000FFFF))))
 #define TRIG_BUFFER_POWER 8
 #define TRIG_BUFFER_SIZE 256
+
+//STEREO
+#define STEREO_L 0
+#define STEREO_R 1

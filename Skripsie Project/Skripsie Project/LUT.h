@@ -27,6 +27,14 @@ inline Qnum q_mul(Qnum a, Qnum k){
     return (Qnum) (temp >> Q); //SHIFTING NEGATIVE NUMBERS MIGHT NOT BE AN ARITHMETIC SHIFT FOR SOME COMPILERS
 }
 
+//for any Q number
+inline Qnum q_mul(Qnum a, Qnum k, uint8_t q) {
+    Qnum_buf temp;
+    temp = ((Qnum_buf)a) * ((Qnum_buf)k);
+    //temp += Q_MUL_ROUND; //THIS MIGHT NOT BE NECESSARY!
+    return (Qnum)(temp >> q); //SHIFTING NEGATIVE NUMBERS MIGHT NOT BE AN ARITHMETIC SHIFT FOR SOME COMPILERS
+}
+
 //only works if mod is a power of 2
 inline mapped_index fast_mod(mapped_index x, mapped_index mod){
     return x & (mod-1);
@@ -53,3 +61,5 @@ static inline Qnum lut_lookup(LUT* lut, mapped_index i) {
     return lut->buf[n];
 #endif  //PREVIOUS SAMPLE   
 }
+
+
