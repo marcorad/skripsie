@@ -1,126 +1,57 @@
 #pragma once
 
 #include "LUT.h"
-#include "predefined_luts.h"
 #include "init_luts.h"
 
 
 
 
 struct wavetable {
-	uint8_t table_harmonic_index = 0;
-	mapped_index pos = 0; //wavetable position mapped from 0 to 2^32-1
-	mapped_index stride;
-	mapped_index phase = 0; //the mapped position in the wavetable
-	mapped_index duty_cycle = HALF_MAPPED_INDEX_MAX;
-	float duty_cycle_m1 = 1.0f;
-	float duty_cycle_m2 = 1.0f;
-	uint8_t num_tables_power;
-	uint8_t num_tables;
-	LUT** luts;
+	float pos = 0.0f; //wavetable position mapped from 0 to 2^32-1
+	float stride = 0.0f;
+	float phase = 0.0f; //the mapped position in the wavetable
+	//implement duty cycle!! see prev code
+	//float duty_cycle = 0.5f;
+	//float duty_cycle_m1 = 1.0f;
+	//float duty_cycle_m2 = 1.0f;
+	uint8_t harmonic_index = 0;
 };
 
-
-
-//n'th LUT and a position from [0,1)
-inline mapped_index wt_pos_float_to_mapped_index(mapped_index n, float pos) {
-	mapped_index offset = (mapped_index)((float)(1 << (B_lut - 2)) * pos);
-	return offset + (n << (B_lut - 2));
-}
-
-inline void wt_set_position(wavetable* wt, mapped_index n, float pos) {
-	wt->pos = wt_pos_float_to_mapped_index(n, pos);
-}
-
-inline mapped_index wt_duty_cycle_from_float(float d) {
-	return (mapped_index)((float)(MAPPED_INDEX_MAX)*d);
-}
-
-//could this be faster?
-inline mapped_index duty_cycle_index(wavetable* wt) {
-	if (wt->table_harmonic_index > 2) {
-		mapped_index dc = wt->duty_cycle;
-		mapped_index i = wt->phase;
-		if (i <= dc) {
-			return (mapped_index)(wt->duty_cycle_m1 * (float)(i));
-		}
-		else {
-			return (mapped_index)(wt->duty_cycle_m2 * (float)(i - dc)) + HALF_MAPPED_INDEX_MAX;
-		}
-	}
-	else {
-		return wt->phase;
-	}
-}
-
-
-inline Qnum wt_sample(wavetable* wt) {
-	//find luts and interpolation
-	uint8_t shift = B_lut - wt->num_tables_power;
-	mapped_index i = wt->pos;
-	uint8_t n =  i >> shift;
-	mapped_index i_floor = n << shift;
-	uint8_t np1 = fast_mod(n + 1, wt->num_tables); //should not wrap. This must be ensured.
-	LUT lut1 = wt->luts[n][wt->table_harmonic_index];
-	LUT lut2 = wt->luts[np1][wt->table_harmonic_index];
-		
-#ifdef DUTY
-	mapped_index dc_lookup = duty_cycle_index(wt);
-#endif // DUTY
-
-#ifndef DUTY
-	mapped_index dc_lookup = wt->phase;
-#endif // !DUTY
-	
-	Qnum s1 = lut_lookup(&lut1, dc_lookup);
-	Qnum s2 = lut_lookup(&lut2, dc_lookup);
-
+//sample from the wavetable
+inline float wt_sample(wavetable* wt) {
+	uint8_t n = (uint8_t)wt->pos;
+	uint8_t np1 = n + 1;
+	np1 = fast_mod(np1, 4); // wrap around
+	float x1 = lut_lookup(basic_luts[n][wt->harmonic_index], LUT_SIZE, wt->phase);
+	float x2 = lut_lookup(basic_luts[np1][wt->harmonic_index], LUT_SIZE, wt->phase);
 	wt->phase += wt->stride;
-
-	//interpolate
-	Qnum d = (Qnum) ((i - i_floor) >> (shift - Q)); //mapped index to q num
-	return q_lerp(s1, s2, d);
+	if (wt->phase > (float)LUT_SIZE) wt->phase -= (float)LUT_SIZE; //wrap around
+	return lerp(x1, x2, wt->pos - (float)n);
 }
 
-void generate_n_samples(Qnum* buffer, wavetable* wt, int N) {
+//get n samples from the wavetable
+void wt_write_n_samples(float buffer[], wavetable* wt, int N) {
 	for (int i = 0; i < N; i++) {
 		buffer[i] = wt_sample(wt);
 	}
 }
 
-//set the wavetable position as well
-inline void wt_note_pos(wavetable* wt, uint8_t note, mapped_index wt_pos) {
-	wt->table_harmonic_index = harmonic_table_indices[note];
-	wt->stride = note_stride[note];
-	wt->pos = wt_pos;
+uint8_t harmonic_indices[] = {1,2,2,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7}; // floor(log(n/4)), where n is index
+
+//configure in samples/sec and determin correct number of harmonics to avoid aliasing
+inline void wt_config_digital_freq(wavetable* wt, float pos, float freq) {
+	wt->stride = freq * (float)LUT_SIZE;
+	wt->pos = pos;
+	uint16_t harmonics = (uint16_t)(0.5f / freq);
+	harmonics = harmonics > (LUT_SIZE >> 1) ? (LUT_SIZE >> 1) : harmonics; //clamp at max allowed by buffer
+	uint8_t harmonic_index = harmonics < 4 ? 0 : harmonic_indices[(harmonics >> 2) - 1]; //divide harmonic index by 4, see excel, minus 1 for shifting excel index to 0
+	wt->harmonic_index = harmonic_index;
 }
 
-//set the frequency with som detune
-inline void wt_note_detune(wavetable* wt, uint8_t note, int32_t detune) {
-	wt->table_harmonic_index = harmonic_table_indices[note];
-	wt->stride = note_stride[note] + detune;
-}
-
-//note on with no modification to wavetable position
-inline void wt_note(wavetable* wt, uint8_t note) {
-	wt->table_harmonic_index = harmonic_table_indices[note];
-	wt->stride = note_stride[note];
-}
-
-inline void wt_set_dutycyle(wavetable* wt, mapped_index duty_cycle) {
-	wt->duty_cycle = duty_cycle;
-	wt->duty_cycle_m1 = (float)HALF_MAPPED_INDEX_MAX / (float)(duty_cycle);
-	wt->duty_cycle_m2 = (float)HALF_MAPPED_INDEX_MAX / (float)(MAPPED_INDEX_MAX - duty_cycle);
+//configure in Hz
+inline void wt_config_hz(wavetable* wt, float pos, float freq) {
+	wt_config_digital_freq(wt, pos, freq / FS); //FS recip?
 }
 
 
-inline wavetable wt_basic() {
-	//LUT lut_exp = create_LUT(6);
-	int N_luts = 8;//2 3 4 5 6 7 8 9	
 
-	wavetable wt;
-	wt.luts = basic_luts;
-	wt.num_tables_power = 2;
-	wt.num_tables = 4;
-	return wt;
-}

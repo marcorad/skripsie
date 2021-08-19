@@ -5180,3 +5180,776 @@
 2021-08-12 09:42:59,393 [WARN] IP:1936 - Pitch_L1 not found: check if there is a RefParameter without a condition.
 2021-08-12 09:42:59,464 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
 2021-08-12 09:43:30,497 [INFO] NvicIntPanel:88 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,481x420,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2021-08-17 13:40:13,076 [INFO] Activator:176 - 
+
+
+2021-08-17 13:40:13,086 [INFO] Activator:177 - !SESSION log4j initialized
+2021-08-17 13:40:50,786 [INFO] ApplicationProperties:181 - Using Application install path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639
+2021-08-17 13:40:50,800 [INFO] DbMcusXml:72 - Set database path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/mcu/
+2021-08-17 13:40:50,804 [INFO] DbBoardsPdsc:54 - Set plugin database path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/boardmanager/
+2021-08-17 13:40:50,804 [INFO] DbMcus:235 - Set plugin images path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/
+2021-08-17 13:40:50,804 [INFO] DbBoards:232 - Set plugin images path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/
+2021-08-17 13:40:50,813 [INFO] DbMcusAds:85 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,813 [INFO] DbMcusDocs:108 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,815 [INFO] DbMcusJson:61 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,815 [INFO] DbBoardsDocs:97 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,816 [INFO] DbBoardsJson:51 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,820 [INFO] CrossReferenceDbSqlite:197 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/cs/
+2021-08-17 13:40:50,907 [INFO] RulesReader:52 - Compatibility file has been processed (208 Rules)
+2021-08-17 13:40:50,981 [INFO] MicroXplorer:570 - Detected Java Version = 1.8.0_242
+2021-08-17 13:40:50,982 [INFO] DbMcusXml:72 - Set database path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/mcu/
+2021-08-17 13:40:50,982 [INFO] DbBoardsPdsc:54 - Set plugin database path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/boardmanager/
+2021-08-17 13:40:50,982 [INFO] DbMcus:235 - Set plugin images path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/
+2021-08-17 13:40:50,983 [INFO] DbBoards:232 - Set plugin images path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/
+2021-08-17 13:40:50,983 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:50,983 [INFO] DbMcusAds:85 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,983 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:50,983 [INFO] DbMcusDocs:108 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,983 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:50,983 [INFO] DbMcusJson:61 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,983 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:50,983 [INFO] DbBoardsDocs:97 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,983 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:50,984 [INFO] DbBoardsJson:51 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:50,984 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:50,984 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:50,984 [INFO] CrossReferenceDbSqlite:197 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/cs/
+2021-08-17 13:40:51,041 [INFO] MainPanel:181 - HeapMemory: 372244480
+2021-08-17 13:40:51,130 [INFO] DbMcusXml:72 - Set database path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/mcu/
+2021-08-17 13:40:51,131 [INFO] DbBoardsPdsc:54 - Set plugin database path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/boardmanager/
+2021-08-17 13:40:51,131 [INFO] DbMcus:235 - Set plugin images path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/
+2021-08-17 13:40:51,131 [INFO] DbBoards:232 - Set plugin images path to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/
+2021-08-17 13:40:51,132 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:51,132 [INFO] DbMcusAds:85 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:51,132 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:51,132 [INFO] DbMcusDocs:108 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:51,132 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:51,132 [INFO] DbMcusJson:61 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:51,132 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:51,133 [INFO] DbBoardsDocs:97 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:51,133 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:51,133 [INFO] DbBoardsJson:51 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/
+2021-08-17 13:40:51,133 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:51,133 [WARN] DbFile:36 - Overriding database path with different value: C:\Users\27849\.stmcufinder\plugins\mcufinder/ => C:\Users\27849\.stmcufinder\plugins\mcufinder
+2021-08-17 13:40:51,133 [INFO] CrossReferenceDbSqlite:197 - Set database path to: C:\Users\27849\.stmcufinder\plugins\mcufinder//mcu/cs/
+2021-08-17 13:40:51,152 [INFO] ApplicationProperties:181 - Using Application install path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639
+2021-08-17 13:40:51,153 [INFO] PluginManage:178 - Search for loadable plugins [exclusion list=, tutovideos]
+2021-08-17 13:40:51,154 [INFO] PluginManage:292 - Check plugin analytics
+2021-08-17 13:40:51,167 [INFO] PluginManage:342 - Loaded plugin analytics (category:tool,tabindex:-1)
+2021-08-17 13:40:51,168 [INFO] PluginManage:292 - Check plugin clock
+2021-08-17 13:40:51,186 [INFO] PluginManage:342 - Loaded plugin clock (category:base,tabindex:2)
+2021-08-17 13:40:51,186 [INFO] PluginManage:292 - Check plugin ddr
+2021-08-17 13:40:51,189 [INFO] PluginManage:342 - Loaded plugin ddr (category:tool,tabindex:6)
+2021-08-17 13:40:51,189 [INFO] PluginManage:292 - Check plugin filemanager
+2021-08-17 13:40:51,282 [INFO] PluginManage:342 - Loaded plugin filemanager (category:base,tabindex:10)
+2021-08-17 13:40:51,282 [INFO] PluginManage:292 - Check plugin ipmanager
+2021-08-17 13:40:51,289 [INFO] PluginManage:342 - Loaded plugin ipmanager (category:base,tabindex:5)
+2021-08-17 13:40:51,290 [INFO] PluginManage:292 - Check plugin pinoutandconfiguration
+2021-08-17 13:40:51,304 [INFO] PluginManage:342 - Loaded plugin pinoutandconfiguration (category:base,tabindex:1)
+2021-08-17 13:40:51,305 [INFO] PluginManage:292 - Check plugin pinoutconfig
+2021-08-17 13:40:51,332 [INFO] PluginManage:342 - Loaded plugin pinoutconfig (category:base,tabindex:0)
+2021-08-17 13:40:51,332 [INFO] PluginManage:292 - Check plugin power
+2021-08-17 13:40:51,348 [INFO] PluginManage:342 - Loaded plugin power (category:power,tabindex:4)
+2021-08-17 13:40:51,348 [INFO] PluginManage:292 - Check plugin projectmanager
+2021-08-17 13:40:51,359 [INFO] PluginManage:342 - Loaded plugin projectmanager (category:projectmanager,tabindex:3)
+2021-08-17 13:40:51,359 [INFO] PluginManage:292 - Check plugin thirdparty
+2021-08-17 13:40:51,451 [INFO] ThirdPartyDb:295 - Open Third Party DataBase File (C:/Users/27849/.stm32cubemx/plugins/thirdparty/db/thirdparties_db.xml) : 37 ms. number of Sw pack : 26
+2021-08-17 13:40:51,458 [INFO] PluginManage:342 - Loaded plugin thirdparty (category:base,tabindex:-1)
+2021-08-17 13:40:51,458 [INFO] PluginManage:292 - Check plugin tools
+2021-08-17 13:40:51,474 [INFO] PluginManage:342 - Loaded plugin tools (category:base,tabindex:7)
+2021-08-17 13:40:51,475 [INFO] PluginManage:292 - Check plugin tutovideos
+2021-08-17 13:40:51,521 [INFO] PluginManage:347 - Ignore plugin tutovideos (category:base)
+2021-08-17 13:40:51,522 [INFO] PluginManage:292 - Check plugin updater
+2021-08-17 13:40:51,530 [INFO] PluginManage:342 - Loaded plugin updater (category:base,tabindex:12)
+2021-08-17 13:40:51,531 [INFO] PluginManage:265 - PluginManage : Loaded plugins [12]
+2021-08-17 13:40:51,667 [INFO] PinOutPanel:1420 - setPackage(No Configuration,No Configuration)
+2021-08-17 13:40:51,738 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,738 [INFO] PluginManager:200 - loadIPPluginJar : add adc
+2021-08-17 13:40:51,755 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,755 [INFO] PluginManager:200 - loadIPPluginJar : add aes
+2021-08-17 13:40:51,783 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,783 [INFO] PluginManager:200 - loadIPPluginJar : add can
+2021-08-17 13:40:51,795 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,796 [INFO] PluginManager:200 - loadIPPluginJar : add comp
+2021-08-17 13:40:51,813 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,813 [INFO] PluginManager:200 - loadIPPluginJar : add cryp
+2021-08-17 13:40:51,830 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,830 [INFO] PluginManager:200 - loadIPPluginJar : add dfsdm
+2021-08-17 13:40:51,840 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,841 [INFO] PluginManager:200 - loadIPPluginJar : add dma
+2021-08-17 13:40:51,853 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,853 [INFO] PluginManager:200 - loadIPPluginJar : add fatfs
+2021-08-17 13:40:51,883 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,883 [INFO] PluginManager:200 - loadIPPluginJar : add fmc
+2021-08-17 13:40:51,894 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,894 [INFO] PluginManager:200 - loadIPPluginJar : add freertos
+2021-08-17 13:40:51,906 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,907 [INFO] PluginManager:200 - loadIPPluginJar : add genericplugin
+2021-08-17 13:40:51,958 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:51,958 [INFO] PluginManager:200 - loadIPPluginJar : add gfxmmu
+2021-08-17 13:40:52,024 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,025 [INFO] PluginManager:200 - loadIPPluginJar : add gic
+2021-08-17 13:40:52,033 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,034 [INFO] PluginManager:200 - loadIPPluginJar : add gpio
+2021-08-17 13:40:52,069 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,069 [INFO] PluginManager:200 - loadIPPluginJar : add gtzc
+2021-08-17 13:40:52,084 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,084 [INFO] PluginManager:200 - loadIPPluginJar : add hash
+2021-08-17 13:40:52,113 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,114 [INFO] PluginManager:200 - loadIPPluginJar : add i2c
+2021-08-17 13:40:52,135 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,135 [INFO] PluginManager:200 - loadIPPluginJar : add i2s
+2021-08-17 13:40:52,206 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,206 [INFO] PluginManager:200 - loadIPPluginJar : add ipddr
+2021-08-17 13:40:52,226 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,226 [INFO] PluginManager:200 - loadIPPluginJar : add ltdc
+2021-08-17 13:40:52,234 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,234 [INFO] PluginManager:200 - loadIPPluginJar : add mdma
+2021-08-17 13:40:52,242 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,242 [INFO] PluginManager:200 - loadIPPluginJar : add nvic
+2021-08-17 13:40:52,261 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,261 [INFO] PluginManager:200 - loadIPPluginJar : add opamp
+2021-08-17 13:40:52,285 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,286 [INFO] PluginManager:200 - loadIPPluginJar : add pdm2pcm
+2021-08-17 13:40:52,296 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,298 [INFO] PluginManager:200 - loadIPPluginJar : add plateformsettings
+2021-08-17 13:40:52,310 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,310 [INFO] PluginManager:200 - loadIPPluginJar : add quadspi
+2021-08-17 13:40:52,319 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,319 [INFO] PluginManager:200 - loadIPPluginJar : add resmgrutility
+2021-08-17 13:40:52,350 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,351 [INFO] PluginManager:200 - loadIPPluginJar : add sai
+2021-08-17 13:40:52,370 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,371 [INFO] PluginManager:200 - loadIPPluginJar : add spi
+2021-08-17 13:40:52,396 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,396 [INFO] PluginManager:200 - loadIPPluginJar : add stm32_wpan
+2021-08-17 13:40:52,409 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,409 [INFO] PluginManager:200 - loadIPPluginJar : add tim
+2021-08-17 13:40:52,449 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,449 [INFO] PluginManager:200 - loadIPPluginJar : add touchsensing
+2021-08-17 13:40:52,463 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,463 [INFO] PluginManager:200 - loadIPPluginJar : add tracer_emb
+2021-08-17 13:40:52,477 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,477 [INFO] PluginManager:200 - loadIPPluginJar : add ts
+2021-08-17 13:40:52,489 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,489 [INFO] PluginManager:200 - loadIPPluginJar : add tsc
+2021-08-17 13:40:52,501 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,501 [INFO] PluginManager:200 - loadIPPluginJar : add ucpd
+2021-08-17 13:40:52,526 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 13:40:52,526 [INFO] PluginManager:200 - loadIPPluginJar : add usart
+2021-08-17 13:40:53,271 [INFO] BoardConnectionPanel:3472 - [DDR PANEL] STM32CubeIDE environment
+2021-08-17 13:40:53,271 [INFO] MainDdrPanel:103 - [DDR PANEL] GETTER - cubeProgrammerPath is: null
+2021-08-17 13:40:53,450 [FATAL] Updater:277 - Updater called before beeing initialized
+2021-08-17 13:40:53,641 [FATAL] Updater:277 - Updater called before beeing initialized
+2021-08-17 13:40:53,644 [INFO] PinOutPanel:1420 - setPackage(No Configuration,No Configuration)
+2021-08-17 13:40:53,644 [FATAL] Updater:277 - Updater called before beeing initialized
+2021-08-17 13:40:53,648 [INFO] BoardConnectionPanel:3472 - [DDR PANEL] STM32CubeIDE environment
+2021-08-17 13:40:53,648 [INFO] MainDdrPanel:103 - [DDR PANEL] GETTER - cubeProgrammerPath is: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_1.3.0.202002181050\tools\bin
+2021-08-17 13:40:53,651 [INFO] ProgrammerExecThread:148 - [ProgrammerAPI] CubeProgrammer command construction: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_1.3.0.202002181050\tools\bin\STM32_Programmer_CLI.exe -l
+2021-08-17 13:40:53,977 [INFO] MainDdrPanel:93 - [DDR PANEL] SETTER - Set cubeProgrammerPath to: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_1.3.0.202002181050\tools\bin
+2021-08-17 13:40:53,999 [INFO] Updater:886 - Updater Version found : 5.6.0
+2021-08-17 13:40:54,020 [INFO] ApplicationProperties:181 - Using Application install path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639
+2021-08-17 13:40:54,200 [INFO] MainUpdater:2230 - connection check result : 10
+2021-08-17 13:40:54,201 [INFO] MainUpdater:2874 - Updater definition file requires update
+2021-08-17 13:40:54,201 [INFO] MainUpdater:236 - Updater Check For Update Now.
+2021-08-17 13:40:54,202 [INFO] MicroXplorer:420 - Change Database Version : DB.5.0.60
+2021-08-17 13:40:54,254 [INFO] ServerAccessManage:348 - Download File updaters.zip
+2021-08-17 13:40:54,403 [INFO] FileExtend:225 - Unzip File : updaters.zip
+2021-08-17 13:40:54,404 [INFO] FileExtend:240 - Standard Zip Deflate
+2021-08-17 13:40:54,471 [WARN] MainUpdater:1073 - Updater busy. Cannot search thirdparties
+2021-08-17 13:40:55,038 [INFO] ServerAccessManage:348 - Download File PacksControlFlags.xml
+2021-08-17 13:40:55,417 [INFO] ServerAccessManage:348 - Download File cubemx.pidx
+2021-08-17 13:40:55,502 [INFO] LoadServerUpdatesThread:301 - End of LoadServerUpdate Thread
+2021-08-17 13:40:55,543 [INFO] CheckServerUpdateThread:92 - End of CheckServer Thread
+2021-08-17 13:40:55,649 [INFO] MainUpdater:2230 - connection check result : 10
+2021-08-17 13:40:55,650 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Successfull proxy connection.
+2021-08-17 13:40:55,880 [INFO] McuFinderGlobals:40 - Set McuFinder mode to 2 (CubeIDE integrated)
+2021-08-17 13:40:55,892 [INFO] FinderPluginLoader:86 - Searching for filters in installed packs
+2021-08-17 13:40:55,894 [INFO] DbMcusXml:110 - Load MCU database from C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/mcu/families.xml
+2021-08-17 13:40:56,505 [INFO] DbMcusJson:90 - JSON generation date=Mon Jun 07 10:53:21 CAT 2021 (1623056001)
+2021-08-17 13:40:57,004 [INFO] DbMcus:171 - Found 1670 MCUs (1625 are supported by CubeMX, 1625 are visible in CubeMX)
+2021-08-17 13:40:57,005 [INFO] ApiDb:158 - Load user favorites file C:\Users\27849/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2021-08-17 13:40:57,005 [INFO] ApiDb:163 - User favorites MCUs=[]
+2021-08-17 13:40:57,005 [INFO] DbMcus:183 - Set 0 / 0 favorites MCUs
+2021-08-17 13:40:57,444 [INFO] DbMcusAds:143 - JSON generation date=Wed Feb 20 18:46:15 CAT 2019 (1550681175)
+2021-08-17 13:40:57,445 [INFO] LoadUrlFilesThread:161 - End of LoadServerUrlFiles without Thread
+2021-08-17 13:40:57,455 [INFO] McuDetailPanel:181 - Set advertising image to C:/Users/27849/STM32Cube/Repository/\PRSTM32MP10219-01-med.jpg
+2021-08-17 13:40:57,692 [INFO] ThirdPartyDb:261 - Close Third Party DataBase File (C:/Users/27849/.stm32cubemx/plugins/thirdparty/db/thirdparties_db.xml)
+2021-08-17 13:40:57,722 [INFO] IntegrityCheckThread:98 - End integrity checks thread
+2021-08-17 13:40:59,893 [INFO] ServerAccessManage:348 - Download File mcusAds.json._tmp_
+2021-08-17 13:40:59,919 [INFO] LoadUrlFilesThread:134 - End of LoadUrlFiles Thread
+2021-08-17 13:41:00,127 [INFO] ServerAccessManage:348 - Download File mcusDocs.json._tmp_
+2021-08-17 13:41:00,642 [INFO] LoadUrlFilesThread:134 - End of LoadUrlFiles Thread
+2021-08-17 13:41:01,013 [INFO] ServerAccessManage:348 - Download File mcusFeaturesAndDescription.json._tmp_
+2021-08-17 13:41:02,469 [INFO] LoadUrlFilesThread:134 - End of LoadUrlFiles Thread
+2021-08-17 13:41:02,839 [INFO] ServerAccessManage:348 - Download File boardsDocs.json._tmp_
+2021-08-17 13:41:02,891 [INFO] LoadUrlFilesThread:134 - End of LoadUrlFiles Thread
+2021-08-17 13:41:03,263 [INFO] ServerAccessManage:348 - Download File boards.json._tmp_
+2021-08-17 13:41:03,318 [INFO] LoadUrlFilesThread:134 - End of LoadUrlFiles Thread
+2021-08-17 13:41:04,478 [INFO] ServerAccessManage:348 - Download File crdb.zip
+2021-08-17 13:41:05,594 [INFO] FileExtend:225 - Unzip File : crdb.zip
+2021-08-17 13:41:05,596 [INFO] FileExtend:240 - Standard Zip Deflate
+2021-08-17 13:41:05,622 [INFO] LoadUrlFilesThread:134 - End of LoadUrlFiles Thread
+2021-08-17 13:41:05,623 [INFO] DbMcusAds:143 - JSON generation date=Wed Feb 20 18:46:15 CAT 2019 (1550681175)
+2021-08-17 13:41:05,628 [INFO] DbMcusDocs:142 - JSON generation date=Mon Jun 07 10:53:21 CAT 2021 (1623056001)
+2021-08-17 13:41:05,785 [INFO] DbMcusDocs:77 - Found 669 MCUs documents
+2021-08-17 13:41:05,787 [INFO] ApiDb:186 - Save user favorites file C:\Users\27849/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2021-08-17 13:41:05,787 [INFO] ApiDb:191 - User favorites MCUs=[]
+2021-08-17 13:41:05,787 [INFO] DbMcusXml:110 - Load MCU database from C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/mcu/families.xml
+2021-08-17 13:41:06,052 [INFO] DbMcusJson:90 - JSON generation date=Mon Jun 07 10:53:21 CAT 2021 (1623056001)
+2021-08-17 13:41:06,377 [INFO] DbMcus:171 - Found 1670 MCUs (1625 are supported by CubeMX, 1625 are visible in CubeMX)
+2021-08-17 13:41:06,378 [INFO] ApiDb:158 - Load user favorites file C:\Users\27849/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2021-08-17 13:41:06,378 [INFO] ApiDb:163 - User favorites MCUs=[]
+2021-08-17 13:41:06,378 [INFO] DbMcus:183 - Set 0 / 0 favorites MCUs
+2021-08-17 13:41:06,411 [INFO] McuFilterPanel:249 - Update 0 favorites MCUs
+2021-08-17 13:41:06,565 [INFO] DbBoardsDocs:131 - JSON generation date=Tue Jun 01 07:52:40 CAT 2021 (1622526760)
+2021-08-17 13:41:06,580 [INFO] DbBoardsPdsc:92 - Found 22 items
+2021-08-17 13:41:06,586 [INFO] DbBoardsPdsc:92 - Found 9 items
+2021-08-17 13:41:06,592 [INFO] DbBoardsPdsc:92 - Found 28 items
+2021-08-17 13:41:06,598 [INFO] DbBoardsPdsc:92 - Found 1 items
+2021-08-17 13:41:06,606 [INFO] DbBoardsPdsc:92 - Found 40 items
+2021-08-17 13:41:06,616 [INFO] DbBoardsPdsc:92 - Found 39 items
+2021-08-17 13:41:06,621 [INFO] DbBoardsPdsc:92 - Found 2 items
+2021-08-17 13:41:06,627 [INFO] DbBoardsPdsc:92 - Found 4 items
+2021-08-17 13:41:06,631 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-DK: unknown feature type=Audio, name=, username=Audio stereo codec with Headphone Amp (CS42L51-CNZ), n=1
+2021-08-17 13:41:06,631 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-DK: unknown feature type=WIFI, name=, username=WIFI 802.11 b/g/n, n=1
+2021-08-17 13:41:06,632 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-EVAL: unknown feature type=Audio, name=, username=Multi-Channel Audio Codec (CS42L51-CNZ), n=1
+2021-08-17 13:41:06,632 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-EVAL: unknown feature type=Meter, name=, username=Power-metering and Temperature-monitoring with sigma-delta modulators, n=1
+2021-08-17 13:41:06,632 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-EVAL: unknown feature type=WIFI, name=, username=WIFI 802.11 a/b/g/n, n=1
+2021-08-17 13:41:06,632 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-EVAL: unknown feature type=Motor, name=, username=Motor Control, n=1
+2021-08-17 13:41:06,639 [INFO] DbBoardsJson:80 - JSON generation date=Tue Jun 01 07:52:40 CAT 2021 (1622526760)
+2021-08-17 13:41:06,645 [INFO] DbBoards:120 - Found 151 boards (142 are supported by CubeMX)
+2021-08-17 13:41:06,649 [INFO] DbBoardsDocs:131 - JSON generation date=Tue Jun 01 07:52:40 CAT 2021 (1622526760)
+2021-08-17 13:41:06,659 [INFO] DbBoardsDocs:70 - Found 193 boards documents
+2021-08-17 13:41:06,661 [WARN] DbBoards:130 - board NUCLEO-H743ZI has no document id list !
+2021-08-17 13:41:06,661 [WARN] DbBoards:130 - board P-NUCLEO-WB55-Nucleo has no document id list !
+2021-08-17 13:41:06,661 [WARN] DbBoards:130 - board P-NUCLEO-WB55-USBDongle has no document id list !
+2021-08-17 13:41:06,662 [WARN] DbBoards:130 - board NUCLEO-WB35CE has no document id list !
+2021-08-17 13:41:06,662 [WARN] DbBoards:130 - board STM32F401C-DISCO has no document id list !
+2021-08-17 13:41:06,662 [WARN] DbBoards:130 - board STM32F769I-DISC1 has no document id list !
+2021-08-17 13:41:06,662 [WARN] DbBoards:130 - board STM32L-DISCOVERY has no document id list !
+2021-08-17 13:41:06,663 [WARN] DbBoards:130 - board STM32H747I-DISC1 has no document id list !
+2021-08-17 13:41:06,663 [WARN] DbBoards:130 - board STM32MP157A-DK1 has no document id list !
+2021-08-17 13:41:06,663 [WARN] DbBoards:130 - board STM32H743I-EVAL2 has no document id list !
+2021-08-17 13:41:06,663 [WARN] DbBoards:130 - board STM32H753I-EVAL2 has no document id list !
+2021-08-17 13:41:06,664 [WARN] DbBoards:130 - board STM32G474E-EVAL1 has no document id list !
+2021-08-17 13:41:06,664 [WARN] DbBoards:130 - board STEVAL-BFA001V1B has no document id list !
+2021-08-17 13:41:06,664 [WARN] DbBoards:130 - board STEVAL-BFA001V2B has no document id list !
+2021-08-17 13:41:06,664 [WARN] DbBoards:130 - board STEVAL-MKSBOX1V1 has no document id list !
+2021-08-17 13:41:06,664 [WARN] DbBoards:130 - board STEVAL-STWINKT1 has no document id list !
+2021-08-17 13:41:06,664 [WARN] DbBoards:130 - board STEVAL-IDP005V1 has no document id list !
+2021-08-17 13:41:06,664 [WARN] DbBoards:130 - board STEVAL-IDP005V2 has no document id list !
+2021-08-17 13:41:06,664 [WARN] DbBoards:130 - board STEVAL-STWINKT1B has no document id list !
+2021-08-17 13:41:07,360 [ERROR] DbBoards:192 - Image file not found for board STM32H7B3I-EVAL: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/stm32h7b3ieval_small.jpg
+2021-08-17 13:41:07,527 [ERROR] DbBoards:192 - Image file not found for board B-L4S5I-IOT01A: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/B-L4S5I-IOT01A_small.jpg
+2021-08-17 13:41:07,527 [ERROR] DbBoards:192 - Image file not found for board STM32H735G-DK: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/STM32H735G_DK_small.jpg
+2021-08-17 13:41:07,533 [ERROR] DbBoards:192 - Image file not found for board NUCLEO-WL55JC: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/nucleo-wl55jc-small.jpg
+2021-08-17 13:41:07,533 [ERROR] DbBoards:192 - Image file not found for board STEVAL-STWINKT1B: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/steval-stwinkt1b_small.jpg
+2021-08-17 13:41:07,533 [INFO] ApiDb:158 - Load user favorites file C:\Users\27849/.stm32cubeide/favorites.boards.txt: 0 item(s)
+2021-08-17 13:41:07,533 [INFO] ApiDb:163 - User favorites Boards=[]
+2021-08-17 13:41:07,533 [INFO] DbBoards:209 - Set 0 / 0 favorites Boards
+2021-08-17 13:41:07,541 [INFO] DbBoardsDocs:70 - Found 386 boards documents
+2021-08-17 13:41:07,542 [INFO] ApiDb:186 - Save user favorites file C:\Users\27849/.stm32cubeide/favorites.boards.txt: 0 item(s)
+2021-08-17 13:41:07,542 [INFO] ApiDb:191 - User favorites Boards=[]
+2021-08-17 13:41:07,544 [INFO] DbBoardsPdsc:92 - Found 22 items
+2021-08-17 13:41:07,545 [INFO] DbBoardsPdsc:92 - Found 9 items
+2021-08-17 13:41:07,546 [INFO] DbBoardsPdsc:92 - Found 28 items
+2021-08-17 13:41:07,547 [INFO] DbBoardsPdsc:92 - Found 1 items
+2021-08-17 13:41:07,549 [INFO] DbBoardsPdsc:92 - Found 40 items
+2021-08-17 13:41:07,551 [INFO] DbBoardsPdsc:92 - Found 39 items
+2021-08-17 13:41:07,552 [INFO] DbBoardsPdsc:92 - Found 2 items
+2021-08-17 13:41:07,553 [INFO] DbBoardsPdsc:92 - Found 4 items
+2021-08-17 13:41:07,554 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-DK: unknown feature type=Audio, name=, username=Audio stereo codec with Headphone Amp (CS42L51-CNZ), n=1
+2021-08-17 13:41:07,554 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-DK: unknown feature type=WIFI, name=, username=WIFI 802.11 b/g/n, n=1
+2021-08-17 13:41:07,556 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-EVAL: unknown feature type=Audio, name=, username=Multi-Channel Audio Codec (CS42L51-CNZ), n=1
+2021-08-17 13:41:07,556 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-EVAL: unknown feature type=Meter, name=, username=Power-metering and Temperature-monitoring with sigma-delta modulators, n=1
+2021-08-17 13:41:07,556 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-EVAL: unknown feature type=WIFI, name=, username=WIFI 802.11 a/b/g/n, n=1
+2021-08-17 13:41:07,556 [WARN] DbBoardsPdsc:256 - Board STM32H7B3I-EVAL: unknown feature type=Motor, name=, username=Motor Control, n=1
+2021-08-17 13:41:07,562 [INFO] DbBoardsJson:80 - JSON generation date=Tue Jun 01 07:52:40 CAT 2021 (1622526760)
+2021-08-17 13:41:07,566 [INFO] DbBoards:120 - Found 151 boards (142 are supported by CubeMX)
+2021-08-17 13:41:07,566 [WARN] DbBoards:130 - board NUCLEO-H743ZI has no document id list !
+2021-08-17 13:41:07,567 [WARN] DbBoards:130 - board P-NUCLEO-WB55-Nucleo has no document id list !
+2021-08-17 13:41:07,567 [WARN] DbBoards:130 - board P-NUCLEO-WB55-USBDongle has no document id list !
+2021-08-17 13:41:07,567 [WARN] DbBoards:130 - board NUCLEO-WB35CE has no document id list !
+2021-08-17 13:41:07,567 [WARN] DbBoards:130 - board STM32F401C-DISCO has no document id list !
+2021-08-17 13:41:07,568 [WARN] DbBoards:130 - board STM32F769I-DISC1 has no document id list !
+2021-08-17 13:41:07,568 [WARN] DbBoards:130 - board STM32L-DISCOVERY has no document id list !
+2021-08-17 13:41:07,568 [WARN] DbBoards:130 - board STM32H747I-DISC1 has no document id list !
+2021-08-17 13:41:07,569 [WARN] DbBoards:130 - board STM32MP157A-DK1 has no document id list !
+2021-08-17 13:41:07,569 [WARN] DbBoards:130 - board STM32H743I-EVAL2 has no document id list !
+2021-08-17 13:41:07,569 [WARN] DbBoards:130 - board STM32H753I-EVAL2 has no document id list !
+2021-08-17 13:41:07,570 [WARN] DbBoards:130 - board STM32G474E-EVAL1 has no document id list !
+2021-08-17 13:41:07,570 [WARN] DbBoards:130 - board STEVAL-BFA001V1B has no document id list !
+2021-08-17 13:41:07,570 [WARN] DbBoards:130 - board STEVAL-BFA001V2B has no document id list !
+2021-08-17 13:41:07,570 [WARN] DbBoards:130 - board STEVAL-MKSBOX1V1 has no document id list !
+2021-08-17 13:41:07,570 [WARN] DbBoards:130 - board STEVAL-STWINKT1 has no document id list !
+2021-08-17 13:41:07,570 [WARN] DbBoards:130 - board STEVAL-IDP005V1 has no document id list !
+2021-08-17 13:41:07,570 [WARN] DbBoards:130 - board STEVAL-IDP005V2 has no document id list !
+2021-08-17 13:41:07,570 [WARN] DbBoards:130 - board STEVAL-STWINKT1B has no document id list !
+2021-08-17 13:41:07,982 [ERROR] DbBoards:192 - Image file not found for board STM32H7B3I-EVAL: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/stm32h7b3ieval_small.jpg
+2021-08-17 13:41:08,062 [ERROR] DbBoards:192 - Image file not found for board B-L4S5I-IOT01A: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/B-L4S5I-IOT01A_small.jpg
+2021-08-17 13:41:08,062 [ERROR] DbBoards:192 - Image file not found for board STM32H735G-DK: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/STM32H735G_DK_small.jpg
+2021-08-17 13:41:08,065 [ERROR] DbBoards:192 - Image file not found for board NUCLEO-WL55JC: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/nucleo-wl55jc-small.jpg
+2021-08-17 13:41:08,065 [ERROR] DbBoards:192 - Image file not found for board STEVAL-STWINKT1B: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\/plugins/mcufinder/images/boards/steval-stwinkt1b_small.jpg
+2021-08-17 13:41:08,065 [INFO] ApiDb:158 - Load user favorites file C:\Users\27849/.stm32cubeide/favorites.boards.txt: 0 item(s)
+2021-08-17 13:41:08,065 [INFO] ApiDb:163 - User favorites Boards=[]
+2021-08-17 13:41:08,065 [INFO] DbBoards:209 - Set 0 / 0 favorites Boards
+2021-08-17 13:41:08,152 [INFO] LoadUrlFilesThread:161 - End of LoadServerUrlFiles without Thread
+2021-08-17 13:41:08,152 [INFO] MultiScanPanel:739 - Refresh data is succesful
+2021-08-17 13:41:08,153 [INFO] McuFilterPanel:249 - Update 0 favorites MCUs
+2021-08-17 13:41:08,261 [INFO] LoadUrlFilesThread:161 - End of LoadServerUrlFiles without Thread
+2021-08-17 13:41:08,262 [INFO] BoardDetailPanel:180 - Set advertising image to C:/Users/27849/STM32Cube/Repository/\PRSTM32MP10219-01-med.jpg
+2021-08-17 13:41:08,280 [INFO] BoardFilterPanel:211 - Update 0 favorites Boards
+2021-08-17 13:41:08,422 [INFO] CrossSelectorPresenter:1319 - Cross Selector saved comparison directory: C:\Users\27849\.stmcufinder\plugins\mcufinder\mcu\cs_comparisons_mx
+2021-08-17 13:47:16,524 [INFO] ExcelExport:161 - Export Boards to user file: C:\Users\27849\Documents\skripsie boards.xlsx
+2021-08-17 13:53:49,819 [INFO] LoadUrlFilesThread:161 - End of LoadServerUrlFiles without Thread
+2021-08-17 14:06:25,010 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] withoutVersionV1.7.0
+2021-08-17 14:06:26,837 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] File copied successfully!!
+2021-08-17 14:06:28,666 [INFO] MainUpdater:2230 - connection check result : 10
+2021-08-17 14:06:28,759 [INFO] MicroXplorer:390 - Change Database Path : 
+2021-08-17 14:06:28,759 [INFO] MicroXplorer:420 - Change Database Version : DB.5.0.60
+2021-08-17 14:06:28,760 [INFO] PinOutPanel:1420 - setPackage(No Configuration,No Configuration)
+2021-08-17 14:06:28,761 [INFO] UtilMem:74 - Begin LoadConfig() Used Memory: 507586792 Bytes (961544192)
+2021-08-17 14:06:28,762 [INFO] OpenFileManager:274 - Change cursor
+2021-08-17 14:06:33,725 [INFO] Rule:211 - rule Change USART1CLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,725 [INFO] Rule:211 - rule Change USART2CLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,725 [INFO] Rule:211 - rule Change USART3CLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change UART4CLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change UART5CLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change LPUART1CLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change LPTIM1CLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change LPTIM2CLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change RCC_MCO1Source refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change LSCOSource1 refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change SMPSCLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change LPTIM3CLockSelection refparam name for MP1 is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change MPCBB* Default Template Mode to Parameters is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change MPCWM* or MPCBB* Secure Mode to Parameters is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change MPCWM* or MPCBB* No Secure Mode to Parameters is applicable
+2021-08-17 14:06:33,726 [INFO] Rule:211 - rule Change TZSC IP Secure Mode to Parameters is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Change TZSC IP No Secure Mode to Parameters is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Change TZSC IP Privilege Mode to Parameters is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Change TZSC IP No Privilege Mode to Parameters is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Change TZIC IT Secure Mode to Parameters is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Change TZIC IT No Secure Mode to Parameters is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Add MPCBB1_NonSecureArea_Start_Address value with referenced to MPCBB1_NonSecureArea_Start value is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Add MPCBB2_NonSecureArea_Start_Address value with referenced to MPCBB2_NonSecureArea_Start value is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Add MPCWM1_NonSecureArea*_Start_Address value with referenced to MPCWM1_NonSecureArea*_Start value is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Add MPCWM2_NonSecureArea*_Start_Address value with referenced to MPCWM2_NonSecureArea*_Start value is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Add MPCWM3_NonSecureArea_Start_Address value with referenced to MPCWM3_NonSecureArea_Start value is applicable
+2021-08-17 14:06:33,727 [INFO] Rule:211 - rule Change Default Value for PLL1UserDefinedConfig is applicable
+2021-08-17 14:06:33,727 [INFO] DbConfProperties:294 - Apply Compatibility (0/27 Rules)
+2021-08-17 14:06:33,760 [INFO] ImportTextPane:162 - (OptionalMessage_WARN) Unknown mode (LSE_External_Clock_Source) for pin (PC15-OSC32_OUT (OSC32_OUT))
+2021-08-17 14:06:33,761 [INFO] ImportTextPane:162 - (OptionalMessage_WARN) Unknown mode (HSE_External_Clock_Source) for pin (PH1-OSC_OUT (PH1))
+2021-08-17 14:06:33,854 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) Unable to find appropriate mode for pin (PC15-OSC32_OUT (OSC32_OUT))
+2021-08-17 14:06:33,854 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) Unable to find appropriate mode for pin (PH1-OSC_OUT (PH1))
+2021-08-17 14:06:33,862 [INFO] ImportTextPane:162 - (OptionalMessage_ERROR) IP (RCC) : Invalid parameter (FamilyName)
+2021-08-17 14:06:34,081 [INFO] UtilMem:74 - End LoadConfig() Used Memory: 655231232 Bytes (961544192)
+2021-08-17 14:06:34,102 [INFO] ThirdPartyDb:295 - Open Third Party DataBase File (C:/Users/27849/.stm32cubemx/plugins/thirdparty/db/thirdparties_db.xml) : 9 ms. number of Sw pack : 26
+2021-08-17 14:06:34,591 [INFO] PinOutPanel:1420 - setPackage(No Configuration,No Configuration)
+2021-08-17 14:06:34,593 [INFO] PinOutPanel:1420 - setPackage(STM32H745XIHx,TFBGA240)
+2021-08-17 14:06:35,244 [INFO] UtilMem:74 - Before build in PCC Used Memory: 452519416 Bytes (961544192)
+2021-08-17 14:06:35,669 [INFO] SharedServices:71 - Folder for power plug-in: C:/Users/27849/.stm32cubemx/plugins/power
+2021-08-17 14:06:35,705 [INFO] SharedServices:71 - Folder for power plug-in: C:/Users/27849/.stm32cubemx/plugins/power
+2021-08-17 14:06:35,771 [INFO] SharedServices:71 - Folder for power plug-in: C:/Users/27849/.stm32cubemx/plugins/power
+2021-08-17 14:06:35,778 [INFO] SharedServices:71 - Folder for power plug-in: C:/Users/27849/.stm32cubemx/plugins/power
+2021-08-17 14:06:35,936 [INFO] UtilMem:74 - After build in PCC Used Memory: 567862776 Bytes (961544192)
+2021-08-17 14:06:35,963 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,963 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,963 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,963 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,963 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,963 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,964 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,964 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,964 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,964 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,964 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,964 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,964 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,964 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,964 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,965 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,965 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,965 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,965 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,965 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,965 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,965 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,965 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,965 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,966 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,966 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,966 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,966 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,966 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,966 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,966 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,966 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,967 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,967 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,967 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,967 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,967 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,968 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,968 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,968 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,968 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,968 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,968 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,968 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,968 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,968 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,969 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,970 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,970 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,970 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,970 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,970 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,970 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,970 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,970 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,971 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,971 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,971 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,971 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,971 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,971 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,971 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,971 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,971 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,972 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,972 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,972 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,972 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,972 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,972 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,972 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,972 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,973 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,973 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,973 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,973 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,973 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,973 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,973 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,973 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,974 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,974 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,974 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,974 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,974 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,974 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,974 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,974 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,975 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,975 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,975 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,975 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,975 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,975 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,976 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,976 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,976 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:35,976 [INFO] IPUIPlugin:65 - create IPUIPlugin
+2021-08-17 14:06:36,031 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] toolchainItems.length=====1
+2021-08-17 14:06:36,107 [INFO] OpenFileManager:294 - Restore cursor
+2021-08-17 14:06:36,132 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:06:36,139 [WARN] IP:1936 - Pitch_L0 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:06:36,140 [WARN] IP:1936 - Pitch_L1 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:06:36,274 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:06:36,762 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 311884640 Bytes (961544192)
+2021-08-17 14:06:38,294 [INFO] ServerAccessManage:348 - Download File stm32cube_fw_h7_v170.zip
+2021-08-17 14:06:39,380 [ERROR] ServerAccessManage:412 - IOException during http download : Connection reset
+2021-08-17 14:06:39,380 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] java.net.SocketException: Connection reset
+2021-08-17 14:06:39,381 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.net.SocketInputStream.read(SocketInputStream.java:210)
+2021-08-17 14:06:39,381 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+2021-08-17 14:06:39,382 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.io.BufferedInputStream.read1(BufferedInputStream.java:284)
+2021-08-17 14:06:39,383 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.io.BufferedInputStream.read(BufferedInputStream.java:345)
+2021-08-17 14:06:39,384 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at sun.net.www.MeteredStream.read(MeteredStream.java:134)
+2021-08-17 14:06:39,384 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.io.FilterInputStream.read(FilterInputStream.java:133)
+2021-08-17 14:06:39,385 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at sun.net.www.protocol.http.HttpURLConnection$HttpInputStream.read(HttpURLConnection.java:3454)
+2021-08-17 14:06:39,386 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.io.BufferedInputStream.read1(BufferedInputStream.java:284)
+2021-08-17 14:06:39,387 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.io.BufferedInputStream.read(BufferedInputStream.java:345)
+2021-08-17 14:06:39,388 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+2021-08-17 14:06:39,389 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.updater.engine.ServerAccessManage.readHttpFile(ServerAccessManage.java:367)
+2021-08-17 14:06:39,390 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.updater.engine.LoadServerPackagesThread.loadAllFiles(LoadServerPackagesThread.java:860)
+2021-08-17 14:06:39,392 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.updater.engine.LoadServerPackagesThread.downloadPackageFiles(LoadServerPackagesThread.java:223)
+2021-08-17 14:06:39,394 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.updater.engine.LoadServerPackagesThread.run(LoadServerPackagesThread.java:147)
+2021-08-17 14:06:39,400 [ERROR] ServerAccessManage:517 - Problem during Download of File : stm32cube_fw_h7_v170.zip.
+2021-08-17 14:06:45,376 [INFO] LoadServerPackagesThread:160 - End of LoadServerPackages Thread
+2021-08-17 14:06:45,403 [INFO] CheckServerUpdateThread:92 - End of CheckServer Thread
+2021-08-17 14:07:01,443 [INFO] DmaTabbedPanel:192 - Cannot restore the selected Tab for DMA
+2021-08-17 14:07:20,065 [INFO] Gpio:248 - dependency for GPIO [ETH, FDCAN1, FDCAN2, FMC, LTDC, QUADSPI, RCC, SAI2, SDMMC1, USART3, USB_OTG_FS]
+2021-08-17 14:07:20,861 [INFO] Gpio:248 - dependency for GPIO [ETH, FDCAN1, FDCAN2, FMC, LTDC, QUADSPI, RCC, SAI2, SDMMC1, USART3, USB_OTG_FS]
+2021-08-17 14:07:20,899 [INFO] DmaTabbedPanel:192 - Cannot restore the selected Tab for DMA
+2021-08-17 14:07:49,662 [WARN] Context:600 - Trying to set SAI twice on same context CortexM7
+2021-08-17 14:07:49,665 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Exception in thread "AWT-EventQueue-0" java.awt.IllegalComponentStateException: component must be showing on the screen to determine its location
+2021-08-17 14:07:49,666 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.getLocationOnScreen_NoTreeLock(Component.java:2062)
+2021-08-17 14:07:49,666 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.getLocationOnScreen(Component.java:2036)
+2021-08-17 14:07:49,667 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.IPContextTable.showPopup(IPContextTable.java:655)
+2021-08-17 14:07:49,668 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.IPContextTable$IPContextTableModel.setValueAt(IPContextTable.java:1448)
+2021-08-17 14:07:49,669 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.setValueAt(JTable.java:2744)
+2021-08-17 14:07:49,670 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.editingStopped(JTable.java:4729)
+2021-08-17 14:07:49,671 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.AbstractCellEditor.fireEditingStopped(AbstractCellEditor.java:141)
+2021-08-17 14:07:49,672 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.DefaultCellEditor$EditorDelegate.stopCellEditing(DefaultCellEditor.java:368)
+2021-08-17 14:07:49,673 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.DefaultCellEditor.stopCellEditing(DefaultCellEditor.java:233)
+2021-08-17 14:07:49,673 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.columnMarginChanged(JTable.java:4598)
+2021-08-17 14:07:49,674 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.DefaultTableColumnModel.fireColumnMarginChanged(DefaultTableColumnModel.java:628)
+2021-08-17 14:07:49,675 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.DefaultTableColumnModel.propertyChange(DefaultTableColumnModel.java:691)
+2021-08-17 14:07:49,676 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.fire(PropertyChangeSupport.java:335)
+2021-08-17 14:07:49,677 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:327)
+2021-08-17 14:07:49,678 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.event.SwingPropertyChangeSupport.firePropertyChange(SwingPropertyChangeSupport.java:92)
+2021-08-17 14:07:49,679 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:263)
+2021-08-17 14:07:49,680 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.TableColumn.firePropertyChange(TableColumn.java:278)
+2021-08-17 14:07:49,681 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.TableColumn.firePropertyChange(TableColumn.java:284)
+2021-08-17 14:07:49,682 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.TableColumn.setWidth(TableColumn.java:514)
+2021-08-17 14:07:49,683 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable$2.setSizeAt(JTable.java:3235)
+2021-08-17 14:07:49,684 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable$4.setSizeAt(JTable.java:3316)
+2021-08-17 14:07:49,685 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.adjustSizes(JTable.java:3361)
+2021-08-17 14:07:49,685 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.adjustSizes(JTable.java:3329)
+2021-08-17 14:07:49,686 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.setWidthsFromPreferredWidths(JTable.java:3243)
+2021-08-17 14:07:49,687 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.doLayout(JTable.java:3131)
+2021-08-17 14:07:49,688 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1698)
+2021-08-17 14:07:49,688 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,689 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,689 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,690 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validate(Container.java:1633)
+2021-08-17 14:07:49,691 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.NodeResizingTreeUI$NodeDimensionsHandler.getNodeDimensions(NodeResizingTreeUI.java:131)
+2021-08-17 14:07:49,693 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.AbstractLayoutCache.getNodeDimensions(AbstractLayoutCache.java:492)
+2021-08-17 14:07:49,695 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.VariableHeightLayoutCache$TreeStateNode.updatePreferredSize(VariableHeightLayoutCache.java:1360)
+2021-08-17 14:07:49,697 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.VariableHeightLayoutCache$TreeStateNode.expand(VariableHeightLayoutCache.java:1487)
+2021-08-17 14:07:49,699 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.VariableHeightLayoutCache$TreeStateNode.expand(VariableHeightLayoutCache.java:1288)
+2021-08-17 14:07:49,700 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.VariableHeightLayoutCache.rebuild(VariableHeightLayoutCache.java:743)
+2021-08-17 14:07:49,701 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.VariableHeightLayoutCache.setModel(VariableHeightLayoutCache.java:109)
+2021-08-17 14:07:49,702 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.plaf.basic.BasicTreeUI.configureLayoutCache(BasicTreeUI.java:1821)
+2021-08-17 14:07:49,703 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.plaf.basic.BasicTreeUI.completeUIInstall(BasicTreeUI.java:689)
+2021-08-17 14:07:49,704 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.plaf.basic.BasicTreeUI.installUI(BasicTreeUI.java:649)
+2021-08-17 14:07:49,705 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.NodeResizingTreeUI.installUI(NodeResizingTreeUI.java:65)
+2021-08-17 14:07:49,706 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JComponent.setUI(JComponent.java:666)
+2021-08-17 14:07:49,707 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTree.setUI(JTree.java:703)
+2021-08-17 14:07:49,708 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.PeripheralTree.adjustTreeSize(PeripheralTree.java:947)
+2021-08-17 14:07:49,709 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.PeripheralTree$TreeviewNodeExpend$1.run(PeripheralTree.java:1775)
+2021-08-17 14:07:49,710 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+2021-08-17 14:07:49,711 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+2021-08-17 14:07:49,712 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.access$500(EventQueue.java:97)
+2021-08-17 14:07:49,712 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$3.run(EventQueue.java:709)
+2021-08-17 14:07:49,713 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$3.run(EventQueue.java:703)
+2021-08-17 14:07:49,714 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.AccessController.doPrivileged(Native Method)
+2021-08-17 14:07:49,715 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+2021-08-17 14:07:49,716 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+2021-08-17 14:07:49,717 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+2021-08-17 14:07:49,718 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+2021-08-17 14:07:49,719 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+2021-08-17 14:07:49,720 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+2021-08-17 14:07:49,721 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+2021-08-17 14:07:49,721 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2021-08-17 14:07:49,722 [WARN] Context:600 - Trying to set SAI twice on same context CortexM7
+2021-08-17 14:07:49,724 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Exception in thread "AWT-EventQueue-0" java.awt.IllegalComponentStateException: component must be showing on the screen to determine its location
+2021-08-17 14:07:49,725 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.getLocationOnScreen_NoTreeLock(Component.java:2062)
+2021-08-17 14:07:49,725 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.getLocationOnScreen(Component.java:2036)
+2021-08-17 14:07:49,727 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.IPContextTable.showPopup(IPContextTable.java:655)
+2021-08-17 14:07:49,728 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.IPContextTable$IPContextTableModel.setValueAt(IPContextTable.java:1448)
+2021-08-17 14:07:49,728 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.setValueAt(JTable.java:2744)
+2021-08-17 14:07:49,729 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.editingStopped(JTable.java:4729)
+2021-08-17 14:07:49,730 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.AbstractCellEditor.fireEditingStopped(AbstractCellEditor.java:141)
+2021-08-17 14:07:49,731 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.DefaultCellEditor$EditorDelegate.stopCellEditing(DefaultCellEditor.java:368)
+2021-08-17 14:07:49,733 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.DefaultCellEditor.stopCellEditing(DefaultCellEditor.java:233)
+2021-08-17 14:07:49,733 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.columnMarginChanged(JTable.java:4598)
+2021-08-17 14:07:49,734 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.DefaultTableColumnModel.fireColumnMarginChanged(DefaultTableColumnModel.java:628)
+2021-08-17 14:07:49,735 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.DefaultTableColumnModel.propertyChange(DefaultTableColumnModel.java:691)
+2021-08-17 14:07:49,736 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.fire(PropertyChangeSupport.java:335)
+2021-08-17 14:07:49,737 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:327)
+2021-08-17 14:07:49,738 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.event.SwingPropertyChangeSupport.firePropertyChange(SwingPropertyChangeSupport.java:92)
+2021-08-17 14:07:49,739 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:263)
+2021-08-17 14:07:49,740 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.TableColumn.firePropertyChange(TableColumn.java:278)
+2021-08-17 14:07:49,741 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.TableColumn.firePropertyChange(TableColumn.java:284)
+2021-08-17 14:07:49,741 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.TableColumn.setWidth(TableColumn.java:514)
+2021-08-17 14:07:49,742 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable$2.setSizeAt(JTable.java:3235)
+2021-08-17 14:07:49,742 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable$4.setSizeAt(JTable.java:3316)
+2021-08-17 14:07:49,743 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.adjustSizes(JTable.java:3361)
+2021-08-17 14:07:49,744 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.adjustSizes(JTable.java:3329)
+2021-08-17 14:07:49,744 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.setWidthsFromPreferredWidths(JTable.java:3243)
+2021-08-17 14:07:49,745 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.doLayout(JTable.java:3131)
+2021-08-17 14:07:49,746 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1698)
+2021-08-17 14:07:49,746 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,747 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,748 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,748 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validate(Container.java:1633)
+2021-08-17 14:07:49,749 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.NodeResizingTreeUI$NodeDimensionsHandler.getNodeDimensions(NodeResizingTreeUI.java:131)
+2021-08-17 14:07:49,750 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.AbstractLayoutCache.getNodeDimensions(AbstractLayoutCache.java:492)
+2021-08-17 14:07:49,751 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.VariableHeightLayoutCache$TreeStateNode.updatePreferredSize(VariableHeightLayoutCache.java:1360)
+2021-08-17 14:07:49,752 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.VariableHeightLayoutCache$TreeStateNode.getXOrigin(VariableHeightLayoutCache.java:1143)
+2021-08-17 14:07:49,754 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.VariableHeightLayoutCache$TreeStateNode.getNodeBounds(VariableHeightLayoutCache.java:1130)
+2021-08-17 14:07:49,754 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.tree.VariableHeightLayoutCache.getBounds(VariableHeightLayoutCache.java:220)
+2021-08-17 14:07:49,755 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.plaf.basic.BasicTreeUI.getPathBounds(BasicTreeUI.java:529)
+2021-08-17 14:07:49,756 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.plaf.basic.BasicTreeUI.getPathBounds(BasicTreeUI.java:522)
+2021-08-17 14:07:49,757 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.plaf.basic.BasicTreeUI$Handler.focusGained(BasicTreeUI.java:3693)
+2021-08-17 14:07:49,758 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.AWTEventMulticaster.focusGained(AWTEventMulticaster.java:220)
+2021-08-17 14:07:49,758 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.processFocusEvent(Component.java:6428)
+2021-08-17 14:07:49,759 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.processEvent(Component.java:6295)
+2021-08-17 14:07:49,760 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.processEvent(Container.java:2239)
+2021-08-17 14:07:49,760 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+2021-08-17 14:07:49,761 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.dispatchEventImpl(Container.java:2297)
+2021-08-17 14:07:49,762 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.dispatchEvent(Component.java:4711)
+2021-08-17 14:07:49,763 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.KeyboardFocusManager.redispatchEvent(KeyboardFocusManager.java:1954)
+2021-08-17 14:07:49,764 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.DefaultKeyboardFocusManager.typeAheadAssertions(DefaultKeyboardFocusManager.java:1014)
+2021-08-17 14:07:49,765 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.DefaultKeyboardFocusManager.dispatchEvent(DefaultKeyboardFocusManager.java:638)
+2021-08-17 14:07:49,765 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.dispatchEventImpl(Component.java:4760)
+2021-08-17 14:07:49,766 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.dispatchEventImpl(Container.java:2297)
+2021-08-17 14:07:49,767 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.dispatchEvent(Component.java:4711)
+2021-08-17 14:07:49,768 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.KeyboardFocusManager.dispatchAndCatchException(KeyboardFocusManager.java:2601)
+2021-08-17 14:07:49,769 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.KeyboardFocusManager.processCurrentLightweightRequests(KeyboardFocusManager.java:2697)
+2021-08-17 14:07:49,770 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.KeyboardFocusManager$4.run(KeyboardFocusManager.java:2804)
+2021-08-17 14:07:49,770 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+2021-08-17 14:07:49,771 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+2021-08-17 14:07:49,772 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.access$500(EventQueue.java:97)
+2021-08-17 14:07:49,772 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$3.run(EventQueue.java:709)
+2021-08-17 14:07:49,773 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$3.run(EventQueue.java:703)
+2021-08-17 14:07:49,773 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.AccessController.doPrivileged(Native Method)
+2021-08-17 14:07:49,774 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+2021-08-17 14:07:49,775 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+2021-08-17 14:07:49,776 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+2021-08-17 14:07:49,777 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+2021-08-17 14:07:49,778 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+2021-08-17 14:07:49,779 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+2021-08-17 14:07:49,779 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+2021-08-17 14:07:49,780 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2021-08-17 14:07:49,780 [WARN] Context:600 - Trying to set SAI twice on same context CortexM7
+2021-08-17 14:07:49,782 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Exception in thread "AWT-EventQueue-0" java.awt.IllegalComponentStateException: component must be showing on the screen to determine its location
+2021-08-17 14:07:49,783 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.getLocationOnScreen_NoTreeLock(Component.java:2062)
+2021-08-17 14:07:49,783 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.getLocationOnScreen(Component.java:2036)
+2021-08-17 14:07:49,784 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.IPContextTable.showPopup(IPContextTable.java:655)
+2021-08-17 14:07:49,785 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.peripheralpanel.IPContextTable$IPContextTableModel.setValueAt(IPContextTable.java:1448)
+2021-08-17 14:07:49,786 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.setValueAt(JTable.java:2744)
+2021-08-17 14:07:49,787 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.editingStopped(JTable.java:4729)
+2021-08-17 14:07:49,787 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.AbstractCellEditor.fireEditingStopped(AbstractCellEditor.java:141)
+2021-08-17 14:07:49,788 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.DefaultCellEditor$EditorDelegate.stopCellEditing(DefaultCellEditor.java:368)
+2021-08-17 14:07:49,789 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.DefaultCellEditor.stopCellEditing(DefaultCellEditor.java:233)
+2021-08-17 14:07:49,790 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.columnMarginChanged(JTable.java:4598)
+2021-08-17 14:07:49,791 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.DefaultTableColumnModel.fireColumnMarginChanged(DefaultTableColumnModel.java:628)
+2021-08-17 14:07:49,792 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.DefaultTableColumnModel.propertyChange(DefaultTableColumnModel.java:691)
+2021-08-17 14:07:49,793 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.fire(PropertyChangeSupport.java:335)
+2021-08-17 14:07:49,794 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:327)
+2021-08-17 14:07:49,795 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.event.SwingPropertyChangeSupport.firePropertyChange(SwingPropertyChangeSupport.java:92)
+2021-08-17 14:07:49,796 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:263)
+2021-08-17 14:07:49,797 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.TableColumn.firePropertyChange(TableColumn.java:278)
+2021-08-17 14:07:49,797 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.TableColumn.firePropertyChange(TableColumn.java:284)
+2021-08-17 14:07:49,798 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.table.TableColumn.setWidth(TableColumn.java:514)
+2021-08-17 14:07:49,799 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable$2.setSizeAt(JTable.java:3235)
+2021-08-17 14:07:49,799 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable$4.setSizeAt(JTable.java:3316)
+2021-08-17 14:07:49,800 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.adjustSizes(JTable.java:3361)
+2021-08-17 14:07:49,801 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.adjustSizes(JTable.java:3329)
+2021-08-17 14:07:49,801 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.setWidthsFromPreferredWidths(JTable.java:3243)
+2021-08-17 14:07:49,802 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JTable.doLayout(JTable.java:3131)
+2021-08-17 14:07:49,803 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1698)
+2021-08-17 14:07:49,803 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,804 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,804 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,805 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,806 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,806 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,807 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validateTree(Container.java:1707)
+2021-08-17 14:07:49,807 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.validate(Container.java:1633)
+2021-08-17 14:07:49,808 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.RepaintManager$3.run(RepaintManager.java:711)
+2021-08-17 14:07:49,809 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.RepaintManager$3.run(RepaintManager.java:709)
+2021-08-17 14:07:49,809 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.AccessController.doPrivileged(Native Method)
+2021-08-17 14:07:49,811 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+2021-08-17 14:07:49,811 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.RepaintManager.validateInvalidComponents(RepaintManager.java:708)
+2021-08-17 14:07:49,812 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.RepaintManager$ProcessingRunnable.run(RepaintManager.java:1731)
+2021-08-17 14:07:49,813 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+2021-08-17 14:07:49,814 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+2021-08-17 14:07:49,814 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.access$500(EventQueue.java:97)
+2021-08-17 14:07:49,815 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$3.run(EventQueue.java:709)
+2021-08-17 14:07:49,815 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$3.run(EventQueue.java:703)
+2021-08-17 14:07:49,816 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.AccessController.doPrivileged(Native Method)
+2021-08-17 14:07:49,817 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+2021-08-17 14:07:49,818 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+2021-08-17 14:07:49,818 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+2021-08-17 14:07:49,819 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+2021-08-17 14:07:49,820 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+2021-08-17 14:07:49,821 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+2021-08-17 14:07:49,822 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+2021-08-17 14:07:49,822 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2021-08-17 14:08:36,545 [WARN] IP:1936 - Pitch_L0 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:08:36,546 [WARN] IP:1936 - Pitch_L1 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:08:36,573 [WARN] IP:1936 - Pitch_L0 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:08:36,574 [WARN] IP:1936 - Pitch_L1 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:09:42,351 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:09:42,356 [WARN] IP:1936 - Pitch_L0 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:09:42,356 [WARN] IP:1936 - Pitch_L1 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:09:42,438 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:06,525 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:06,528 [WARN] IP:1936 - Pitch_L0 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:06,528 [WARN] IP:1936 - Pitch_L1 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:06,604 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:12,075 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:12,078 [WARN] IP:1936 - Pitch_L0 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:12,079 [WARN] IP:1936 - Pitch_L1 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:12,157 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:14,782 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:14,786 [WARN] IP:1936 - Pitch_L0 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:14,787 [WARN] IP:1936 - Pitch_L1 not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:14,865 [WARN] IP:1936 - ClockDivider not found: check if there is a RefParameter without a condition.
+2021-08-17 14:10:28,459 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Exception in thread "AWT-EventQueue-0" java.util.ConcurrentModificationException
+2021-08-17 14:10:28,460 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.util.LinkedHashMap$LinkedHashIterator.nextNode(LinkedHashMap.java:719)
+2021-08-17 14:10:28,460 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.util.LinkedHashMap$LinkedKeyIterator.next(LinkedHashMap.java:742)
+2021-08-17 14:10:28,461 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.mcu.IP.getParameterValue(IP.java:2931)
+2021-08-17 14:10:28,462 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.mcu.IP.getParameterValue(IP.java:2883)
+2021-08-17 14:10:28,463 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.model.clocktree.Element.isAuto(Element.java:96)
+2021-08-17 14:10:28,464 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.gui.ClockTreeUI.cloneAllElements(ClockTreeUI.java:502)
+2021-08-17 14:10:28,465 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.gui.ClockTreeUI$ClockConfig.<init>(ClockTreeUI.java:351)
+2021-08-17 14:10:28,466 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.gui.ClockTreeUI.StoreConfig(ClockTreeUI.java:387)
+2021-08-17 14:10:28,467 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.utils.UndoRedoManager.add(UndoRedoManager.java:141)
+2021-08-17 14:10:28,468 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.ClockConfigurationView.newUndoRedo(ClockConfigurationView.java:513)
+2021-08-17 14:10:28,470 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.ClockConfigurationView.propertyChange(ClockConfigurationView.java:565)
+2021-08-17 14:10:28,470 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.fire(PropertyChangeSupport.java:335)
+2021-08-17 14:10:28,471 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeSupport.java:327)
+2021-08-17 14:10:28,472 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.util.MXPropertyChangeSupport.refreshing(MXPropertyChangeSupport.java:63)
+2021-08-17 14:10:28,473 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.mxsystem.MxSystem.refreshing(MxSystem.java:658)
+2021-08-17 14:10:28,474 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at com.st.microxplorer.plugins.clock.ClockConfigurationView$9.actionPerformed(ClockConfigurationView.java:761)
+2021-08-17 14:10:28,475 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+2021-08-17 14:10:28,476 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+2021-08-17 14:10:28,477 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+2021-08-17 14:10:28,478 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+2021-08-17 14:10:28,479 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+2021-08-17 14:10:28,479 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:289)
+2021-08-17 14:10:28,480 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.processMouseEvent(Component.java:6539)
+2021-08-17 14:10:28,481 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+2021-08-17 14:10:28,481 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.processEvent(Component.java:6304)
+2021-08-17 14:10:28,482 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.processEvent(Container.java:2239)
+2021-08-17 14:10:28,483 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+2021-08-17 14:10:28,483 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.dispatchEventImpl(Container.java:2297)
+2021-08-17 14:10:28,484 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.dispatchEvent(Component.java:4711)
+2021-08-17 14:10:28,485 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4904)
+2021-08-17 14:10:28,486 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4535)
+2021-08-17 14:10:28,486 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4476)
+2021-08-17 14:10:28,487 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Container.dispatchEventImpl(Container.java:2283)
+2021-08-17 14:10:28,488 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.Component.dispatchEvent(Component.java:4711)
+2021-08-17 14:10:28,488 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:760)
+2021-08-17 14:10:28,489 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.access$500(EventQueue.java:97)
+2021-08-17 14:10:28,489 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$3.run(EventQueue.java:709)
+2021-08-17 14:10:28,490 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$3.run(EventQueue.java:703)
+2021-08-17 14:10:28,491 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.AccessController.doPrivileged(Native Method)
+2021-08-17 14:10:28,492 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+2021-08-17 14:10:28,493 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:84)
+2021-08-17 14:10:28,494 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$4.run(EventQueue.java:733)
+2021-08-17 14:10:28,494 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue$4.run(EventQueue.java:731)
+2021-08-17 14:10:28,495 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.AccessController.doPrivileged(Native Method)
+2021-08-17 14:10:28,496 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:74)
+2021-08-17 14:10:28,497 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:730)
+2021-08-17 14:10:28,497 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205)
+2021-08-17 14:10:28,498 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+2021-08-17 14:10:28,499 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+2021-08-17 14:10:28,500 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+2021-08-17 14:10:28,501 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+2021-08-17 14:10:28,501 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)

@@ -38,7 +38,7 @@ void load_wave(float buf[],  float (*wave)(float, int), int num_harmonics){
     for(int i = 0; i < LUT_SIZE; i++){
         float pos = (float)i / (float) LUT_SIZE;
         float val = 0.0f;
-        for(int k = 1; k < num_harmonics; k++){
+        for(int k = 1; k <= num_harmonics; k++){
             val += wave(pos, k);
         }
         *(vals+i) = val; 
@@ -57,10 +57,13 @@ void load_wave(float buf[],  float (*wave)(float, int), int num_harmonics){
 
 
 void load_exp_decay(float exp[], uint16_t exp_size) {
-    float a = powf(1.0f/3.0f, 1.0f/(float)exp_size);
+    float p = 0.95f; //fraction of final value K
+    float K = 1 / p; //final value, a[N] = pK
+    float N = (float)EXP_LUT_SIZE - 1.0f; //a[N] = 1 at final sample
+    float R = powf(1 - p, 1 / N); //base of exponent
     for (int n = 0; n < exp_size; n++) {
-        float e = 1.5f * (1.0f - powf(a, (float)n));
-        exp[n] = e;
+        float val = K * (1.0f - powf(R, (float)n)); //a[n]
+        exp[n] = val;
     }
 }
 
@@ -77,9 +80,9 @@ void load_basic_luts() {
 }
 
 
-float exp_decay[128];
+float lut_exp[EXP_LUT_SIZE];
 
 void init_basic_luts() {
     load_basic_luts();
-    load_exp_decay(exp_decay, 128);
+    load_exp_decay(lut_exp, EXP_LUT_SIZE);
 }

@@ -1,2 +1,0 @@
-voiceL.txt
-voiceR.txt

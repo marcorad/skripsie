@@ -1,2 +1,3 @@
 ﻿  test.cpp
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\wavetable.h(22,16): warning C4244: '=': conversion from 'uint16_t' to 'uint8_t', possible loss of data
   Synthesiser Project Final.vcxproj -> C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\Debug\Synthesiser Project Final.exe

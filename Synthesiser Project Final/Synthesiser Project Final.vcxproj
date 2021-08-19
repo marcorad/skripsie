@@ -143,17 +143,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ADSR.h" />
-    <ClInclude Include="basic_luts.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="IIR.h" />
-    <ClInclude Include="IIR_util.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="init_luts.h" />
     <ClInclude Include="LUT.h" />
     <ClInclude Include="notes.h" />
-    <ClInclude Include="predefined_luts.h" />
-    <ClInclude Include="trig_buff.h" />
-    <ClInclude Include="voice.h" />
+    <ClInclude Include="generator.h" />
     <ClInclude Include="wavetable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

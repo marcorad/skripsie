@@ -1,9 +1,6 @@
 #pragma once
-
-#include <stdint.h>
-#include <stdlib.h> 
-
 #include "defines.h"
+#include "includes.h"
 
 
 // find a value between x and y where d covers the full distance between

@@ -23,16 +23,10 @@
     <ClInclude Include="ADSR.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="basic_luts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IIR.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IIR_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes.h">
@@ -47,13 +41,7 @@
     <ClInclude Include="notes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="predefined_luts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="trig_buff.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="voice.h">
+    <ClInclude Include="generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="wavetable.h">

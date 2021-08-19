@@ -1,3 +1,27 @@
 Digi-Key
 STM32H735G-DK 550 Mhz R1,296.60 or DISCO
 STM32H750B-DK 480 Mhz R1,289.34
+
+
+STM32H747I-DISCO
+SAI Audio DAC stereo with audio jack input and output
+16 MByte QuadSPI Flash 
+8Mbit * 32bits SRAM
+
+
+FINAL CHOICE
+STM32H745I-DISCO M7  (BETTER THAN H750B)
+https://www.digikey.co.za/en/products/detail/stmicro/STM32H745I-DISCO/10244391?utm_adgroup=Dev%20Boards&utm_source=google&utm_medium=cpc&utm_campaign=Smart%20Shopping_Product_Development%20Boards&utm_term=&productid=10244391&gclid=Cj0KCQjwvO2IBhCzARIsALw3ASoDf4u8c3jMicn0D_vInAuZHhHyjQFt45twd6KLZELQtN5LXG7-smEaAlg_EALw_wcB
+16 MByte QuadSPI Flash 
+8Mbit * 32bits SRAM
+AI Audio DAC stereo with audio jack input and output
+LCD with capacitive multi-touch panel
+DUAL CORE
+
+
+
+STM32H750B-DK M4
+16 MByte QuadSPI Flash 
+8Mbit * 32bits SRAM
+SAI Audio DAC stereo with audio jack input and output
+LCD with capacitive multi-touch panel
