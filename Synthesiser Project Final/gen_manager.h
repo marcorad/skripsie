@@ -11,6 +11,19 @@ struct gen_manager {
 	uint8_t in_use_head = 0;
 };
 
+inline void gm_init(gen_manager* gm) {
+	for (int i = 0; i < NUM_GENERATORS; i++)
+	{
+		gm->available[i] = &gm->generators[i];
+	}
+	gm->available_head = NUM_GENERATORS;
+	gm->in_use_head = 0;
+	for (int i = 0; i < NUM_GENERATORS; i++)
+	{
+		gm->in_use[i] = NULL;
+	}
+}
+
 inline void gm_add_to_in_use(gen_manager* gm, generator* g) {
 	gm->in_use[gm->in_use_head] = g;
 	gm->in_use_head = gm->in_use_head + 1;
