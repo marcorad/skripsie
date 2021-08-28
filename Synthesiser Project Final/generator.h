@@ -4,8 +4,45 @@
 #include "ADSR.h"
 #include "wavetable.h"
 #include "IIR.h"
+#include "notes.h"
 
 #include <math.h>
+#include "util.h"
+
+//stores freq gen config to avoid any data duplication
+struct gen_config {
+	float detune = 0.0; //detune amount
+	float detune_volume = 0; //detune volume
+	float filter_freq_start_relative = 1.0f, filter_freq_end_relative = 1.0f;
+	float filter_Q = ROOT_2_RECIP; //Q of filter
+	float wt_pos = 0.0f;
+	float vol_A = 0.01f, vol_D = 0.01f, vol_S = 1.0f, vol_R = 0.01f;
+	float filt_A = 0.01f, filt_D = 0.01f, filt_S = 1.0f, filt_R = 0.01f;
+	float detune_factor_up = 1.0f, detune_factor_down = 1.0f;
+
+	//TO BE IMPLEMENTED
+	float vibrato_amount = 0.0f; //in cents
+	float vibrato_freq = 0.0f; //in digital freq
+	float vibrato_factor = 0.0f; //in digital freq
+};
+
+inline void gen_config_default(gen_config* gc) {
+	gc->detune = 0.0f; //detune in cents
+	gc->detune_factor_up = 1.0f;
+	gc->detune_factor_down = 1.0f;
+	gc->detune_volume = 0.0f;
+	gc->filter_freq_start_relative = 512.0f;
+	gc->filter_freq_end_relative = 512.0f;
+	gc->filter_Q = ROOT_2_RECIP;
+	gc->filt_A = 0.01f;
+	gc->filt_D = 0.01f;
+	gc->filt_S = 1.0f;
+	gc->vol_R = 0.01f;
+	gc->vol_A = 0.01f;
+	gc->vol_D = 0.01f;
+	gc->vol_S = 1.0f;
+	gc->vol_R = 0.01f;
+}
 
 
 //generates the notes with defined modular structure
@@ -16,124 +53,148 @@ struct generator {
 	IIR filter_left; //left filter
 	IIR filter_right; //right filter
 	ADSR envelope_volume; //volume
-	ADSR envelope_filter; //cut-off	
-	float detune = 0; //detune amount
-	float detune_volume = 0; //detune volume
-	float filter_envelope_start_relative = 0.5f; //starting point relative to translated freq 
-	float filter_envelope_amplitude = 0.0; //amplitude of cut-off modulation
-	float velocity; //note volume
-	float filter_Q_recip = ROOT_2_RECIP; //Q^-1 of filter
-	float freq_start = 20000.0f, freq_end = 20000.0f; //actual frequency start and end ADSR paramters
-	float detune_rel = 0.0f;
+	ADSR envelope_filter_cutoff; //cut-off	
+	float filter_freq_start = DIGITAL_FREQ_20KHZ, filter_freq_end = DIGITAL_FREQ_20KHZ; //actual frequency start and end ADSR paramters	
 	float base_freq; //the frequency without any frequency shifting applied
-	float translated_freq; // accounts for frequency shifts
+	float translated_freq; // accounts for frequency shifts (vibrato ??)
+	float velocity; //note volume
+	float filter_envelope_amplitude = 0.0; //amplitude of cut-off modulation
 };
 
-inline void voice_init_default(voice* v) {
-	v->wt_left = wt_basic();
-	v->wt_right = wt_basic();
-	v->wt_center = wt_basic();
-	v->detune = 0;
-	v->detune_volume = 0;
-	v->filter_envelope_start = Q_20KHZ;
-	v->filter_envelope_amplitude = 0;
-	v->filter_Q_recip = Q_ROOT2_RECIP;
-	adsr_init(&v->envelope_volume, 0.001f, 0.0f, 1.0f, 0.001f);
-	adsr_init(&v->envelope_filter, 0.001f, 0.0f, 1.0f, 0.001f);
-	v->freq_start = 20000.0f;
-	v->freq_end = 20000.0f;
-	iir_reset(&v->filter_left);
-	iir_reset(&v->filter_right);
+inline uint8_t gen_is_playing(generator* g) {
+	return g->envelope_volume.phase != NOT_PLAYING;
+}
+
+inline void voice_config_default(generator* g, gen_config* gc) {
+	gc->detune = 0.0f;
+	gc->detune_volume = 0.0f;
+	g->filter_envelope_amplitude = 0.0f;
+	gc->filter_Q = ROOT_2_RECIP;
+	adsr_config(&g->envelope_volume, 0.001f, 0.0f, 1.0f, 0.001f);
+	adsr_config(&g->envelope_filter_cutoff, 0.001f, 0.0f, 1.0f, 0.001f);
+	g->filter_freq_start = DIGITAL_FREQ_20KHZ;
+	g->filter_freq_end = DIGITAL_FREQ_20KHZ;
+	iir_reset(&g->filter_left);
+	iir_reset(&g->filter_right);
 }
 
 //sample the voice
 //CHECK IF THE VOLUME ENVELOPE IS DONE AND RESET THE FILTERS AFTERWARDS
-inline void voice_sample(voice* v, Qnum* buf_L, Qnum* buf_R) {
+inline void gen_sample(generator* g, gen_config* gc, float* buf_L, float* buf_R) {
 	//get samples
-	Qnum sc = wt_sample(&v->wt_center) >> 1; // make some headroom
-	Qnum sl = wt_sample(&v->wt_left) >> 1;
-	Qnum sr = wt_sample(&v->wt_right) >> 1;
+	float sc = wt_sample(&g->wt_center);
+	float sl = wt_sample(&g->wt_left);
+	float sr = wt_sample(&g->wt_right);
+
 	//blend detuned samples
-	Qnum L = sc + q_mul(v->detune_volume, sl);
-	Qnum R = sc + q_mul(v->detune_volume, sr);
+	float L = sc + gc->detune_volume * sl;
+	float R = sc + gc->detune_volume * sr;
+
 	//find envelope values
-	Qnum f0 = v->filter_envelope_start + q_mul(adsr_sample(&v->envelope_filter), v->filter_envelope_amplitude);
-	Qnum volume = q_mul(adsr_sample(&v->envelope_volume), v->velocity);
+	float f0 = g->filter_freq_start + adsr_sample(&g->envelope_filter_cutoff) * g->filter_envelope_amplitude;
+	float volume = adsr_sample(&g->envelope_volume) * g->velocity;
+
 	//calculate filter coefficients
-	iir_calc_lp_coeff_opt(&v->filter_left, (uint16_t) f0, v->filter_Q_recip); //TODO: filter type
-	iir_copy_params(&v->filter_left, &v->filter_right);
-	//filter values
-	L = filter_opt(&v->filter_left, L);
-	R = filter_opt(&v->filter_left, R);
+	iir_calc_lp_coeff(&g->filter_left,  f0, gc->filter_Q); //TODO: filter type
+	iir_copy_coeff(&g->filter_left, &g->filter_right);
+
 	//apply volume envelope
-	L = q_mul(L, volume);
-	R = q_mul(R, volume);
-	*buf_L = L; // L;
+	//this is done before so that we can partially mitigate the transient response
+	L = L * volume;
+	R = R * volume;
+
+	//filter values
+	L = iir_filter_sample(&g->filter_left, L);
+	R = iir_filter_sample(&g->filter_right, R);
+	
+	*buf_L = L;
 	*buf_R = R;
 }
 
+inline void gen_calc_filter_envelope_freq(generator* g, gen_config* gc) {
+	g->filter_freq_start = clamp(gc->filter_freq_start_relative * g->base_freq, DIGITAL_FREQ_20HZ, DIGITAL_FREQ_20KHZ); //check if compiler precomputes THESE!
+	g->filter_freq_end = clamp(gc->filter_freq_end_relative * g->base_freq, DIGITAL_FREQ_20HZ, DIGITAL_FREQ_20KHZ); //clamp to audible range
+	g->filter_envelope_amplitude = g->filter_freq_end - g->filter_freq_start;
+}
+
 //note on. vel must be to midi standards in the range 0-127
-inline void voice_note_on(voice* v, uint8_t note, uint8_t vel) {
-	v->detune = (int32_t)((float)note_stride[note] * v->detune_rel);
-	wt_note_detune(&v->wt_left, note, -v->detune);
-	wt_note_detune(&v->wt_right, note, v->detune);
-	wt_note(&v->wt_center, note);
-	adsr_note_on(&v->envelope_volume);
-	adsr_note_on(&v->envelope_filter);
-	v->velocity = (Qnum)vel << 8; //could velocity maybe also be exponential?
+//ALWAYS DO CONFIGURATION AND APPLY IT BEFORE THIS
+inline void gen_freq(generator* g, gen_config* gc, float freq, uint8_t vel) {
+	//set velocity
+	float v = (float)vel / 127.0f;
+	g->velocity = v;
+	g->base_freq = freq;
+
+	//tune wavetables
+	
+	wt_config_digital_freq(&g->wt_center, freq);
+	wt_config_digital_freq(&g->wt_left, freq * gc->detune_factor_up);
+	wt_config_digital_freq(&g->wt_right, freq * gc->detune_factor_down);
+
+	//trigger envelopes
+	adsr_trigger_on(&g->envelope_volume);
+	adsr_trigger_on(&g->envelope_filter_cutoff);	
+
+	//configure start and end filter frequencies
+	gen_calc_filter_envelope_freq(g, gc); //this is also done on configuration of filter, incase it is currently playing
 }
 
-//note on, but also setting filter params to be relative to the note. vel must be to midi standards in the range 0-127
-//the freq start and stop is normalised to the note, i.e. freq_start=1 is directly on the note
-inline void voice_note_on_relative_filter_freq(voice* v, uint8_t note, uint8_t vel) {
-	voice_note_on(v, note, vel);
-	Qnum qstart =  (Qnum)(v->freq_start*(float)(note_stride[note] >> 16));
-	Qnum qamp = (Qnum)(fminf(v->freq_end*(float)(note_stride[note] >> 16), (float)(Q_MAX - 1))) - qstart; //clamp the stop frequency
-	v->filter_envelope_amplitude = qamp;
-	v->filter_envelope_start = qstart;
+inline void gen_apply_volume_envelope_config(generator* g, gen_config* gc) {
+	adsr_config(&g->envelope_volume, gc->vol_A, gc->vol_D, gc->vol_S, gc->vol_R);
 }
 
-
-//sets relative frequencies
-inline void voice_configure_filter_freq_params(voice* v, float freq_start, float freq_end) {
-	v->freq_start = freq_start;
-	v->freq_end = freq_end;
+inline void gen_apply_filter_envelope_config(generator* g, gen_config* gc) {
+	adsr_config(&g->envelope_filter_cutoff, gc->filt_A, gc->filt_D, gc->filt_S, gc->filt_R);
 }
 
-inline void voice_configure_volume_envelope(voice* v, float a, float d, float s, float r) {
-	adsr_init(&v->envelope_volume, a, d, s, r);
+inline void gen_apply_wavetable_config(generator* g, gen_config* gc) {
+	g->wt_center.pos = gc->wt_pos;
+	g->wt_left.pos = gc->wt_pos;
+	g->wt_right.pos = gc->wt_pos;
 }
 
-inline void voice_configure_freq_envelope(voice* v, float a, float d, float s, float r) {
-	adsr_init(&v->envelope_filter, a, d, s, r);
+inline void gen_config_wavetables(gen_config* gc, float pos, float detune, float detune_volume) {	
+	gc->detune = detune;
+	gc->detune_volume = detune_volume;
+	gc->wt_pos = pos;
+	float df = get_detune_factor(gc->detune);
+	gc->detune_factor_up = df;
+	gc->detune_factor_down = 1 / df;
 }
 
-inline void voice_configure_filter_q(voice* v, float q) {
-	v->filter_Q_recip = iir_Q_float_to_int_recip(q);
+inline void gen_config_volume_envelope(gen_config* gc, float a, float d, float s, float r) {
+	gc->vol_A = a;
+	gc->vol_D = d;
+	gc->vol_S = s;
+	gc->vol_R = r;
 }
 
-inline void voice_configure_detune(voice* v, float vol, float detune_rel) {
-	v->detune_rel = detune_rel; 
-	v->detune_volume = (Qnum)((float)Q_MAX * vol);
+//configure the adsr filter parameters with frequencies relative to the fundamental
+inline void gen_config_filter_envelope(gen_config* gc, float a, float d, float s, float r, float relative_freq_start, float relative_freq_end, float q) {	
+	gc->filter_freq_start_relative = relative_freq_start;
+	gc->filter_freq_end_relative = relative_freq_end;
+	gc->filter_Q = q;
+	gc->filt_A = a;
+	gc->filt_D = d;
+	gc->filt_S = s;
+	gc->filt_R = r;
 }
 
-inline void generate_n_voice_samples(voice* v, Qnum* buf_l, Qnum* buf_r, uint32_t N) {
-	for (uint32_t i = 0; i < N; i++) {
-		voice_sample(v, buf_l + i, buf_r + i);
+inline void gen_note_on(generator* g) {
+	adsr_trigger_on(&g->envelope_volume);
+	adsr_trigger_on(&g->envelope_filter_cutoff);
+}
+
+inline void gen_note_off(generator* g) {
+	adsr_trigger_off(&g->envelope_volume);
+	adsr_trigger_off(&g->envelope_filter_cutoff);
+}
+
+inline void gen_write_n_samples(generator* g, gen_config* gc, float buf_L[], float buf_R[], uint32_t n) {
+	for (int i = 0; i < n; i++)
+	{
+		gen_sample(g, gc, buf_L + i, buf_R + i);
 	}
-}
-
-inline void voice_configure_duty_cycle(voice* v, float dc) {
-	wt_set_dutycyle(&v->wt_center, wt_duty_cycle_from_float(dc));
-	wt_set_dutycyle(&v->wt_left, wt_duty_cycle_from_float(dc));
-	wt_set_dutycyle(&v->wt_right, wt_duty_cycle_from_float(dc));
-}
-
-inline void voice_configure_wt_position(voice* v, mapped_index n, float offset) {
-	mapped_index pos = wt_pos_float_to_mapped_index(n, offset);
-	v->wt_center.pos = pos;
-	v->wt_left.pos = pos;
-	v->wt_right.pos = pos;
 }
 
 

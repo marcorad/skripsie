@@ -136,9 +136,17 @@ void init_notes_digital_freq_buffer() {
 	}
 }
 
-inline float get_cents_detune(float orig_freq, float cents) {
-	return orig_freq * powf(TWELFTH_ROOT_TWO, cents / 100.0f); // div by 100 to achieve 2^(1/1200)
+//make this faster!
+float get_detune_factor(float cents) {
+	return powf(TWELFTH_ROOT_TWO, cents / 100.0f); // div by 100 to achieve 2^(1/1200)
 }
+
+//make this faster!
+float detune_cents(float orig_freq, float cents) {
+	return orig_freq * get_detune_factor(cents); // div by 100 to achieve 2^(1/1200)
+}
+
+
 
 //ref frequency for the note, the range in semi tones and the midi 14bit value
 float get_pitch_bend_digital_freq(float orig_freq, float range, uint16_t midi_pb) {

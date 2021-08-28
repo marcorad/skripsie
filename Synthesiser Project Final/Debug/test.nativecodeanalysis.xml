@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>wav.h</FILENAME>
+      <LINE>44</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'header_file::chunk_size' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>header_file::{ctor}</FUNCTION>
+    <DECORATED>??0header_file@@QAE@XZ</DECORATED>
+    <FUNCLINE>44</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>header_file::chunk_size</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>wav.h</FILENAME>
+      <LINE>44</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'header_file::sample_rate' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>header_file::{ctor}</FUNCTION>
+    <DECORATED>??0header_file@@QAE@XZ</DECORATED>
+    <FUNCLINE>44</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>header_file::sample_rate</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>wav.h</FILENAME>
+      <LINE>44</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'header_file::byte_rate' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>header_file::{ctor}</FUNCTION>
+    <DECORATED>??0header_file@@QAE@XZ</DECORATED>
+    <FUNCLINE>44</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>header_file::byte_rate</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>wav.h</FILENAME>
+      <LINE>44</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'header_file::subchunk2_size' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>header_file::{ctor}</FUNCTION>
+    <DECORATED>??0header_file@@QAE@XZ</DECORATED>
+    <FUNCLINE>44</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>header_file::subchunk2_size</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>IIR.h</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'IIR::d2' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>IIR::{ctor}</FUNCTION>
+    <DECORATED>??0IIR@@QAE@XZ</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>IIR::d2</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>IIR.h</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'IIR::d1' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>IIR::{ctor}</FUNCTION>
+    <DECORATED>??0IIR@@QAE@XZ</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>IIR::d1</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>IIR.h</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'IIR::n0' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>IIR::{ctor}</FUNCTION>
+    <DECORATED>??0IIR@@QAE@XZ</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>IIR::n0</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>IIR.h</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'IIR::n2' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>IIR::{ctor}</FUNCTION>
+    <DECORATED>??0IIR@@QAE@XZ</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>IIR::n2</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>IIR.h</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'IIR::n1' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>IIR::{ctor}</FUNCTION>
+    <DECORATED>??0IIR@@QAE@XZ</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>IIR::n1</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>ADSR.h</FILENAME>
+      <LINE>18</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'ADSR::offset' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>ADSR::{ctor}</FUNCTION>
+    <DECORATED>??0ADSR@@QAE@XZ</DECORATED>
+    <FUNCLINE>18</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>ADSR::offset</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>ADSR.h</FILENAME>
+      <LINE>18</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'ADSR::scale' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>ADSR::{ctor}</FUNCTION>
+    <DECORATED>??0ADSR@@QAE@XZ</DECORATED>
+    <FUNCLINE>18</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>ADSR::scale</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>ADSR.h</FILENAME>
+      <LINE>18</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'ADSR::state' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>ADSR::{ctor}</FUNCTION>
+    <DECORATED>??0ADSR@@QAE@XZ</DECORATED>
+    <FUNCLINE>18</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>ADSR::state</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>generator.h</FILENAME>
+      <LINE>62</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'generator::base_freq' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>generator::{ctor}</FUNCTION>
+    <DECORATED>??0generator@@QAE@XZ</DECORATED>
+    <FUNCLINE>62</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>generator::base_freq</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>generator.h</FILENAME>
+      <LINE>62</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'generator::velocity' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>generator::{ctor}</FUNCTION>
+    <DECORATED>??0generator@@QAE@XZ</DECORATED>
+    <FUNCLINE>62</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>generator::velocity</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>generator.h</FILENAME>
+      <LINE>62</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'generator::translated_freq' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>generator::{ctor}</FUNCTION>
+    <DECORATED>??0generator@@QAE@XZ</DECORATED>
+    <FUNCLINE>62</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>generator::translated_freq</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

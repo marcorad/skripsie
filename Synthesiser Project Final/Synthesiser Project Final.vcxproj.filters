@@ -13,9 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\midi">
+      <UniqueIdentifier>{cf73c0e6-e51e-418b-82f3-6e337313efbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="midi\src\Binasc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="midi\src\MidiEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="midi\src\MidiEventList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="midi\src\MidiFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="midi\src\MidiMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="midi\src\Options.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,6 +66,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="wavetable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wav.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="midi\include\Binasc.h">
+      <Filter>Header Files\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="midi\include\MidiEvent.h">
+      <Filter>Header Files\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="midi\include\MidiEventList.h">
+      <Filter>Header Files\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="midi\include\MidiFile.h">
+      <Filter>Header Files\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="midi\include\MidiMessage.h">
+      <Filter>Header Files\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="midi\include\Options.h">
+      <Filter>Header Files\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="gen_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

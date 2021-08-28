@@ -9,25 +9,23 @@
 #define NOT_PLAYING 4
 
 
-
-
-//uses overflow to detect new state
-//attack always goes to Q_MAX (1 in Q15 notation)
 struct ADSR {
-	float phase;
-	float params[4] = {0.0f, 0.0f, 0.0f, 0.0f}; //ADSR
+	float phase = 0.0f;
+	float params[4] = {0.0f, 0.0f, 0.0f, 0.0f}; //ADSR, for efficiency, this is duplicated
 	float scale, offset;
-	float prev_sample;
+	float prev_sample = 0.0f;
 	uint8_t state;
 };
 
 //MUST CHECK BEFOREHAND IF STATE IS NOT_PLAYING
 inline float adsr_sample(ADSR* adsr) {
-	if (adsr->state == SUSTAIN) { 
+	if (adsr->state == SUSTAIN) { //this is first since it presumes that most of the note will be in sustain. This is obviously not always true.
 		return adsr->params[SUSTAIN]; 
 	}
 
-	adsr->phase += adsr->params[adsr->state];
+	if (adsr->state != NOT_PLAYING) {
+		adsr->phase += adsr->params[adsr->state];
+	}
 
 	if ((adsr->phase < (float)EXP_LUT_SIZE - 1.0f)) //detects transition to decay and sustain by detecting buffer overflow
 	{
@@ -48,7 +46,7 @@ inline float adsr_sample(ADSR* adsr) {
 		}
 	}
 	
-	return adsr->state == NOT_PLAYING ? 0.0f : adsr->prev_sample;
+	return adsr->state != NOT_PLAYING ? adsr->prev_sample : 0.0f;
 }
 
 
@@ -65,8 +63,8 @@ inline void adsr_config(ADSR* adsr, float attack, float decay, float sustain, fl
 inline void adsr_trigger_on(ADSR* adsr) {
 	adsr->state = ATTACK;
 	adsr->phase = 0.0f;
-	adsr->scale = 1.0f;
-	adsr->offset = 0;
+	adsr->scale = 1.0f - adsr->prev_sample; //for retrigger purposes, will always attack from previous sample in full attack time. This could also decrease attack time accordingly??
+	adsr->offset = adsr->state != NOT_PLAYING ? adsr->prev_sample : 0.0f;
 }
 
 //reset ADSR to trigger into release

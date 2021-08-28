@@ -57,7 +57,7 @@ void load_wave(float buf[],  float (*wave)(float, int), int num_harmonics){
 
 
 void load_exp_decay(float exp[], uint16_t exp_size) {
-    float p = 0.95f; //fraction of final value K
+    float p = 0.67f; //fraction of final value K
     float K = 1 / p; //final value, a[N] = pK
     float N = (float)EXP_LUT_SIZE - 1.0f; //a[N] = 1 at final sample
     float R = powf(1 - p, 1 / N); //base of exponent

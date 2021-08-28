@@ -116,6 +116,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,17 +141,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="midi\src\Binasc.cpp" />
+    <ClCompile Include="midi\src\MidiEvent.cpp" />
+    <ClCompile Include="midi\src\MidiEventList.cpp" />
+    <ClCompile Include="midi\src\MidiFile.cpp" />
+    <ClCompile Include="midi\src\MidiMessage.cpp" />
+    <ClCompile Include="midi\src\Options.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ADSR.h" />
     <ClInclude Include="defines.h" />
+    <ClInclude Include="gen_manager.h" />
+    <ClInclude Include="midi\include\Binasc.h" />
+    <ClInclude Include="midi\include\MidiEvent.h" />
+    <ClInclude Include="midi\include\MidiEventList.h" />
+    <ClInclude Include="midi\include\MidiFile.h" />
+    <ClInclude Include="midi\include\MidiMessage.h" />
+    <ClInclude Include="midi\include\Options.h" />
+    <ClInclude Include="util.h" />
     <ClInclude Include="IIR.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="init_luts.h" />
     <ClInclude Include="LUT.h" />
     <ClInclude Include="notes.h" />
     <ClInclude Include="generator.h" />
+    <ClInclude Include="wav.h" />
     <ClInclude Include="wavetable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
