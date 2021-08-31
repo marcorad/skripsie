@@ -5,6 +5,7 @@
 #include "wavetable.h"
 #include "IIR.h"
 #include "notes.h"
+#include "waveshape.h"
 
 #include <math.h>
 #include "util.h"
@@ -20,10 +21,20 @@ struct gen_config {
 	float filt_A = 0.01f, filt_D = 0.01f, filt_S = 1.0f, filt_R = 0.01f;
 	float detune_factor_up = 1.0f, detune_factor_down = 1.0f;
 
-	//TO BE IMPLEMENTED
+	//VIBRATO TO BE IMPLEMENTED
 	float vibrato_amount = 0.0f; //in cents
 	float vibrato_freq = 0.0f; //in digital freq
 	float vibrato_factor = 0.0f; //in digital freq
+
+	//WAVESHAPER TO BE IMPLEMENTED
+	float waveshape_gain = 0.0f; //the gain into the waveshaper. always > 0.0f
+	float waveshape_norm_coeff = 1.0f; //the normalisation constant required to keep the output of the waveshaper between +- 1.0f
+	float (*waveshape_func)(float, float, float) = &waveshape_none; //takes in the value x, the gain, the norm coeff
+
+	//FNC POINTER TO DETERMINE HOW TO CALC COEFF
+	void (*filter_coeff_func)(IIR*, float, float) = &iir_calc_lp_coeff;
+	//FNC POINTER TO DETERMINE HOW TO FILTER
+	float (*filter_func)(IIR*, float) = &iir_filter_sample;
 };
 
 inline void gen_config_default(gen_config* gc) {
@@ -62,7 +73,7 @@ struct generator {
 };
 
 inline uint8_t gen_is_playing(generator* g) {
-	return g->envelope_volume.phase != NOT_PLAYING;
+	return g->envelope_volume.state != NOT_PLAYING;
 }
 
 inline void voice_config_default(generator* g, gen_config* gc) {
@@ -70,6 +81,7 @@ inline void voice_config_default(generator* g, gen_config* gc) {
 	gc->detune_volume = 0.0f;
 	g->filter_envelope_amplitude = 0.0f;
 	gc->filter_Q = ROOT_2_RECIP;
+	gc->filter_coeff_func = &iir_calc_lp_coeff;
 	adsr_config(&g->envelope_volume, 0.001f, 0.0f, 1.0f, 0.001f);
 	adsr_config(&g->envelope_filter_cutoff, 0.001f, 0.0f, 1.0f, 0.001f);
 	g->filter_freq_start = DIGITAL_FREQ_20KHZ;
@@ -95,7 +107,7 @@ inline void gen_sample(generator* g, gen_config* gc, float* buf_L, float* buf_R)
 	float volume = adsr_sample(&g->envelope_volume) * g->velocity;
 
 	//calculate filter coefficients
-	iir_calc_lp_coeff(&g->filter_left,  f0, gc->filter_Q); //TODO: filter type
+	(*(gc->filter_coeff_func))(&g->filter_left, f0, gc->filter_Q); //TODO: filter type
 	iir_copy_coeff(&g->filter_left, &g->filter_right);
 
 	//apply volume envelope
@@ -104,8 +116,8 @@ inline void gen_sample(generator* g, gen_config* gc, float* buf_L, float* buf_R)
 	R = R * volume;
 
 	//filter values
-	L = iir_filter_sample(&g->filter_left, L);
-	R = iir_filter_sample(&g->filter_right, R);
+	L = (*(gc->filter_func))(&g->filter_left, L);
+	R = (*(gc->filter_func))(&g->filter_right, R);
 	
 	*buf_L = L;
 	*buf_R = R;
@@ -161,6 +173,18 @@ inline void gen_config_wavetables(gen_config* gc, float pos, float detune, float
 	gc->detune_factor_up = df;
 	gc->detune_factor_down = 1 / df;
 }
+
+inline void gen_config_waveshaper(gen_config* gc, float (*waveshape)(float, float, float), float (*norm)(float), float gain) {
+	gc->waveshape_func = waveshape;
+	gc->waveshape_gain = gain;
+	gc->waveshape_norm_coeff = (*norm)(gain);
+}
+
+inline void gen_config_filter(gen_config* gc, void (*coeff)(IIR*, float, float), float (*filter)(IIR*, float)) {
+	gc->filter_coeff_func = coeff;
+	gc->filter_func = filter;
+}
+
 
 inline void gen_config_volume_envelope(gen_config* gc, float a, float d, float s, float r) {
 	gc->vol_A = a;

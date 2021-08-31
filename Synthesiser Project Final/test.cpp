@@ -9,8 +9,7 @@
 #include "IIR.h"
 #include "wavetable.h"
 #include "generator.h"
-#include "midi/include/MidiFile.h"
-
+#include "play_notes.h"
 #include "wav.h"
 
 using namespace std;
@@ -35,11 +34,13 @@ void print_basic_waveforms(){
 			print_to_file(basic_luts[i][j], LUT_SIZE, "..\\basic waveforms\\" + names[i] + "\\" + to_string(j) + ".txt");
 		}
 	}
-}
+}  
 
 
 int main() {	
 	init_basic_luts();
+	init_notes_digital_freq_buffer();
+	
 	//print_basic_waveforms();
 
 	//ADSR adsr;
@@ -77,50 +78,39 @@ int main() {
 	//iir_calc_bp_coeff(&iir, 0.25f, 10.f);
 	//print_iir_coeff(iir);
 
-	generator g;
+	gen_manager gm;
 	gen_config gc;
 
-	smf::MidiFile midi;
-	midi.read("..\\midilib\\fireflies.mid");
-	cout << "NUM TRACKS:" << midi.getNumTracks() << endl;
-	midi.linkNotePairs();
-	midi.linkEventPairs();
-	midi.doTimeAnalysis();
-	int track = 6;
-	for (int i = 0; i < midi[track].size(); i++) {
-		if (!midi[track][i].isNoteOn()) {
-			continue;
-		}
-		double d = midi[track][i].getDurationInSeconds();
-		d = midi[track][i].seconds;
-		cout << 	d	<< '\t' << (int)midi[0][i][1]			<< endl;
-	}
+	gm_init(&gm);
 
+	load_notes("..\\midilib\\fireflies.mid", 2);	
 
 	//configure global params
-	gen_config_volume_envelope(&gc, 0.01f, 0.3f, 0.0f, 0.05f);
-	gen_config_wavetables(&gc, 3.5f, 10.0f, 0.5f);
-	gen_config_filter_envelope(&gc, 0.01f, 0.5f, 0.5f, 0.1f, 0.5f, 10.0f, 0.7071f);
+	gen_config_volume_envelope(&gc, 0.2f, 0.25f, 1.0f, 0.3f);
+	gen_config_wavetables(&gc, 3.5f, 5.0f, 0.75f);
+	gen_config_filter_envelope(&gc, 0.05f, 0.1f, 1.0f, 1.0f, 25.0f, 1.5f, 1.0f);
 
 	//apply global params to generator
-	gen_apply_volume_envelope_config(&g, &gc);
-	gen_apply_filter_envelope_config(&g, &gc);
-	gen_apply_wavetable_config(&g, &gc);
+	gm_apply_volume_envelope_config(&gm, &gc);
+	gm_apply_filter_envelope_config(&gm, &gc);
+	gm_apply_wavetable_config(&gm, &gc);
 
-	//set generator freq (ALWAYS AFTER CONFIG)
-	gen_freq(&g, &gc, 220.0f / FS, 32);
-	gen_note_on(&g);
-	gen_write_n_samples(&g, &gc, L + 0 * size / 3, R + 0 * size / 3, size / 3);
-	gen_freq(&g, &gc, 440.0f / FS, 64);
-	gen_note_on(&g);
-	gen_write_n_samples(&g, &gc, L + 1 * size / 3, R + 1 * size / 3, size / 3);
-	gen_freq(&g, &gc, 110.0f / FS, 48);
-	gen_note_on(&g);
-	gen_write_n_samples(&g, &gc, L + 2 * size / 3, R + 2 * size / 3, size / 3);
+	////set generator freq (ALWAYS AFTER CONFIG)
+	//gen_freq(&g, &gc, 220.0f / FS, 32);
+	//gen_note_on(&g);
+	//gen_write_n_samples(&g, &gc, L + 0 * size / 3, R + 0 * size / 3, size / 3);
+	//gen_freq(&g, &gc, 440.0f / FS, 64);
+	//gen_note_on(&g);
+	//gen_write_n_samples(&g, &gc, L + 1 * size / 3, R + 1 * size / 3, size / 3);
+	//gen_freq(&g, &gc, 110.0f / FS, 48);
+	//gen_note_on(&g);
+	//gen_write_n_samples(&g, &gc, L + 2 * size / 3, R + 2 * size / 3, size / 3);
 
-	print_to_file(L, size, "..\\testfiles\\220 genL.txt");
+	//print_to_file(L, size, "..\\testfiles\\220 genL.txt");
 
-	write_to_wav(string("test"), L, R, size, (int)FS);
+	//write_to_wav(string("test"), L, R, size, (int)FS);
+	
+	write_midi_to_wav(&gm, &gc, "fireflies 2");
 
 	return 0;
 }

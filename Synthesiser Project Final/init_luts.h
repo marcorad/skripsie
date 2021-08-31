@@ -5,6 +5,7 @@
 
 #include "LUT.h"
 #include "defines.h"
+#include "saturate.h"
 
 
 
@@ -67,6 +68,8 @@ void load_exp_decay(float exp[], uint16_t exp_size) {
     }
 }
 
+
+
 float basic_luts[4][8][LUT_SIZE];
 
 void load_basic_luts() {
@@ -82,7 +85,9 @@ void load_basic_luts() {
 
 float lut_exp[EXP_LUT_SIZE];
 
+
 void init_basic_luts() {
     load_basic_luts();
     load_exp_decay(lut_exp, EXP_LUT_SIZE);
+    load_tanh();
 }

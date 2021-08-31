@@ -21,6 +21,7 @@
 #define LUT_SIZE 512 
 #define LUT_SIZE_POWER 9
 #define EXP_LUT_SIZE 128
+#define TANH_LUT_SIZE 256
 
 //STEREO
 #define STEREO_L 0
@@ -33,3 +34,6 @@
 #define ROOT_2_RECIP 0.70710678118f
 
 #define NUM_GENERATORS 8
+
+
+#define PLAYBACK_BUFFER_SIZE 128

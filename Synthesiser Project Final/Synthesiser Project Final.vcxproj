@@ -159,6 +159,9 @@
     <ClInclude Include="midi\include\MidiFile.h" />
     <ClInclude Include="midi\include\MidiMessage.h" />
     <ClInclude Include="midi\include\Options.h" />
+    <ClInclude Include="note_names.h" />
+    <ClInclude Include="play_notes.h" />
+    <ClInclude Include="waveshape.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="IIR.h" />
     <ClInclude Include="includes.h" />

@@ -6,17 +6,16 @@ struct IIR {
 	float n0, n1, n2; // X coeff
 	//previous values
 	float xm1 = 0.0f, xm2 = 0.0f;
-	float ym1 = 0.0f, ym2 = 0.0f;
-	//ADD FNC POINTER TO DETERMINE HOW TO CALC COEFF
+	float ym1 = 0.0f, ym2 = 0.0f;	
 };
 
 
-//approximates cos(2*pi*f) for f [0,0.5]
+//approximates cos(2*pi*f) for f [0,0.75]
 inline float cos_lookup(float f) {
 	return lut_lookup(basic_luts[SINE][0] + LUT_SIZE / 4, LUT_SIZE, f * (float)LUT_SIZE);
 }
 
-//approximates sin(2*pi*f) for f [0,0.5]
+//approximates sin(2*pi*f) for f [0,1]
 inline float sin_lookup(float f) {
 	return lut_lookup(basic_luts[SINE][0], LUT_SIZE, f * (float)LUT_SIZE);
 }
@@ -28,6 +27,23 @@ inline float iir_filter_sample(IIR * filter, float x) {
 	y += filter->n2 * filter->xm2;
 	y += filter->d1 * filter->ym1;
 	y += filter->d2 * filter->ym2;
+
+	//shift prev values
+	filter->ym2 = filter->ym1;
+	filter->ym1 = y;
+	filter->xm2 = filter->xm1;
+	filter->xm1 = x;
+	return filter->ym1;
+}
+
+inline float iir_filter_sample_feedback_sat(IIR* filter, float x) {
+	float y = filter->n0 * x;
+	y += filter->n1 * filter->xm1; //MULAC ops ?
+	y += filter->n2 * filter->xm2;
+	y += filter->d1 * filter->ym1;
+	y += filter->d2 * filter->ym2;
+
+	//SATURATE HERE
 
 	//shift prev values
 	filter->ym2 = filter->ym1;

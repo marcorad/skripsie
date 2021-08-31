@@ -1,8 +1,19 @@
 ﻿  test.cpp
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\IIR.h(50,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\IIR.h(80,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\IIR.h(110,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\IIR.h(66,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\IIR.h(96,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\IIR.h(126,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\wavetable.h(24,16): warning C4244: '=': conversion from 'uint16_t' to 'uint8_t', possible loss of data
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\generator.h(195,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(47,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\generator.h(200,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,33): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,33): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,78): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,78): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,91): warning C4838: conversion from '_Ty' to 'float' requires a narrowing conversion
+          with
+          [
+              _Ty=smf::uchar
+          ]
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(111,41): warning C4244: 'argument': conversion from 'float' to 'uint8_t', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(130,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(49,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Synthesiser Project Final.vcxproj -> C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\Debug\Synthesiser Project Final.exe

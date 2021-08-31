@@ -95,5 +95,14 @@
     <ClInclude Include="gen_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="play_notes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="note_names.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="waveshape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

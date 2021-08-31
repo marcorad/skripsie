@@ -128,6 +128,8 @@ float notes_freq_hz[] =
 6271.93f,6644.88f,7040.0f,7458.62f,7902.13f,8372.02f,8869.84f,9397.27f,9956.06f,10548.08f,
 11175.3f,11839.82f,12543.85f };
 
+
+
 float notes_digital_freq[128];
 
 void init_notes_digital_freq_buffer() {
