@@ -23,7 +23,7 @@ void print_to_file(float arr[], int size, const string& name) {
 	f.close();
 }
 
-void print_iir_coeff(IIR& f) {
+void print_iir_coeff(IIR_coeff& f) {
 	cout << "[" << f.n0 << ", " << f.n1 << ", " << f.n2 << "], [ 1, -" << f.d1 << ", -" << f.d2 << "]" << endl;
 }
 
@@ -38,6 +38,7 @@ void print_basic_waveforms(){
 
 
 int main() {	
+
 	init_basic_luts();
 	init_notes_digital_freq_buffer();
 	
@@ -83,17 +84,24 @@ int main() {
 
 	gm_init(&gm);
 
-	load_notes("..\\midilib\\fireflies.mid", 2);	
+	load_notes("..\\midilib\\fireflies.mid", 6, false);	
 
 	//configure global params
-	gen_config_volume_envelope(&gc, 0.2f, 0.25f, 1.0f, 0.3f);
-	gen_config_wavetables(&gc, 3.5f, 5.0f, 0.75f);
-	gen_config_filter_envelope(&gc, 0.05f, 0.1f, 1.0f, 1.0f, 25.0f, 1.5f, 1.0f);
+	gen_config_volume_envelope(&gc, 0.01f, 0.25f, 1.0f, 0.2f);
+	gen_config_wavetables(&gc, 3.0f, 1200.0f, 0.25f);
+	gen_config_filter_envelope(&gc, 0.08f, 0.1f, 1.0f, 20.0f, 20.0f, 5.0f, 2.0f);
+	//gen_config_filter(&gc, &iir_calc_lp12_coeff);
+	gen_config_vibrato(&gc, 10.0f, 7.0f / FS);
+	gen_config_tanh_saturator(&gc, 2.0f); //NO CONFIG REQUIRED HERE
+	//gen_config_no_saturator(&gc);
+
+	print_iir_coeff(gc.filter_sat_AA);
 
 	//apply global params to generator
 	gm_apply_volume_envelope_config(&gm, &gc);
 	gm_apply_filter_envelope_config(&gm, &gc);
 	gm_apply_wavetable_config(&gm, &gc);
+	gm_apply_vibrato_config(&gm, &gc);
 
 	////set generator freq (ALWAYS AFTER CONFIG)
 	//gen_freq(&g, &gc, 220.0f / FS, 32);
@@ -110,7 +118,7 @@ int main() {
 
 	//write_to_wav(string("test"), L, R, size, (int)FS);
 	
-	write_midi_to_wav(&gm, &gc, "fireflies 2");
+	write_midi_to_wav(&gm, &gc, "fireflies 6 (2)", true);
 
 	return 0;
 }

@@ -5,7 +5,6 @@
 
 #include "LUT.h"
 #include "defines.h"
-#include "saturate.h"
 
 
 
@@ -58,7 +57,7 @@ void load_wave(float buf[],  float (*wave)(float, int), int num_harmonics){
 
 
 void load_exp_decay(float exp[], uint16_t exp_size) {
-    float p = 0.67f; //fraction of final value K
+    float p = 0.8f; //fraction of final value K
     float K = 1 / p; //final value, a[N] = pK
     float N = (float)EXP_LUT_SIZE - 1.0f; //a[N] = 1 at final sample
     float R = powf(1 - p, 1 / N); //base of exponent
@@ -85,6 +84,18 @@ void load_basic_luts() {
 
 float lut_exp[EXP_LUT_SIZE];
 
+
+//approximates cos(2*pi*f) for f [0,0.75)
+inline float cos_lookup(float f) {
+    return lut_lookup(basic_luts[SINE][0] + LUT_SIZE / 4, LUT_SIZE, f * (float)LUT_SIZE);
+}
+
+//approximates sin(2*pi*f) for f [0,1)
+inline float sin_lookup(float f) {
+    return lut_lookup(basic_luts[SINE][0], LUT_SIZE, f * (float)LUT_SIZE);
+}
+
+#include "waveshape.h"
 
 void init_basic_luts() {
     load_basic_luts();

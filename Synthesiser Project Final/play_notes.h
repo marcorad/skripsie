@@ -26,7 +26,7 @@ struct note {
 std::vector<note> note_queue;
 
 
-void load_notes(const std::string& file, uint8_t track) {
+void load_notes(const std::string& file, uint8_t track, bool debug = false) {
 	note_queue.clear();
 	smf::MidiFile midi;
 	//midi.read("..\\midilib\\fireflies.mid");
@@ -45,7 +45,7 @@ void load_notes(const std::string& file, uint8_t track) {
 		note n = { note_on[1], note_on.seconds, midi[track][i].getDurationInSeconds(), note_on[2] };
 		//if (n.duration_seconds > T) { //make sure there are no dumb short triggers, which screws with the triggering
 			note_queue.push_back(n);
-			std::cout << "note: " << (int)n.note << " t: " << n.start_seconds << " dt: " << n.duration_seconds << std::endl;
+			if(debug) std::cout << "note: " << (int)n.note << " t: " << n.start_seconds << " dt: " << n.duration_seconds << std::endl;
 		//}
 		
 	}
@@ -56,7 +56,7 @@ void load_notes(const std::string& file, uint8_t track) {
 }
 
 //simulates the PLAYBACK_BUF_SIZE nature of dealing with a queue of note events
-void write_midi_to_wav(gen_manager* gm, gen_config* gc, const std::string& name) {
+void write_midi_to_wav(gen_manager* gm, gen_config* gc, const std::string& name, bool debug = false) {
 	using namespace std;
 
 	float dt = (float)PLAYBACK_BUFFER_SIZE / FS;
@@ -95,7 +95,7 @@ void write_midi_to_wav(gen_manager* gm, gen_config* gc, const std::string& name)
 		 
 		std::for_each(trigger_off.begin(), trigger_off.end(), [&](const note& n) {
 			//TRIGGER OFF
-			cout << (n.start_seconds - start_t) << " note off: " << note_names[n.note] << endl;
+			if (debug) cout << (n.start_seconds - start_t) << " note off: " << note_names[n.note] << endl;
 			gm_trigger_note_off(gm, n.note);
 			});		
 		trigger_off.clear();
@@ -107,7 +107,7 @@ void write_midi_to_wav(gen_manager* gm, gen_config* gc, const std::string& name)
 				playing.push_back(n);
 
 				//TRIGGER ON
-				cout << (n.start_seconds - start_t) << " note on: " << note_names[n.note] << endl;
+				if (debug) cout << (n.start_seconds - start_t) << " note on: " << note_names[n.note] << endl;
 				gm_trigger_note_on(gm, gc, n.note, n.vel);
 
 				i++;

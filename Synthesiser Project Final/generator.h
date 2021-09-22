@@ -22,20 +22,26 @@ struct gen_config {
 	float detune_factor_up = 1.0f, detune_factor_down = 1.0f;
 
 	//VIBRATO TO BE IMPLEMENTED
-	float vibrato_amount = 0.0f; //in cents
 	float vibrato_freq = 0.0f; //in digital freq
 	float vibrato_factor = 0.0f; //in digital freq
 
-	//WAVESHAPER TO BE IMPLEMENTED
-	float waveshape_gain = 0.0f; //the gain into the waveshaper. always > 0.0f
-	float waveshape_norm_coeff = 1.0f; //the normalisation constant required to keep the output of the waveshaper between +- 1.0f
-	float (*waveshape_func)(float, float, float) = &waveshape_none; //takes in the value x, the gain, the norm coeff
+
+	//saturation
+	float gain = 1.0f;
+	float (*waveshape)(float, float) = &waveshape_none; //function to waveshape
+	IIR_coeff filter_sat_AA;
 
 	//FNC POINTER TO DETERMINE HOW TO CALC COEFF
-	void (*filter_coeff_func)(IIR*, float, float) = &iir_calc_lp_coeff;
+	void (*filter_coeff_func)(IIR_coeff*, float, float) = &iir_calc_lp24_coeff;
 	//FNC POINTER TO DETERMINE HOW TO FILTER
-	float (*filter_func)(IIR*, float) = &iir_filter_sample;
+	//float (*filter_func)(IIR*, float) = &iir_filter_sample;
 };
+
+inline void gen_config_no_saturator(gen_config* gc) {
+	gc->gain = 1.0f;
+	gc->waveshape = &waveshape_none;
+	iir_calc_lp12_coeff(&gc->filter_sat_AA, 0.25f, 1.0f);
+}
 
 inline void gen_config_default(gen_config* gc) {
 	gc->detune = 0.0f; //detune in cents
@@ -53,6 +59,9 @@ inline void gen_config_default(gen_config* gc) {
 	gc->vol_D = 0.01f;
 	gc->vol_S = 1.0f;
 	gc->vol_R = 0.01f;
+	gc->vibrato_factor = 0.0f;
+	gc->vibrato_freq = 0.0f;
+	gen_config_no_saturator(gc);
 }
 
 
@@ -61,15 +70,26 @@ struct generator {
 	wavetable wt_left; //left detuned
 	wavetable wt_right; //right detuned
 	wavetable wt_center; // main freq
-	IIR filter_left; //left filter
-	IIR filter_right; //right filter
-	ADSR envelope_volume; //volume
-	ADSR envelope_filter_cutoff; //cut-off	
+
+	wavetable wt_vibrato; //vibrato wavetable
+	float vibrato_amp; //amplitude of vibrato
+
+	IIR_coeff filter_coeff; //filter coeff
+	IIR_prev_values filter_left_pv; //left filter prev values
+	IIR_prev_values filter_right_pv; //right filter prev values
+
+	ADSR envelope_volume; //volume TODO: remove adsr parameters to be global
+
+	ADSR envelope_filter_cutoff; //cut-off	TODO: remove adsr parameters to be global
 	float filter_freq_start = DIGITAL_FREQ_20KHZ, filter_freq_end = DIGITAL_FREQ_20KHZ; //actual frequency start and end ADSR paramters	
 	float base_freq; //the frequency without any frequency shifting applied
 	float translated_freq; // accounts for frequency shifts (vibrato ??)
 	float velocity; //note volume
 	float filter_envelope_amplitude = 0.0; //amplitude of cut-off modulation
+
+	//AA saturation filters, REPLACE ONLY WITH STORAGE OF PREV SAMPLES
+	IIR_prev_values filter_sat_pv_L;
+	IIR_prev_values filter_sat_pv_R;
 };
 
 inline uint8_t gen_is_playing(generator* g) {
@@ -81,18 +101,37 @@ inline void voice_config_default(generator* g, gen_config* gc) {
 	gc->detune_volume = 0.0f;
 	g->filter_envelope_amplitude = 0.0f;
 	gc->filter_Q = ROOT_2_RECIP;
-	gc->filter_coeff_func = &iir_calc_lp_coeff;
+	gc->filter_coeff_func = &iir_calc_lp24_coeff;
 	adsr_config(&g->envelope_volume, 0.001f, 0.0f, 1.0f, 0.001f);
 	adsr_config(&g->envelope_filter_cutoff, 0.001f, 0.0f, 1.0f, 0.001f);
 	g->filter_freq_start = DIGITAL_FREQ_20KHZ;
 	g->filter_freq_end = DIGITAL_FREQ_20KHZ;
-	iir_reset(&g->filter_left);
-	iir_reset(&g->filter_right);
+	iir_reset(&g->filter_left_pv);
+	iir_reset(&g->filter_right_pv);
+}
+
+inline void gen_vibrato(generator* g, gen_config* gc) {
+	float osc = (wt_sample(&g->wt_vibrato));// sinusoid between [0,1] , which is the same as on a guitar (cannot bend down)
+	float ampl = (gc->vibrato_factor - 1.0f) * g->base_freq;
+	float vib = osc * ampl;
+	//apply it to the wavetables without changing harmonic index
+	wt_apply_fm(&g->wt_left, vib);
+	wt_apply_fm(&g->wt_right, vib);
+	wt_apply_fm(&g->wt_center, vib);
+}
+
+inline float gen_saturate_sample(IIR_prev_values* pv, gen_config* gc, float x) {
+	float ylp = iir_filter_sample(&gc->filter_sat_AA, pv, x);
+	float yws = (*gc->waveshape)(ylp, gc->gain);
+	return (x - ylp) + yws;
 }
 
 //sample the voice
 //CHECK IF THE VOLUME ENVELOPE IS DONE AND RESET THE FILTERS AFTERWARDS
 inline void gen_sample(generator* g, gen_config* gc, float* buf_L, float* buf_R) {
+	//apply vibrato
+	gen_vibrato(g, gc);
+
 	//get samples
 	float sc = wt_sample(&g->wt_center);
 	float sl = wt_sample(&g->wt_left);
@@ -107,17 +146,21 @@ inline void gen_sample(generator* g, gen_config* gc, float* buf_L, float* buf_R)
 	float volume = adsr_sample(&g->envelope_volume) * g->velocity;
 
 	//calculate filter coefficients
-	(*(gc->filter_coeff_func))(&g->filter_left, f0, gc->filter_Q); //TODO: filter type
-	iir_copy_coeff(&g->filter_left, &g->filter_right);
+	(*(gc->filter_coeff_func))(&g->filter_coeff, f0, gc->filter_Q); //TODO: filter type
 
 	//apply volume envelope
 	//this is done before so that we can partially mitigate the transient response
 	L = L * volume;
 	R = R * volume;
 
+	//saturate
+	L = gen_saturate_sample(&g->filter_sat_pv_L, gc, L);
+	R = gen_saturate_sample(&g->filter_sat_pv_R, gc, R);
+
 	//filter values
-	L = (*(gc->filter_func))(&g->filter_left, L);
-	R = (*(gc->filter_func))(&g->filter_right, R);
+	L = iir_filter_sample(&g->filter_coeff, &g->filter_left_pv, L);
+	R = iir_filter_sample(&g->filter_coeff, &g->filter_right_pv, R);
+	
 	
 	*buf_L = L;
 	*buf_R = R;
@@ -165,6 +208,10 @@ inline void gen_apply_wavetable_config(generator* g, gen_config* gc) {
 	g->wt_right.pos = gc->wt_pos;
 }
 
+inline void gen_apply_saturator_config(generator* g, gen_config* gc) {
+	
+}
+
 inline void gen_config_wavetables(gen_config* gc, float pos, float detune, float detune_volume) {	
 	gc->detune = detune;
 	gc->detune_volume = detune_volume;
@@ -174,15 +221,9 @@ inline void gen_config_wavetables(gen_config* gc, float pos, float detune, float
 	gc->detune_factor_down = 1 / df;
 }
 
-inline void gen_config_waveshaper(gen_config* gc, float (*waveshape)(float, float, float), float (*norm)(float), float gain) {
-	gc->waveshape_func = waveshape;
-	gc->waveshape_gain = gain;
-	gc->waveshape_norm_coeff = (*norm)(gain);
-}
 
-inline void gen_config_filter(gen_config* gc, void (*coeff)(IIR*, float, float), float (*filter)(IIR*, float)) {
+inline void gen_config_filter(gen_config* gc, void (*coeff)(IIR_coeff*, float, float)) {
 	gc->filter_coeff_func = coeff;
-	gc->filter_func = filter;
 }
 
 
@@ -207,6 +248,7 @@ inline void gen_config_filter_envelope(gen_config* gc, float a, float d, float s
 inline void gen_note_on(generator* g) {
 	adsr_trigger_on(&g->envelope_volume);
 	adsr_trigger_on(&g->envelope_filter_cutoff);
+	g->wt_vibrato.phase = 0.0f; //make sure the note starts on the correct freq
 }
 
 inline void gen_note_off(generator* g) {
@@ -220,6 +262,32 @@ inline void gen_write_n_samples(generator* g, gen_config* gc, float buf_L[], flo
 		gen_sample(g, gc, buf_L + i, buf_R + i);
 	}
 }
+
+//vibrato config, with freq in cycles/sample
+inline void gen_config_vibrato(gen_config* gc, float amount_cents, float freq) {
+	gc->vibrato_factor = get_detune_factor(amount_cents);
+	gc->vibrato_freq = freq;
+}
+
+inline void gen_apply_vibrato_config(generator* g, gen_config* gc) {
+	wt_config_digital_freq(&g->wt_vibrato, gc->vibrato_freq);
+	g->wt_vibrato.pos = 0.0f;
+}
+
+inline void gen_config_tanh_saturator(gen_config* gc, float g) {
+	gc->gain = g;
+	gc->waveshape = &waveshape_tanh;
+	float freq;
+	if (g > 63.0f) { //a point of diminishing returns, and also to save memory
+		freq = tanh_filter_cutoff[63];
+	}
+	else {
+		freq = lut_lookup(tanh_filter_cutoff, 64, g);
+	}
+	iir_calc_lp12_coeff(&gc->filter_sat_AA, 0.5f * freq, 1.0f); //Q does not matter here
+}
+
+
 
 
 

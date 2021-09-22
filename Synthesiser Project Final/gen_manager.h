@@ -83,6 +83,7 @@ inline void gm_make_not_playing_available(gen_manager* gm) {
 		if (!gen_is_playing(g)) {
 			count++;
 			gm_add_to_available(gm, g);
+			adsr_reset(&g->envelope_filter_cutoff); //RESET SINCE THIS MIGHT NOT BE DONE
 		}
 		else {
 			gm->in_use[i - count] = g;
@@ -151,5 +152,17 @@ inline void gm_apply_wavetable_config(gen_manager* gm, gen_config* gc) {
 		gen_apply_wavetable_config(&gm->generators[i], gc);
 	}
 }
+
+inline void gm_apply_vibrato_config(gen_manager* gm, gen_config* gc) {
+	for (int i = 0; i < NUM_GENERATORS; i++) {
+		gen_apply_vibrato_config(&gm->generators[i], gc);
+	}
+}
+
+//inline void gm_apply_saturator_config(gen_manager* gm, gen_config* gc) {
+//	for (int i = 0; i < NUM_GENERATORS; i++) {
+//		gen_(&gm->generators[i], gc);
+//	}
+//}
 
 

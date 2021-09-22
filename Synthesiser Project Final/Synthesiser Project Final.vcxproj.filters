@@ -104,5 +104,8 @@
     <ClInclude Include="waveshape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="waveshape_filter_cutoffs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

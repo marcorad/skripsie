@@ -1,0 +1,15 @@
+-IC:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\matlab
+-IC:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\matlab\slprj\raccel\untitled
+-I"C:\Program Files\MATLAB\R2019b\extern\include"
+-I"C:\Program Files\MATLAB\R2019b\simulink\include"
+-I"C:\Program Files\MATLAB\R2019b\rtw\c\src"
+-I"C:\Program Files\MATLAB\R2019b\rtw\c\src\rapid"
+-I"C:\Program Files\MATLAB\R2019b\rtw\c\raccel"
+-I"C:\Program Files\MATLAB\R2019b\rtw\c\src\ext_mode\common"
+-I"C:\Program Files\MATLAB\R2019b\toolbox\coder\rtiostream\src"
+-I"C:\Program Files\MATLAB\R2019b\toolbox\coder\rtiostream\src\rtiostreamtcpip"
+-I"C:\Program Files\MATLAB\R2019b\toolbox\coder\rtiostream\src\utils"
+-I"C:\Program Files\MATLAB\R2019b\toolbox\dsp\include"
+-I"C:\Program Files\MATLAB\R2019b\toolbox\dsp\extern\src\export\include\src"
+-I"C:\Program Files\MATLAB\R2019b\toolbox\dsp\extern\src\export\include"
+-I"C:\Program Files\MATLAB\R2019b\toolbox\shared\dsp\vision\matlab\include"

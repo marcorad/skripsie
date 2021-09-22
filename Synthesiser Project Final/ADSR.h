@@ -81,4 +81,9 @@ void adsr_write_n_samples(ADSR* adsr, float buf[], uint32_t size) {
 	}
 }
 
+inline void adsr_reset(ADSR* adsr) {
+	adsr->phase = 0.0f;
+	adsr->prev_sample = 0.0f;
+}
+
 

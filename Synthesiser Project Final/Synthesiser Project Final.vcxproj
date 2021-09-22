@@ -170,6 +170,7 @@
     <ClInclude Include="notes.h" />
     <ClInclude Include="generator.h" />
     <ClInclude Include="wav.h" />
+    <ClInclude Include="waveshape_filter_cutoffs.h" />
     <ClInclude Include="wavetable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

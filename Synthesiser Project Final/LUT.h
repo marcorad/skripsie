@@ -13,7 +13,7 @@ inline uint16_t fast_mod(uint32_t x, uint32_t mod) {
     return x & (mod - 1);
 }
 
-//given the lut and lut size, find the interpolated value at index i [0, lut_size-1]
+//given the lut and lut size, find the interpolated value at index i [0, lut_size)
 inline float lut_lookup(float lut[], uint32_t lut_size, float i) {
     uint32_t floor_i = (uint32_t) i; //VCVT.U32.F32 Sd, Dm  ;float to unsigned 32bit /1clk
     float delta = i - (float)floor_i; //2 clk
