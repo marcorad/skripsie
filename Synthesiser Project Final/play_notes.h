@@ -78,9 +78,7 @@ void write_midi_to_wav(gen_manager* gm, gen_config* gc, const std::string& name,
 	std::vector<note> trigger_off = {};
 
 	while (t <= end_t) {	
-
-		//make generators that finished decay phase available
-		gm_make_not_playing_available(gm);
+		
 
 		//lambda to see if note must be triggered off
 		auto l = [&](const note& n) {

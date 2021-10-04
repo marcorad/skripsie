@@ -14,9 +14,10 @@ int_T ) , sizeof ( pointer_T ) , sizeof ( action_T ) , 2 * sizeof ( uint32_T
 "int8_T" , "uint8_T" , "int16_T" , "uint16_T" , "int32_T" , "uint32_T" ,
 "boolean_T" , "fcn_call_T" , "int_T" , "pointer_T" , "action_T" ,
 "timer_uint32_pair_T" } ; static DataTypeTransition rtBTransitions [ ] = { {
-( char_T * ) ( & rtB . bv4kbbemh4 [ 0 ] ) , 0 , 0 , 8096 } , { ( char_T * ) (
-& rtDW . a4wq5skkro ) , 0 , 0 , 5 } , { ( char_T * ) ( & rtDW . ir3llpuyi3 )
-, 8 , 0 , 1 } } ; static DataTypeTransitionTable rtBTransTable = { 3U ,
-rtBTransitions } ; static DataTypeTransition rtPTransitions [ ] = { { (
-char_T * ) ( & rtP . G ) , 0 , 0 , 5 } } ; static DataTypeTransitionTable
+( char_T * ) ( & rtB . d4fs3hqoqg [ 0 ] ) , 0 , 0 , 8096 } , { ( char_T * ) (
+& rtDW . mayzukdd3b [ 0 ] ) , 0 , 0 , 8 } , { ( char_T * ) ( & rtDW .
+hvieabyy45 . LoggedData ) , 11 , 0 , 1 } , { ( char_T * ) ( & rtDW .
+ir3llpuyi3 ) , 8 , 0 , 1 } } ; static DataTypeTransitionTable rtBTransTable =
+{ 4U , rtBTransitions } ; static DataTypeTransition rtPTransitions [ ] = { {
+( char_T * ) ( & rtP . G ) , 0 , 0 , 13 } } ; static DataTypeTransitionTable
 rtPTransTable = { 1U , rtPTransitions } ;

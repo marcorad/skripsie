@@ -22,7 +22,7 @@ float saw_sample(float pos, int k){
 float tri_sample(float pos, int k){
     if (k % 2 == 0) return 0.0f; //only odd harmonics
     int i = (k - 1)/2; //account for different summation limit
-    float m = (float)(2*i + 1);
+    float m = (float)(2*i + 1); //equals k
     float sign = (i) % 2 == 0 ? 1.0f : -1.0f;
     return sinf(TWO_PI * m *  pos) * sign / m / m;
 }

@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="ADSR.h" />
     <ClInclude Include="defines.h" />
+    <ClInclude Include="gen_config.h" />
     <ClInclude Include="gen_manager.h" />
     <ClInclude Include="midi\include\Binasc.h" />
     <ClInclude Include="midi\include\MidiEvent.h" />

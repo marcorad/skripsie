@@ -51,30 +51,15 @@ float waveshape_none(float x, float gain) {
     return x;
 }
 
-//norm must be 1/sin(0.5*pi*gain) = 1.0f / sin_lookup(0.25f * (frac(gain))) for |gain| < 1 and 1 otherwise
-float waveshape_sine(float x, float gain) {
-    gain = gain < 1.0f ? gain : 1.0f + 0.01f * gain; //gain of smaller than 1 acts like distortion, otherwise it acts as a shaper which must be limited otherwise it becomes unwieldy
-    float t = fract(0.25f * gain * x - 0.5f); //gain of 1 has amplitude 1, also modulates index to allow for periodic behaviour in the sin lookup
-    return -sin_lookup(t);
+float waveshape_hard_clipper(float x, float gain) {
+    return clamp(gain * x, -1.0f, 1.0f);
 }
 
-//inline void ws_config_tanh_saturator(waveshaper* ws, float g) {
-//    ws->gain = g;
-//    ws->waveshape = &waveshape_tanh;
-//    float freq;
-//    if (g > 63.0f) { //a point of diminishing returns, and also to save memory
-//        freq = tanh_filter_cutoff[63];
-//    }
-//    else {
-//        freq = lut_lookup(tanh_filter_cutoff, 64, g);
-//    }
-//    iir_calc_lp12_coeff(&ws->filter_AA, freq, 1.0f); //Q does not matter here
-//    ws->gain_prime = fmaxf(1.0f, 1.0f / g);
-//    ws->norm = 1.0f;
-//}
 
-//inline void ws_config_none(waveshaper* ws) {
-//    ws->gain = 1.0f;
-//    ws->gain_prime = 1.0f;
-//    ws->waveshape = &waveshape_none;
-//}
+float waveshape_sine(float x, float gain) {
+    //gain of smaller than 1 acts like distortion, otherwise it acts as a shaper which must be limited otherwise it becomes unwieldy
+    gain = gain < 1.0f ? gain : 1.0f + 0.01f * gain; 
+    //gain of 1 has amplitude 1, also modulates index to allow for periodic behaviour in the sin lookup
+    float t = fract(0.25f * gain * x - 0.5f); 
+    return -sin_lookup(t);
+}

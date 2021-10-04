@@ -13,6 +13,8 @@ struct gen_manager {
 	uint8_t in_use_head = 0;
 };
 
+//TODO: protect hashtable for case when there are no available gens and hashtable must be emptied at that spot
+
 inline void gm_init(gen_manager* gm) {
 	//make all available
 	for (int i = 0; i < NUM_GENERATORS; i++)
@@ -58,6 +60,10 @@ inline generator* gm_pop_off_front_from_available(gen_manager* gm) {
 	return gm->available[gm->available_head];	
 }
 
+inline void gm_set_gen_playing_note(generator* g, uint8_t midi_note) {
+	note_played_hash_table[midi_note] = g;
+}
+
 //get an available or gen, or the oldest playing gen if none are available
 inline generator* gm_get_gen(gen_manager* gm) {
 	generator* g;
@@ -67,6 +73,7 @@ inline generator* gm_get_gen(gen_manager* gm) {
 	}
 	else {//none are available (this should be a rare case of key-mashing)
 		g = gm_pop_off_back_from_in_use(gm);		
+		gm_set_gen_playing_note(nullptr, g->midi_note); //make sure that the retrigger of a note-off will not affect the new note
 	}
 
 	gm_add_to_in_use(gm, g);	
@@ -83,7 +90,6 @@ inline void gm_make_not_playing_available(gen_manager* gm) {
 		if (!gen_is_playing(g)) {
 			count++;
 			gm_add_to_available(gm, g);
-			adsr_reset(&g->envelope_filter_cutoff); //RESET SINCE THIS MIGHT NOT BE DONE
 		}
 		else {
 			gm->in_use[i - count] = g;
@@ -96,9 +102,7 @@ inline generator* gm_get_gen_playing_note(uint8_t midi_note) {
 	return note_played_hash_table[midi_note];
 }
 
-inline void gm_set_gen_playing_note(generator* g, uint8_t midi_note) {
-	note_played_hash_table[midi_note] = g;
-}
+
 
 float L_temp[PLAYBACK_BUFFER_SIZE];
 float R_temp[PLAYBACK_BUFFER_SIZE];
@@ -119,38 +123,31 @@ inline void gm_write_n_samples(gen_manager* gm, gen_config* gc, float bufL[], fl
 			bufR[i] += 0.125f * R_temp[i];
 		}
 	}	
+	for (int i = 0; i < PLAYBACK_BUFFER_SIZE; i++) //clamp to +- 1
+	{
+		float L = bufL[i], R = bufR[i];
+		bufL[i] = clamp(L, -1.0f, 1.0f);
+		bufR[i] = clamp(R, -1.0f, 1.0f);
+	}
+
+	//make generators that finished decay phase available
+	gm_make_not_playing_available(gm);
 }
 
 inline void gm_trigger_note_on(gen_manager* gm, gen_config* gc, uint8_t note, uint8_t vel){
 	generator* g = gm_get_gen_playing_note(note);
 	if (g == nullptr) g = gm_get_gen(gm); //prevents any weirdness in retriggers of notes before a note off
-	gen_note_on(g);
+	
 	gen_freq(g, gc, notes_digital_freq[note], vel);
+	g->midi_note = note;
 	gm_set_gen_playing_note(g, note);
+	gen_note_on(g);
 }
 
 inline void gm_trigger_note_off(gen_manager* gm, uint8_t note) {
 	generator* g = gm_get_gen_playing_note(note);
 	gm_set_gen_playing_note(nullptr, note);
 	if (g != nullptr) gen_note_off(g); //prevents any weirdness in note off triggers if it's not actually on
-}
-
-inline void gm_apply_volume_envelope_config(gen_manager* gm, gen_config* gc) {
-	for (int i = 0; i < NUM_GENERATORS; i++) {
-		gen_apply_volume_envelope_config(&gm->generators[i], gc);
-	}
-}
-
-inline void gm_apply_filter_envelope_config(gen_manager* gm, gen_config* gc) {
-	for (int i = 0; i < NUM_GENERATORS; i++) {
-		gen_apply_filter_envelope_config(&gm->generators[i], gc);
-	}
-}
-
-inline void gm_apply_wavetable_config(gen_manager* gm, gen_config* gc) {
-	for (int i = 0; i < NUM_GENERATORS; i++) {
-		gen_apply_wavetable_config(&gm->generators[i], gc);
-	}
 }
 
 inline void gm_apply_vibrato_config(gen_manager* gm, gen_config* gc) {

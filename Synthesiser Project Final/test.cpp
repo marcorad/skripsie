@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <random>
 
 #include "LUT.h"
 #include "init_luts.h"
@@ -12,7 +13,47 @@
 #include "play_notes.h"
 #include "wav.h"
 
+
 using namespace std;
+
+//TODO: write code that tests all aspects for report
+
+//white noise generator
+void generate_wn(float* buf, int N) {
+	unsigned seed = 42; //LOL
+	std::default_random_engine generator(seed);
+	auto dist = std::normal_distribution<float>(0.0f, 1.0f);
+
+	for (int i = 0; i < N; i++)
+	{
+		buf[i] = dist(generator);
+	}
+}
+
+void test_adsr() {
+	//adsr with retrigger
+}
+
+void test_wavetable() {
+	//wavetables at different pos and freq
+}
+
+void test_filter() {
+	//coeff at start and ends of ADSR phases
+	//filtered WN
+}
+
+void test_waveshape() {
+	//waveshaped at dif gains and freq
+}
+
+void test_gm() {
+	//different tones and fg overload after 8 tones
+}
+
+void test_freq_scaling() {
+	cout << "Detune factor 125.57: " << get_detune_factor_cents_lut(125.57f) << endl;
+}
 
 void print_to_file(float arr[], int size, const string& name) {
 	ofstream f;
@@ -22,6 +63,8 @@ void print_to_file(float arr[], int size, const string& name) {
 	}	
 	f.close();
 }
+
+
 
 void print_iir_coeff(IIR_coeff& f) {
 	cout << "[" << f.n0 << ", " << f.n1 << ", " << f.n2 << "], [ 1, -" << f.d1 << ", -" << f.d2 << "]" << endl;
@@ -84,23 +127,20 @@ int main() {
 
 	gm_init(&gm);
 
-	load_notes("..\\midilib\\fireflies.mid", 6, false);	
+	load_notes("..\\midifiles\\fireflies.mid", 6, false);	
 
 	//configure global params
-	gen_config_volume_envelope(&gc, 0.01f, 0.25f, 1.0f, 0.2f);
-	gen_config_wavetables(&gc, 3.0f, 1200.0f, 0.25f);
-	gen_config_filter_envelope(&gc, 0.08f, 0.1f, 1.0f, 20.0f, 20.0f, 5.0f, 2.0f);
-	//gen_config_filter(&gc, &iir_calc_lp12_coeff);
+	gen_config_volume_envelope(&gc, 0.03f, 0.25f, 0.8f, 1.0f);
+	gen_config_wavetables(&gc, 2.0f, 10.0f, 0.8f, 0.3f);
+	gen_config_filter_envelope(&gc, 0.08f, 0.1f, 1.0f, 1000.0f, 5.0f, 1.0f, 2.0f);
+	gen_config_filter(&gc, &iir_calc_bp12_coeff);
 	gen_config_vibrato(&gc, 10.0f, 7.0f / FS);
-	gen_config_tanh_saturator(&gc, 2.0f); //NO CONFIG REQUIRED HERE
-	//gen_config_no_saturator(&gc);
+	//gen_config_tanh_saturator(&gc, 1.0f); //NO CONFIG REQUIRED HERE
+	gen_config_no_saturator(&gc);
 
 	print_iir_coeff(gc.filter_sat_AA);
 
 	//apply global params to generator
-	gm_apply_volume_envelope_config(&gm, &gc);
-	gm_apply_filter_envelope_config(&gm, &gc);
-	gm_apply_wavetable_config(&gm, &gc);
 	gm_apply_vibrato_config(&gm, &gc);
 
 	////set generator freq (ALWAYS AFTER CONFIG)
@@ -118,7 +158,8 @@ int main() {
 
 	//write_to_wav(string("test"), L, R, size, (int)FS);
 	
-	write_midi_to_wav(&gm, &gc, "fireflies 6 (2)", true);
+	//write_midi_to_wav(&gm, &gc, "ff1", true);
+	test_freq_scaling();
 
 	return 0;
 }
