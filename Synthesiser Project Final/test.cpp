@@ -30,17 +30,70 @@ void generate_wn(float* buf, int N) {
 	}
 }
 
+void add_wn(float* wn, int N, float u, float s) {
+	srand(time(NULL));
+	unsigned seed = rand();
+	std::default_random_engine generator(seed);
+	auto dist = std::normal_distribution<float>(u, s);
+
+	for (int i = 0; i < N; i++)
+	{
+		wn[i] += dist(generator);
+	}
+}
+
 void test_adsr() {
 	//adsr with retrigger
 }
 
-void test_wavetable() {
+void test_wavetable(float* buf, int N, float pos) {
 	//wavetables at different pos and freq
+	float f0 = notes_digital_freq[A0];
+	int off = 0;
+	int n = N / 8;
+	gen_config gc;
+	gc.wt_pos = pos;
+
+	wavetable wt;
+
+	for (float f = f0; f <= notes_digital_freq[A8]; f *= 2.0f) //sweep octaves
+	{
+		wt.phase = 0;
+		wt_config_digital_freq(&wt, f);
+		for (int i = off;  i < off + n; i++)
+		{
+			buf[i] = wt_sample(&wt, &gc);
+		}
+		off += n;
+	}
+
 }
 
-void test_filter() {
-	//coeff at start and ends of ADSR phases
-	//filtered WN
+void test_filter(float* wn, float* out, float* adsr_out, int N, float a, float d, float s, float r, float freqstart, float freqend, float q, void (*filter_coeff_func)(IIR_coeff*, float, float)) {
+	ADSR adsr;
+	IIR_prev_values pv = {0,0,0,0};
+	IIR_coeff coeff;
+	float params[4];
+	adsr_config(params, a, d, s, r);
+	adsr_trigger_on(&adsr);
+	
+	for (int i = 0; i < N/2; i++)
+	{
+		float f0 = freqstart + adsr_sample(&adsr, params) * (freqend - freqstart);
+		(*filter_coeff_func)(&coeff, f0, q);
+		out[i] = iir_filter_sample(&coeff, &pv, wn[i]);
+		adsr_out[i] = f0;
+	}
+
+	adsr_trigger_off(&adsr);
+
+	for (int i = N/2; i < N; i++)
+	{
+		float f0 = freqstart + adsr_sample(&adsr, params) * (freqend - freqstart);
+		(*filter_coeff_func)(&coeff, f0, q);
+		out[i] = iir_filter_sample(&coeff, &pv, wn[i]);
+		adsr_out[i] = f0;
+	}
 }
 
 void test_waveshape() {
@@ -66,6 +119,7 @@ void print_to_file(float arr[], int size, const string& name) {
 
 
 
+
 void print_iir_coeff(IIR_coeff& f) {
 	cout << "[" << f.n0 << ", " << f.n1 << ", " << f.n2 << "], [ 1, -" << f.d1 << ", -" << f.d2 << "]" << endl;
 }
@@ -78,6 +132,43 @@ void print_basic_waveforms(){
 		}
 	}
 }  
+
+
+void run_tests() {
+	//FILTERS
+	int N = 44100;
+	float* wn = new float[N];
+	generate_wn(wn, N);
+
+	float* out = new float[N];
+	float* adsr = new float[N];
+	print_to_file(wn, N, "..//testfiles//filter//white.txt");
+	test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_hp24_coeff);
+	print_to_file(out, N, "..//testfiles//filter//hp24.txt");
+
+	test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_lp24_coeff);
+	print_to_file(out, N, "..//testfiles//filter//lp24.txt");
+
+	test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_bp12_coeff);
+	print_to_file(out, N, "..//testfiles//filter//bp12.txt");
+
+	test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_hp12_coeff);
+	print_to_file(out, N, "..//testfiles//filter//hp12.txt");
+
+	test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_lp12_coeff);
+	print_to_file(out, N, "..//testfiles//filter//lp12.txt");
+
+	print_to_file(adsr, N, "..//testfiles//filter//adsr.txt");
+	int i = 0;
+
+	//WAVETABLE
+	for (float p = 0.0; p < 4.0f; p += 0.5f)
+	{
+		test_wavetable(out, N, p);
+		print_to_file(out, N, "..//testfiles//wavetable//" + to_string(i) + ".txt");
+		i++;
+	}
+}
 
 
 int main() {	
@@ -159,7 +250,9 @@ int main() {
 	//write_to_wav(string("test"), L, R, size, (int)FS);
 	
 	//write_midi_to_wav(&gm, &gc, "ff1", true);
-	test_freq_scaling();
+	//test_freq_scaling();
+
+	run_tests();
 
 	return 0;
 }

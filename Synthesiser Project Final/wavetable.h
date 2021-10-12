@@ -47,7 +47,7 @@ uint8_t harmonic_indices[] = {1,2,2,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,
 
 //configure in samples/sec and determin correct number of harmonics to avoid aliasing
 inline void wt_config_digital_freq(wavetable* wt, float freq) {
-	wt->stride = freq * (float)LUT_SIZE;
+	wt->stride = freq * (float)LUT_SIZE; //set strides, with no FM applied
 	wt->base_stride = wt->stride;
 	uint16_t harmonics = (uint16_t)(0.5f / freq);
 	harmonics = harmonics > (LUT_SIZE >> 1) ? (LUT_SIZE >> 1) : harmonics; //clamp at max allowed by buffer
@@ -60,7 +60,7 @@ inline void wt_config_hz(wavetable* wt, float freq) {
 	wt_config_digital_freq(wt, freq / FS); //FS recip?
 }
 
-//apply fm to wavetable without changin harmonic index, by a change in digital frequency df
+//apply fm to wavetable without changing harmonic index, by a change in digital frequency df
 inline void wt_apply_fm(wavetable* wt, float df) {
 	wt->stride = wt->base_stride + df * (float) LUT_SIZE;
 }
