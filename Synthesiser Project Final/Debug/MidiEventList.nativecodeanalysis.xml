@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\midi\src\</FILEPATH>
+      <FILENAME>MidiEventList.cpp</FILENAME>
+      <LINE>56</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26439</DEFECTCODE>
+    <DESCRIPTION>This kind of function may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>smf::MidiEventList::{ctor}</FUNCTION>
+    <DECORATED>??0MidiEventList@smf@@QAE@$$QAV01@@Z</DECORATED>
+    <FUNCLINE>56</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

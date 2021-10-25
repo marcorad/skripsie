@@ -90,6 +90,7 @@ inline void gm_make_not_playing_available(gen_manager* gm) {
 		if (!gen_is_playing(g)) {
 			count++;
 			gm_add_to_available(gm, g);
+			gm_set_gen_playing_note(nullptr, g->midi_note); //remove from hashtable
 		}
 		else {
 			gm->in_use[i - count] = g;

@@ -22,7 +22,7 @@ inline float lut_lookup(float lut[], uint32_t lut_size, float i) {
     return lerp(x1, x2, delta); //3 clk
 }
 
-//given the lut and lut size, find the interpolated value at index i [0, lut_size)
+//given the lut, find the interpolated value at index i [0, lut_size) without wrapping
 inline float lut_lookup_no_wrap(float lut[], float i) {
     uint32_t floor_i = (uint32_t)i; //VCVT.U32.F32 Sd, Dm  ;float to unsigned 32bit /1clk
     float delta = i - (float)floor_i; //2 clk

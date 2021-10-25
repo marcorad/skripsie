@@ -1,47 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
     <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\midi\src\</FILEPATH>
+      <FILENAME>MidiEventList.cpp</FILENAME>
+      <LINE>56</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26439</DEFECTCODE>
+    <DESCRIPTION>This kind of function may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>smf::MidiEventList::{ctor}</FUNCTION>
+    <DECORATED>??0MidiEventList@smf@@QAE@$$QAV01@@Z</DECORATED>
+    <FUNCLINE>56</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\midi\src\</FILEPATH>
+      <FILENAME>MidiFile.cpp</FILENAME>
+      <LINE>84</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>26439</DEFECTCODE>
+    <DESCRIPTION>This kind of function may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>smf::MidiFile::{ctor}</FUNCTION>
+    <DECORATED>??0MidiFile@smf@@QAE@$$QAV01@@Z</DECORATED>
+    <FUNCLINE>84</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\midi\src\</FILEPATH>
+      <FILENAME>MidiFile.cpp</FILENAME>
+      <LINE>140</LINE>
+      <COLUMN>20</COLUMN>
+    </SFA>
+    <DEFECTCODE>26439</DEFECTCODE>
+    <DESCRIPTION>This kind of function may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>smf::MidiFile::=</FUNCTION>
+    <DECORATED>??4MidiFile@smf@@QAEAAV01@$$QAV01@@Z</DECORATED>
+    <FUNCLINE>140</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\midi\src\</FILEPATH>
+      <FILENAME>MidiFile.cpp</FILENAME>
+      <LINE>2694</LINE>
+      <COLUMN>31</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>smf::MidiFile::buildTimeMap</FUNCTION>
+    <DECORATED>?buildTimeMap@MidiFile@smf@@AAEXXZ</DECORATED>
+    <FUNCLINE>2658</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
       <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
       <FILENAME>wav.h</FILENAME>
       <LINE>44</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
-    <DESCRIPTION>Variable 'header_file::chunk_size' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <DESCRIPTION>Variable 'header_file::subchunk2_size' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
     <FUNCTION>header_file::{ctor}</FUNCTION>
     <DECORATED>??0header_file@@QAE@XZ</DECORATED>
     <FUNCLINE>44</FUNCLINE>
     <ADDITIONALINFO>
-      <targetSymbol>header_file::chunk_size</targetSymbol>
+      <targetSymbol>header_file::subchunk2_size</targetSymbol>
     </ADDITIONALINFO>
     <PATH></PATH>
   </DEFECT><DEFECT>
     <SFA>
       <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
-      <FILENAME>IIR.h</FILENAME>
-      <LINE>11</LINE>
+      <FILENAME>gen_config.h</FILENAME>
+      <LINE>39</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
-    <DESCRIPTION>Variable 'IIR::d2' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
-    <FUNCTION>IIR::{ctor}</FUNCTION>
-    <DECORATED>??0IIR@@QAE@XZ</DECORATED>
-    <FUNCLINE>11</FUNCLINE>
+    <DESCRIPTION>Variable 'gen_config::filter_sat_AA' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>gen_config::{ctor}</FUNCTION>
+    <DECORATED>??0gen_config@@QAE@XZ</DECORATED>
+    <FUNCLINE>39</FUNCLINE>
     <ADDITIONALINFO>
-      <targetSymbol>IIR::d2</targetSymbol>
+      <targetSymbol>gen_config::filter_sat_AA</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>wavetable.h</FILENAME>
+      <LINE>15</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'wavetable::base_stride' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>wavetable::{ctor}</FUNCTION>
+    <DECORATED>??0wavetable@@QAE@XZ</DECORATED>
+    <FUNCLINE>15</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>wavetable::base_stride</targetSymbol>
     </ADDITIONALINFO>
     <PATH></PATH>
   </DEFECT><DEFECT>
     <SFA>
       <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
       <FILENAME>ADSR.h</FILENAME>
-      <LINE>18</LINE>
+      <LINE>17</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
     <DESCRIPTION>Variable 'ADSR::offset' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
     <FUNCTION>ADSR::{ctor}</FUNCTION>
     <DECORATED>??0ADSR@@QAE@XZ</DECORATED>
-    <FUNCLINE>18</FUNCLINE>
+    <FUNCLINE>17</FUNCLINE>
     <ADDITIONALINFO>
       <targetSymbol>ADSR::offset</targetSymbol>
     </ADDITIONALINFO>
@@ -49,17 +117,33 @@
   </DEFECT><DEFECT>
     <SFA>
       <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
-      <FILENAME>generator.h</FILENAME>
-      <LINE>62</LINE>
+      <FILENAME>gen_manager.h</FILENAME>
+      <LINE>14</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
-    <DESCRIPTION>Variable 'generator::base_freq' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <DESCRIPTION>Variable 'gen_manager::available' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>gen_manager::{ctor}</FUNCTION>
+    <DECORATED>??0gen_manager@@QAE@XZ</DECORATED>
+    <FUNCLINE>14</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>gen_manager::available</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\</FILEPATH>
+      <FILENAME>generator.h</FILENAME>
+      <LINE>64</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'generator::translated_freq' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
     <FUNCTION>generator::{ctor}</FUNCTION>
     <DECORATED>??0generator@@QAE@XZ</DECORATED>
-    <FUNCLINE>62</FUNCLINE>
+    <FUNCLINE>64</FUNCLINE>
     <ADDITIONALINFO>
-      <targetSymbol>generator::base_freq</targetSymbol>
+      <targetSymbol>generator::translated_freq</targetSymbol>
     </ADDITIONALINFO>
     <PATH></PATH>
   </DEFECT></DEFECTS>

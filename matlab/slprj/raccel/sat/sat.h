@@ -31,7 +31,7 @@
 #define NSAMPLE_TIMES (2) 
 #define NINPUTS (0)       
 #define NOUTPUTS (0)     
-#define NBLOCKIO (1) 
+#define NBLOCKIO (2) 
 #define NUM_ZC_EVENTS (0) 
 #ifndef NCSTATES
 #define NCSTATES (0)   
@@ -46,12 +46,12 @@
 #endif
 #ifndef IN_RACCEL_MAIN
 #endif
-typedef struct { real_T d4fs3hqoqg [ 8096 ] ; real_T m1bczq4ndq_mbvzarwird [
-8096 ] ; } B ; typedef struct { real_T mayzukdd3b [ 2 ] ; real_T a4wq5skkro ;
-real_T fvkkquez2d ; real_T pr0s52djpl ; real_T kllq51ttqc ; real_T gl401ntxmo
-; real_T kew5inqcku ; struct { void * LoggedData ; } hvieabyy45 ; boolean_T
-ir3llpuyi3 ; } DW ; typedef struct { rtwCAPI_ModelMappingInfo mmi ; }
-DataMapInfo ; struct P_ { real_T G ; real_T T ; real_T Chirp_f0 ; real_T
+typedef struct { real_T m1bczq4ndq [ 8096 ] ; real_T d4fs3hqoqg [ 8096 ] ; }
+B ; typedef struct { real_T mayzukdd3b [ 2 ] ; real_T a4wq5skkro ; real_T
+fvkkquez2d ; real_T pr0s52djpl ; real_T kllq51ttqc ; real_T gl401ntxmo ;
+real_T kew5inqcku ; struct { void * LoggedData [ 2 ] ; } hvieabyy45 ;
+boolean_T ir3llpuyi3 ; } DW ; typedef struct { rtwCAPI_ModelMappingInfo mmi ;
+} DataMapInfo ; struct P_ { real_T G ; real_T T ; real_T Chirp_f0 ; real_T
 Chirp_f1 ; real_T Chirp_phase ; real_T DiscreteFilter_NumCoef [ 3 ] ; real_T
 DiscreteFilter_DenCoef [ 3 ] ; real_T DiscreteFilter_InitialStates ; real_T
 Gain1_Gain ; } ; extern const char * RT_MEMORY_ALLOCATION_ERROR ; extern B

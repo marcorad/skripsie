@@ -112,12 +112,16 @@
     ;%
     ;% Auto data (rtB)
     ;%
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
+      section.nData     = 2;
+      section.data(2)  = dumData; %prealloc
       
-	  ;% rtB.d4fs3hqoqg
+	  ;% rtB.m1bczq4ndq
 	  section.data(1).logicalSrcIdx = 0;
 	  section.data(1).dtTransOffset = 0;
+	
+	  ;% rtB.d4fs3hqoqg
+	  section.data(2).logicalSrcIdx = 1;
+	  section.data(2).dtTransOffset = 8096;
 	
       nTotData = nTotData + section.nData;
       sigMap.sections(1) = section;
@@ -247,8 +251,8 @@
   ;%
 
 
-  targMap.checksum0 = 1071215569;
-  targMap.checksum1 = 1974552370;
-  targMap.checksum2 = 303149440;
-  targMap.checksum3 = 1465377467;
+  targMap.checksum0 = 2453657735;
+  targMap.checksum1 = 496800536;
+  targMap.checksum2 = 2539750837;
+  targMap.checksum3 = 3327131438;
 

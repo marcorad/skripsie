@@ -18,19 +18,7 @@ inline void gen_config_no_saturator(gen_config* gc) {
 	iir_calc_lp12_coeff(&gc->filter_sat_AA, 0.25f, 1.0f);
 }
 
-inline void gen_config_default(gen_config* gc) {
-	gc->detune = 0.0f; //detune in cents
-	gc->detune_factor_up = 1.0f;
-	gc->detune_factor_down = 1.0f;
-	gc->detune_volume = 0.0f;
-	gc->filter_freq_start_relative = 512.0f;
-	gc->filter_freq_end_relative = 512.0f;
-	gc->filter_Q = ROOT_2_RECIP;
-	gc->vibrato_factor = 0.0f;
-	gc->vibrato_freq = 0.0f;
-	//TODO: ADSR
-	gen_config_no_saturator(gc);
-}
+
 
 
 //generates the notes with defined modular structure
@@ -134,7 +122,8 @@ inline void gen_calc_filter_envelope_freq(generator* g, gen_config* gc) {
 	g->filter_envelope_amplitude = g->filter_freq_end - g->filter_freq_start;
 }
 
-//note on. vel must be to midi standards in the range 0-127
+//vel must be to midi standards in the range 0-127
+//configure the frequency
 //ALWAYS DO CONFIGURATION AND APPLY IT BEFORE THIS
 inline void gen_freq(generator* g, gen_config* gc, float freq, uint8_t vel) {
 	//set velocity
@@ -149,8 +138,8 @@ inline void gen_freq(generator* g, gen_config* gc, float freq, uint8_t vel) {
 	wt_config_digital_freq(&g->wt_right, freq * gc->detune_factor_down);
 
 	//trigger envelopes
-	adsr_trigger_on(&g->envelope_volume);
-	adsr_trigger_on(&g->envelope_filter_cutoff);	
+	//adsr_trigger_on(&g->envelope_volume);
+	//adsr_trigger_on(&g->envelope_filter_cutoff);	
 
 	//configure start and end filter frequencies
 	gen_calc_filter_envelope_freq(g, gc); //this is also done on configuration of filter, incase it is currently playing
@@ -194,6 +183,7 @@ inline void gen_config_filter_envelope(gen_config* gc, float a, float d, float s
 	adsr_config(gc->filt_adsr_params, a, d, s, r);
 }
 
+//trigger the note on
 inline void gen_note_on(generator* g) {
 
 	adsr_reset(&g->envelope_filter_cutoff); //reset filter in case of retrigger
@@ -233,9 +223,39 @@ inline void gen_config_tanh_saturator(gen_config* gc, float g) {
 		freq = tanh_filter_cutoff[63];
 	}
 	else {
-		freq = lut_lookup(tanh_filter_cutoff, 64, g);
+		freq = lut_lookup_no_wrap(tanh_filter_cutoff, g);
 	}
 	iir_calc_lp12_coeff(&gc->filter_sat_AA, 0.5f * freq, 1.0f); //Q does not matter here
+}
+
+inline void gen_config_sine_saturator(gen_config* gc, float g) {
+	gc->gain = g;
+	gc->waveshape = &waveshape_sine;
+	float freq;
+	if (g > 2.0f * TWO_PI) { //a point of diminishing returns, and also to save memory
+		freq = sin_filter_cutoff[64];
+	}
+	else {
+		float i = 16.0f * g * PI_INV; //pi/16 -> 1, 4pi -> 64
+		freq = lut_lookup_no_wrap(sin_filter_cutoff, i);
+	}
+	iir_calc_lp12_coeff(&gc->filter_sat_AA, 0.5f * freq, 1.0f); //Q does not matter here
+}
+
+inline void gen_config_default(gen_config* gc) {
+	gc->detune = 0.0f; //detune in cents
+	gc->detune_factor_up = 1.0f;
+	gc->detune_factor_down = 1.0f;
+	gc->detune_volume = 0.0f;
+	gc->filter_freq_start_relative = 512.0f;
+	gc->filter_freq_end_relative = 512.0f;
+	gc->filter_Q = ROOT_2_RECIP;
+	gc->vibrato_factor = 0.0f;
+	gc->vibrato_freq = 0.0f;
+	adsr_config(gc->vol_adsr_params, 0.001f, 0.001f, 1.0f, 0.001f);
+	adsr_config(gc->filt_adsr_params, 0.001f, 0.001f, 1.0f, 0.001f);
+	gen_config_no_saturator(gc);
+	gen_config_vibrato(gc, 0.0f, 1.0f / FS);
 }
 
 

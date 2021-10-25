@@ -1,7 +1,7 @@
 fs = 44100;
-G = 10.0;
+G = 2*pi;
 G_prime = max(1/G, 1);
-f0 = 0.5 * 0.0285714285714286; %multiply by emperical calcs in tanh_harm.m
+f0 = 0.5 * 0.142857142857143; %multiply by emperical calcs in tanh_harm.m
 w = 2*pi*f0;
 sinw = sin(w);
 cosw = cos(w);

@@ -22,9 +22,9 @@ struct gen_config {
 
 	float detune_factor_up = 1.0f, detune_factor_down = 1.0f;
 
-	//VIBRATO TO BE IMPLEMENTED
+	//VIBRATO
 	float vibrato_freq = 0.0f; //in digital freq
-	float vibrato_factor = 0.0f; //in digital freq
+	float vibrato_factor = 0.0f; //in cents
 
 
 	//saturation
@@ -34,6 +34,4 @@ struct gen_config {
 
 	//FNC POINTER TO DETERMINE HOW TO CALC COEFF
 	void (*filter_coeff_func)(IIR_coeff*, float, float) = &iir_calc_lp24_coeff;
-	//FNC POINTER TO DETERMINE HOW TO FILTER
-	//float (*filter_func)(IIR*, float) = &iir_filter_sample;
 };

@@ -76,45 +76,45 @@ rt_GetISigstreamManager ( ) ; rtwISigstreamManagerGetInputIsInDatasetFormat (
 pISigstreamManager , & externalInputIsInDatasetFormat ) ; if (
 externalInputIsInDatasetFormat ) { } } MdlInitialize ( ) ; } void MdlOutputs
 ( int_T tid ) { int32_T i ; real_T k45bvgf4zg ; if ( ssIsSampleHit ( rtS , 1
-, 0 ) ) { { real_T * y = & rtB . m1bczq4ndq_mbvzarwird [ 0 ] ; real_T
-instantPhase = 0.0 ; const int_T samplesPerFrame = 8096 ; int_T
-chirpLoopCount ; for ( chirpLoopCount = 0 ; chirpLoopCount < samplesPerFrame
-; chirpLoopCount ++ ) { instantPhase = ( rtDW . ir3llpuyi3 == 0 ) ? rtDW .
-pr0s52djpl * rtP . Chirp_f0 * ( pow ( rtDW . kllq51ttqc , rtDW . a4wq5skkro /
-rtP . T ) - 1.0 ) : rtDW . gl401ntxmo - rtDW . pr0s52djpl * rtP . Chirp_f0 *
-( pow ( rtDW . kllq51ttqc , ( rtP . T - rtDW . a4wq5skkro ) / rtP . T ) - 1.0
-) ; instantPhase -= ( int_T ) instantPhase ; * y ++ = cos ( DSP_TWO_PI * (
+, 0 ) ) { { real_T * y = & rtB . m1bczq4ndq [ 0 ] ; real_T instantPhase = 0.0
+; const int_T samplesPerFrame = 8096 ; int_T chirpLoopCount ; for (
+chirpLoopCount = 0 ; chirpLoopCount < samplesPerFrame ; chirpLoopCount ++ ) {
+instantPhase = ( rtDW . ir3llpuyi3 == 0 ) ? rtDW . pr0s52djpl * rtP .
+Chirp_f0 * ( pow ( rtDW . kllq51ttqc , rtDW . a4wq5skkro / rtP . T ) - 1.0 )
+: rtDW . gl401ntxmo - rtDW . pr0s52djpl * rtP . Chirp_f0 * ( pow ( rtDW .
+kllq51ttqc , ( rtP . T - rtDW . a4wq5skkro ) / rtP . T ) - 1.0 ) ;
+instantPhase -= ( int_T ) instantPhase ; * y ++ = cos ( DSP_TWO_PI * (
 instantPhase + rtDW . fvkkquez2d ) + rtP . Chirp_phase ) ; rtDW . a4wq5skkro
 += 2.2675736961451248E-5 ; if ( rtDW . a4wq5skkro > ( rtP . T + DBL_EPSILON )
 ) { rtDW . a4wq5skkro = rtDW . a4wq5skkro - rtP . T ; rtDW . fvkkquez2d +=
 instantPhase ; if ( rtDW . fvkkquez2d > 1.0 ) { rtDW . fvkkquez2d -= floor (
 rtDW . fvkkquez2d ) ; } } } } rtDW . kew5inqcku = 0.0 ; for ( i = 0 ; i <
-8096 ; i ++ ) { rtDW . kew5inqcku = ( ( rtB . m1bczq4ndq_mbvzarwird [ i ] -
-rtP . DiscreteFilter_DenCoef [ 1 ] * rtDW . mayzukdd3b [ 0 ] ) - rtP .
+8096 ; i ++ ) { rtDW . kew5inqcku = ( ( rtB . m1bczq4ndq [ i ] - rtP .
+DiscreteFilter_DenCoef [ 1 ] * rtDW . mayzukdd3b [ 0 ] ) - rtP .
 DiscreteFilter_DenCoef [ 2 ] * rtDW . mayzukdd3b [ 1 ] ) / rtP .
 DiscreteFilter_DenCoef [ 0 ] ; k45bvgf4zg = ( rtP . DiscreteFilter_NumCoef [
 0 ] * rtDW . kew5inqcku + rtP . DiscreteFilter_NumCoef [ 1 ] * rtDW .
 mayzukdd3b [ 0 ] ) + rtP . DiscreteFilter_NumCoef [ 2 ] * rtDW . mayzukdd3b [
 1 ] ; rtDW . mayzukdd3b [ 1 ] = rtDW . mayzukdd3b [ 0 ] ; rtDW . mayzukdd3b [
-0 ] = rtDW . kew5inqcku ; rtB . d4fs3hqoqg [ i ] = ( rtB .
-m1bczq4ndq_mbvzarwird [ i ] - k45bvgf4zg ) * rtP . Gain1_Gain +
-muDoubleScalarTanh ( rtP . G * k45bvgf4zg ) ; } } UNUSED_PARAMETER ( tid ) ;
-} void MdlUpdate ( int_T tid ) { UNUSED_PARAMETER ( tid ) ; } void
-MdlTerminate ( void ) { if ( rt_slioCatalogue ( ) != ( NULL ) ) { void * *
-slioCatalogueAddr = rt_slioCatalogueAddr ( ) ; rtwSaveDatasetsToMatFile (
+0 ] = rtDW . kew5inqcku ; rtB . d4fs3hqoqg [ i ] = ( rtB . m1bczq4ndq [ i ] -
+k45bvgf4zg ) * rtP . Gain1_Gain + muDoubleScalarSin ( rtP . G * k45bvgf4zg )
+; } } UNUSED_PARAMETER ( tid ) ; } void MdlUpdate ( int_T tid ) {
+UNUSED_PARAMETER ( tid ) ; } void MdlTerminate ( void ) { if (
+rt_slioCatalogue ( ) != ( NULL ) ) { void * * slioCatalogueAddr =
+rt_slioCatalogueAddr ( ) ; rtwSaveDatasetsToMatFile (
 rtwGetPointerFromUniquePtr ( rt_slioCatalogue ( ) ) ,
 rt_GetMatSigstreamLoggingFileName ( ) ) ; rtwTerminateSlioCatalogue (
 slioCatalogueAddr ) ; * slioCatalogueAddr = NULL ; } } void
 MdlInitializeSizes ( void ) { ssSetNumContStates ( rtS , 0 ) ; ssSetNumY (
 rtS , 0 ) ; ssSetNumU ( rtS , 0 ) ; ssSetDirectFeedThrough ( rtS , 0 ) ;
-ssSetNumSampleTimes ( rtS , 2 ) ; ssSetNumBlocks ( rtS , 10 ) ;
-ssSetNumBlockIO ( rtS , 1 ) ; ssSetNumBlockParams ( rtS , 13 ) ; } void
+ssSetNumSampleTimes ( rtS , 2 ) ; ssSetNumBlocks ( rtS , 9 ) ;
+ssSetNumBlockIO ( rtS , 2 ) ; ssSetNumBlockParams ( rtS , 13 ) ; } void
 MdlInitializeSampleTimes ( void ) { ssSetSampleTime ( rtS , 0 , 0.0 ) ;
 ssSetSampleTime ( rtS , 1 , 0.18358276643990931 ) ; ssSetOffsetTime ( rtS , 0
 , 1.0 ) ; ssSetOffsetTime ( rtS , 1 , 0.0 ) ; } void raccel_set_checksum ( )
-{ ssSetChecksumVal ( rtS , 0 , 1071215569U ) ; ssSetChecksumVal ( rtS , 1 ,
-1974552370U ) ; ssSetChecksumVal ( rtS , 2 , 303149440U ) ; ssSetChecksumVal
-( rtS , 3 , 1465377467U ) ; }
+{ ssSetChecksumVal ( rtS , 0 , 2453657735U ) ; ssSetChecksumVal ( rtS , 1 ,
+496800536U ) ; ssSetChecksumVal ( rtS , 2 , 2539750837U ) ; ssSetChecksumVal
+( rtS , 3 , 3327131438U ) ; }
 #if defined(_MSC_VER)
 #pragma optimize( "", off )
 #endif
@@ -181,8 +181,8 @@ ssSetModelLogDataIfInInterval ( rtS , rt_UpdateTXXFYLogVars ) ;
 ssSetModelUpdate ( rtS , MdlUpdate ) ; ssSetTNextTid ( rtS , INT_MIN ) ;
 ssSetTNext ( rtS , rtMinusInf ) ; ssSetSolverNeedsReset ( rtS ) ;
 ssSetNumNonsampledZCs ( rtS , 0 ) ; } ssSetChecksumVal ( rtS , 0 ,
-1071215569U ) ; ssSetChecksumVal ( rtS , 1 , 1974552370U ) ; ssSetChecksumVal
-( rtS , 2 , 303149440U ) ; ssSetChecksumVal ( rtS , 3 , 1465377467U ) ; {
+2453657735U ) ; ssSetChecksumVal ( rtS , 1 , 496800536U ) ; ssSetChecksumVal
+( rtS , 2 , 2539750837U ) ; ssSetChecksumVal ( rtS , 3 , 3327131438U ) ; {
 static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE ; static
 RTWExtModeInfo rt_ExtModeInfo ; static const sysRanDType * systemRan [ 1 ] ;
 gblRTWExtModeInfo = & rt_ExtModeInfo ; ssSetRTWExtModeInfo ( rtS , &

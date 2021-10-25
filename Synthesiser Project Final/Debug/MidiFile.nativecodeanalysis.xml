@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\midi\src\</FILEPATH>
+      <FILENAME>MidiFile.cpp</FILENAME>
+      <LINE>84</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>26439</DEFECTCODE>
+    <DESCRIPTION>This kind of function may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>smf::MidiFile::{ctor}</FUNCTION>
+    <DECORATED>??0MidiFile@smf@@QAE@$$QAV01@@Z</DECORATED>
+    <FUNCLINE>84</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\midi\src\</FILEPATH>
+      <FILENAME>MidiFile.cpp</FILENAME>
+      <LINE>140</LINE>
+      <COLUMN>20</COLUMN>
+    </SFA>
+    <DEFECTCODE>26439</DEFECTCODE>
+    <DESCRIPTION>This kind of function may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>smf::MidiFile::=</FUNCTION>
+    <DECORATED>??4MidiFile@smf@@QAEAAV01@$$QAV01@@Z</DECORATED>
+    <FUNCLINE>140</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\midi\src\</FILEPATH>
+      <FILENAME>MidiFile.cpp</FILENAME>
+      <LINE>2694</LINE>
+      <COLUMN>31</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>smf::MidiFile::buildTimeMap</FUNCTION>
+    <DECORATED>?buildTimeMap@MidiFile@smf@@AAEXXZ</DECORATED>
+    <FUNCLINE>2658</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

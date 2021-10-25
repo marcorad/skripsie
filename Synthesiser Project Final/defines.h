@@ -21,7 +21,7 @@
 #define LUT_SIZE 512 
 #define LUT_SIZE_POWER 9
 #define EXP_LUT_SIZE 128
-#define TANH_LUT_SIZE 256
+#define TANH_LUT_SIZE 256 //REAL SIZE IS 1 GREATER
 
 //STEREO
 #define STEREO_L 0

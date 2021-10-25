@@ -3,11 +3,11 @@ C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\IIR.h(76,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\IIR.h(106,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\IIR.h(166,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\waveshape.h(17,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\waveshape.h(21,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\wavetable.h(30,16): warning C4244: '=': conversion from 'uint16_t' to 'uint8_t', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\notes.h(159,1): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\notes.h(165,1): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\generator.h(212,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\generator.h(202,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,33): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,33): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,78): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
@@ -19,9 +19,10 @@ C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\
           ]
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(109,41): warning C4244: 'argument': conversion from 'float' to 'uint8_t', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(128,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(92,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(44,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(364,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating code
-  2 of 1012 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  4 of 1096 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
