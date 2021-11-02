@@ -185,6 +185,12 @@ inline void iir_calc_hp12_coeff(IIR_coeff* filter, float f0, float q) {
 	filter->d2 = d2;
 }
 
+//HP calcs, f0 in samples/sec
+inline void iir_calc_no_coeff(IIR_coeff* filter, float f0, float q) {
+	*filter = { 0.0f,0.0f,0.0f,0.0f,0.0f };
+	filter->n0 = 1.0f;
+}
+
 inline void iir_copy_coeff(IIR_coeff* orig, IIR_coeff* copy) {
 	copy->d1 = orig->d1;
 	copy->d2 = orig->d2;

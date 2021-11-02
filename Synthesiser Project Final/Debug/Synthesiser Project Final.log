@@ -7,7 +7,10 @@ C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\wavetable.h(30,16): warning C4244: '=': conversion from 'uint16_t' to 'uint8_t', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\notes.h(159,1): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\notes.h(165,1): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\generator.h(202,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\generator.h(201,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\generator.h(208,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\gen_manager.h(113,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\gen_manager.h(122,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,33): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,33): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(45,78): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
@@ -20,5 +23,5 @@ C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(109,41): warning C4244: 'argument': conversion from 'float' to 'uint8_t', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(128,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(44,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(364,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(457,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Synthesiser Project Final.vcxproj -> C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\Debug\Synthesiser Project Final.exe

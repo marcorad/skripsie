@@ -164,6 +164,8 @@ void test_waveshape(float* buf_tanh, float* buf_sin, int N, float* freq, float g
 	gen_apply_vibrato_config(&g, &gc);	
 	gen_note_on(&g);
 	gen_config_tanh_saturator(&gc, g_tanh);
+	gen_config_filter_envelope(&gc, 0.1f, 0.1f, 1.0f, 0.1f, 512.0f, 512.0f, 0.7071f);
+	gen_config_wavetables(&gc, 0.0f, 0.0f, 0.0f, 0.0f);
 	if(!use_aa)
 		iir_calc_lp12_coeff(&gc.filter_sat_AA, DIGITAL_FREQ_20KHZ, 1.0f);
 	for (int i = 0; i < N; i++)
@@ -175,6 +177,7 @@ void test_waveshape(float* buf_tanh, float* buf_sin, int N, float* freq, float g
 
 	//TODO IMPLEMENT SIN 
 	gen_config_sine_saturator(&gc, g_sin);
+	gen_reset_AA_pv(&g); //reset pv from previous step
 	if (!use_aa)
 		iir_calc_lp12_coeff(&gc.filter_sat_AA, DIGITAL_FREQ_20KHZ, 1.0f);
 	for (int i = 0; i < N; i++)
@@ -212,8 +215,87 @@ void test_stereo_width(float* bufL, float* bufR, int N, float width) {
 	gen_write_n_samples(&g, &gc, bufL, bufR, N);
 }
 
-void test_gm() {
-	//different tones and fg overload after 8 tones
+void test_gm_overload(float buf[], int N) {
+
+	gen_manager gm;
+	gen_config gc;
+	gen_config_default(&gc);
+	gm_init(&gm);
+	gc.filter_coeff_func = &iir_calc_no_coeff;
+	gen_config_wavetables(&gc, 0.0f, 0.0f, 0.0f, 0.0f);
+	
+	float* temp = new float[N];
+
+	float freq[16];
+	for (int i = 0; i < 8; i++)
+	{
+		freq[i] = (1000.0f + i * 2000.0f) / FS; //1k, 3k, ..., 15k
+		freq[i+8] = (2000.0f + i * 2000.0f) / FS; //2k, 4k, ..., 16k
+	}
+
+	int L = N / 16;
+	int end = L * 16;
+	int note = 0;
+	for (int off = 0; off < end; off += L)
+	{
+		gm_trigger_note_on_freq(&gm, &gc, note, 127, freq[note]);		
+		gm_write_n_samples(&gm, &gc, buf + off, temp + off, L);
+		note++;
+	}
+
+	//fill remaining with 0
+	for (int i = 0; i < N-end; i++)
+	{
+		buf[end + i] = 0.0f;
+	}	
+}
+
+
+
+void test_gm_operation(float buf[], int N) {
+
+	gen_manager gm;
+	gen_config gc;
+	gen_config_default(&gc);
+	gm_init(&gm);
+	gc.filter_coeff_func = &iir_calc_no_coeff;
+	gen_config_wavetables(&gc, 0.0f, 0.0f, 0.0f, 0.0f);
+
+	float* temp = new float[N];
+
+
+	float freq[8];
+	for (int i = 0; i < 8; i++)
+	{
+		freq[i] = (500.0f + i * 2500.0f) / FS; //0k5, 3k, 5k5, ..., 18k
+	}
+
+	int L = N / 16;
+	int end = L * 16;
+	int note = 0;
+	int count = 0;
+	//trigger all on, then trigger all off by LIFO
+	for (int off = 0; off < end; off += L)
+	{
+		if (count < 8)
+		{
+			gm_trigger_note_on_freq(&gm, &gc, note, 127, freq[note]);
+			note++;
+		}
+		else {
+			gm_trigger_note_off(&gm, note);
+			note--;
+		}
+
+		gm_write_n_samples(&gm, &gc, buf + off, temp + off, L);
+		count++;		
+	}
+
+	//fill remaining with 0
+	for (int i = 0; i < N - end; i++)
+	{
+		buf[end + i] = 0.0f;
+	}
 }
 
 void test_freq_scaling() {
@@ -246,11 +328,7 @@ void print_basic_waveforms(){
 
 
 void run_tests() {
-	//FILTERS
-	cout << "_____________________" << endl;
-	cout << "STARTING FILTER TESTS" << endl;
-	cout << "_____________________" << endl;
-
+	
 	int N = 44100;
 	float* wn = new float[N];
 	generate_wn(wn, N);
@@ -261,94 +339,111 @@ void run_tests() {
 	float* out = new float[N];
 	float* out2 = new float[N];
 	float* adsr = new float[N];
-	cout << "HP24" << endl;
-	print_to_file(wn, N, "..//testfiles//filter//white.txt");
-	test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_hp24_coeff);
-	print_to_file(out, N, "..//testfiles//filter//hp24.txt");
-	cout << "LP24" << endl;
-	test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_lp24_coeff);
-	print_to_file(out, N, "..//testfiles//filter//lp24.txt");
-	cout << "BP12" << endl;
-	test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_bp12_coeff);
-	print_to_file(out, N, "..//testfiles//filter//bp12.txt");
-	cout << "HP12" << endl;
-	test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_hp12_coeff);
-	print_to_file(out, N, "..//testfiles//filter//hp12.txt");
-	cout << "LP12" << endl;
-	test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_lp12_coeff);
-	print_to_file(out, N, "..//testfiles//filter//lp12.txt");
-	cout << "WRITING ENVELOPE" << endl;
-	print_to_file(adsr, N, "..//testfiles//filter//adsr.txt");
-	int i = 0;
+
+	////FILTERS
+	//cout << "_____________________" << endl;
+	//cout << "STARTING FILTER TESTS" << endl;
+	//cout << "_____________________" << endl;
+	//
+	//cout << "HP24" << endl;
+	//print_to_file(wn, N, "..//testfiles//filter//white.txt");
+	//test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_hp24_coeff);
+	//print_to_file(out, N, "..//testfiles//filter//hp24.txt");
+	//cout << "LP24" << endl;
+	//test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_lp24_coeff);
+	//print_to_file(out, N, "..//testfiles//filter//lp24.txt");
+	//cout << "BP12" << endl;
+	//test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_bp12_coeff);
+	//print_to_file(out, N, "..//testfiles//filter//bp12.txt");
+	//cout << "HP12" << endl;
+	//test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_hp12_coeff);
+	//print_to_file(out, N, "..//testfiles//filter//hp12.txt");
+	//cout << "LP12" << endl;
+	//test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_lp12_coeff);
+	//print_to_file(out, N, "..//testfiles//filter//lp12.txt");
+	//cout << "WRITING ENVELOPE" << endl;
+	//print_to_file(adsr, N, "..//testfiles//filter//adsr.txt");
+	//int i = 0;
+
+	//cout << endl;
+	//cout << "_____________________" << endl;
+	//cout << "STARTING WAVETABLE TESTS" << endl;
+	//cout << "_____________________" << endl;
+	////WAVETABLE
+	//for (float p = 0.0; p < 4.0f; p += 0.5f)
+	//{
+	//	cout << "POS = " << p << endl;
+	//	test_wavetable(out, N, p);
+	//	print_to_file(out, N, "..//testfiles//wavetable//" + to_string(i) + ".txt");
+	//	i++;
+	//}
+
+	//cout << "SQUARE CHIRP" << endl;
+	//test_wavetable_sweep(out, N, chirp_freq, 3.0f);
+	//print_to_file(out, N, "..//testfiles//wavetable//square chirp.txt");
+
+	//cout <<  endl;
+	//cout << "_____________________" << endl;
+	//cout << "STARTING GENERATOR TESTS" << endl;
+	//cout << "_____________________" << endl;
+	////GENERATOR
+	//cout << "VIBRATO" << endl;
+	//test_vibrato(out, N);
+	//print_to_file(out, N, "..//testfiles//generator//vibrato.txt");
+
+	//float w[] = { 0.0f, 0.33f, 0.67f, 1.0f };
+
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	cout << "WIDTH = " << w[i] << endl;
+	//	test_stereo_width(out, out2, N, w[i]);
+	//	print_to_file(out, N, "..//testfiles//generator//width L " + to_string(i) + ".txt");
+	//	print_to_file(out2, N, "..//testfiles//generator//width R " + to_string(i) + ".txt");
+	//}
+
+	//cout << endl;
+	//cout << "_____________________" << endl;
+	//cout << "STARTING WAVESHAPER TESTS" << endl;
+	//cout << "_____________________" << endl;
+	//
+
+	////WAVESHAPE
+	//for (int i = 0; i < 5; i++)
+	//{		
+	//	float ip1 = (float)i + 1.0f;
+	//	float g_sin = PI / 2.0f * ((float)i + 1.0f);
+	//	float g_tanh = ip1 * ip1 * 2.0f;
+
+	//	cout << "G_TANH = " << g_tanh << " G_SIN = " << g_sin << endl;
+
+	//	test_waveshape(out, out2, N, chirp_freq, g_tanh, g_sin, true);
+	//	print_to_file(out, N, "..//testfiles//waveshape//tanh " + to_string(i) + ".txt");
+	//	print_to_file(out2, N, "..//testfiles//waveshape//sin " + to_string(i) + ".txt");
+
+	//	test_waveshape(out, out2, N, chirp_freq, g_tanh, g_sin, false);
+	//	print_to_file(out, N, "..//testfiles//waveshape//tanh " + to_string(i) + " no aa.txt");
+	//	print_to_file(out2, N, "..//testfiles//waveshape//sin " + to_string(i) + " no aa.txt");
+	//}
+
+	//cout << endl;
+	//cout << "_____________________" << endl;
+	//cout << "STARTING ADSR TESTS" << endl;
+	//cout << "_____________________" << endl;
+	//cout << "ADSR WITH RETRIGGER" << endl;
+	//test_adsr(out, N);
+	//print_to_file(out, N, "..//testfiles//adsr//adsr retrigger.txt");
 
 	cout << endl;
 	cout << "_____________________" << endl;
-	cout << "STARTING WAVETABLE TESTS" << endl;
+	cout << "STARTING MANAGER TESTS" << endl;
 	cout << "_____________________" << endl;
-	//WAVETABLE
-	for (float p = 0.0; p < 4.0f; p += 0.5f)
-	{
-		cout << "POS = " << p << endl;
-		test_wavetable(out, N, p);
-		print_to_file(out, N, "..//testfiles//wavetable//" + to_string(i) + ".txt");
-		i++;
-	}
+	cout << "TESTING MANAGER OPERATION" << endl;
+	test_gm_operation(out, N);
+	print_to_file(out, N, "..//testfiles//manager//operation.txt");	
 
-	cout << "SQUARE CHIRP" << endl;
-	test_wavetable_sweep(out, N, chirp_freq, 3.0f);
-	print_to_file(out, N, "..//testfiles//wavetable//square chirp.txt");
-
-	cout <<  endl;
-	cout << "_____________________" << endl;
-	cout << "STARTING GENERATOR TESTS" << endl;
-	cout << "_____________________" << endl;
-	//GENERATOR
-	cout << "VIBRATO" << endl;
-	test_vibrato(out, N);
-	print_to_file(out, N, "..//testfiles//generator//vibrato.txt");
-
-	float w[] = { 0.0f, 0.33f, 0.67f, 1.0f };
-
-	for (int i = 0; i < 4; i++)
-	{
-		cout << "WIDTH = " << w[i] << endl;
-		test_stereo_width(out, out2, N, w[i]);
-		print_to_file(out, N, "..//testfiles//generator//width L " + to_string(i) + ".txt");
-		print_to_file(out2, N, "..//testfiles//generator//width R " + to_string(i) + ".txt");
-	}
-
-	cout << endl;
-	cout << "_____________________" << endl;
-	cout << "STARTING WAVESHAPER TESTS" << endl;
-	cout << "_____________________" << endl;
-	
-
-	//WAVESHAPE
-	for (int i = 0; i < 5; i++)
-	{		
-		float ip1 = (float)i + 1.0f;
-		float g_sin = PI / 2.0f * ((float)i + 1.0f);
-		float g_tanh = ip1 * ip1 * 2.0f;
-
-		cout << "G_TANH = " << g_tanh << " G_SIN = " << g_sin << endl;
-
-		test_waveshape(out, out2, N, chirp_freq, g_tanh, g_sin, true);
-		print_to_file(out, N, "..//testfiles//waveshape//tanh " + to_string(i) + ".txt");
-		print_to_file(out2, N, "..//testfiles//waveshape//sin " + to_string(i) + ".txt");
-
-		test_waveshape(out, out2, N, chirp_freq, g_tanh, g_sin, false);
-		print_to_file(out, N, "..//testfiles//waveshape//tanh " + to_string(i) + " no aa.txt");
-		print_to_file(out2, N, "..//testfiles//waveshape//sin " + to_string(i) + " no aa.txt");
-	}
-
-	cout << endl;
-	cout << "_____________________" << endl;
-	cout << "STARTING ADSR TESTS" << endl;
-	cout << "_____________________" << endl;
-	cout << "ADSR WITH RETRIGGER" << endl;
-	test_adsr(out, N);
-	print_to_file(out, N, "..//testfiles//adsr//adsr retrigger.txt");
-	
+	cout << "TESTING MANAGER OVERLOAD" << endl;
+	test_gm_overload(out, N);
+	print_to_file(out, N, "..//testfiles//manager//overload.txt");
 	
 }
 
@@ -432,10 +527,10 @@ int main() {
 
 	//write_to_wav(string("test"), L, R, size, (int)FS);
 	
-	write_midi_to_wav(&gm, &gc, "ff1", true);
+	//write_midi_to_wav(&gm, &gc, "ff1", true);
 	//test_freq_scaling();
 
-	//run_tests();
+	run_tests();
 
 	//cout << waveshape_sine(PI , 0.5f) << endl;
 	//cout << waveshape_sine(PI, 0.75f) << endl;

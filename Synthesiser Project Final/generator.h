@@ -15,7 +15,7 @@
 inline void gen_config_no_saturator(gen_config* gc) {
 	gc->gain = 1.0f;
 	gc->waveshape = &waveshape_none;
-	iir_calc_lp12_coeff(&gc->filter_sat_AA, 0.25f, 1.0f);
+	iir_calc_lp12_coeff(&gc->filter_sat_AA, DIGITAL_FREQ_20KHZ, 1.0f);
 }
 
 
@@ -187,7 +187,6 @@ inline void gen_config_filter_envelope(gen_config* gc, float a, float d, float s
 inline void gen_note_on(generator* g) {
 
 	adsr_reset(&g->envelope_filter_cutoff); //reset filter in case of retrigger
-
 	adsr_trigger_on(&g->envelope_volume);
 	adsr_trigger_on(&g->envelope_filter_cutoff); //possible retrigger
 	g->wt_vibrato.phase = 0.0f; //make sure the note starts on the correct freq
@@ -202,6 +201,16 @@ inline void gen_write_n_samples(generator* g, gen_config* gc, float buf_L[], flo
 	for (int i = 0; i < n; i++)
 	{
 		gen_sample(g, gc, buf_L + i, buf_R + i);
+	}
+}
+
+inline void gen_accumulate_n_samples(generator* g, gen_config* gc, float buf_L[], float buf_R[], uint32_t n, float gain) {
+	for (int i = 0; i < n; i++)
+	{
+		float L, R;
+		gen_sample(g, gc, &L, &R);
+		buf_L[i] += gain * L;
+		buf_R[i] += gain * R;
 	}
 }
 
@@ -256,6 +265,11 @@ inline void gen_config_default(gen_config* gc) {
 	adsr_config(gc->filt_adsr_params, 0.001f, 0.001f, 1.0f, 0.001f);
 	gen_config_no_saturator(gc);
 	gen_config_vibrato(gc, 0.0f, 1.0f / FS);
+}
+
+inline void gen_reset_AA_pv(generator* g) {
+	g->filter_sat_pv_L = {0.0f, 0.0f, 0.0f, 0.0f};
+	g->filter_sat_pv_R = {0.0f, 0.0f, 0.0f, 0.0f};
 }
 
 

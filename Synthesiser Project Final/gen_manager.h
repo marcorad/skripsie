@@ -108,23 +108,18 @@ inline generator* gm_get_gen_playing_note(uint8_t midi_note) {
 float L_temp[PLAYBACK_BUFFER_SIZE];
 float R_temp[PLAYBACK_BUFFER_SIZE];
 
-inline void gm_write_n_samples(gen_manager* gm, gen_config* gc, float bufL[], float bufR[], uint32_t n) {
+inline void gm_write_n_samples(gen_manager* gm, gen_config* gc, float bufL[], float bufR[], uint32_t N) {
 
-	for (int i = 0; i < PLAYBACK_BUFFER_SIZE; i++) //init to zero for addition later
+	for (int i = 0; i < N; i++) //init to zero for addition later
 	{
 		bufL[i] = 0.0f;
 		bufR[i] = 0.0f;
 	}
 	for (int i = 0; i < gm->in_use_head; i++) //for all active voices
 	{
-		gen_write_n_samples(gm->in_use[i], gc, L_temp, R_temp, n); //write to temp
-		for (int i = 0; i < PLAYBACK_BUFFER_SIZE; i++) //for all samples in each voice
-		{
-			bufL[i] += 0.125f * L_temp[i]; //1/8th for 8 voices to ensure headroom
-			bufR[i] += 0.125f * R_temp[i];
-		}
+		gen_accumulate_n_samples(gm->in_use[i], gc, bufL, bufR, N, 0.125f); //add to buffer, then mulac with 1/8th for headroom
 	}	
-	for (int i = 0; i < PLAYBACK_BUFFER_SIZE; i++) //clamp to +- 1
+	for (int i = 0; i < N; i++) //clamp to +- 1
 	{
 		float L = bufL[i], R = bufR[i];
 		bufL[i] = clamp(L, -1.0f, 1.0f);
@@ -140,6 +135,16 @@ inline void gm_trigger_note_on(gen_manager* gm, gen_config* gc, uint8_t note, ui
 	if (g == nullptr) g = gm_get_gen(gm); //prevents any weirdness in retriggers of notes before a note off
 	
 	gen_freq(g, gc, notes_digital_freq[note], vel);
+	g->midi_note = note;
+	gm_set_gen_playing_note(g, note);
+	gen_note_on(g);
+}
+
+//does the same as above, but with an arbitrary digital frequency 
+inline void gm_trigger_note_on_freq(gen_manager* gm, gen_config* gc, uint8_t note, uint8_t vel, float freq) {
+	generator* g = gm_get_gen_playing_note(note);
+	if (g == nullptr) g = gm_get_gen(gm); //prevents any weirdness in retriggers of notes before a note off
+	gen_freq(g, gc, freq, vel);
 	g->midi_note = note;
 	gm_set_gen_playing_note(g, note);
 	gen_note_on(g);
