@@ -33,5 +33,5 @@ function plot_lissajous(n)
     L = X(1, :);
     R = X(2, :);
     %plot(L, R, 'LineWidth', 1.2);
-    plot( L/2-R/2,L/2+R/2, 'LineWidth', 1.0);
+    scatter( L/2-R/2,L/2+R/2,20, '.');
 end

@@ -24,7 +24,7 @@ inline float adsr_sample(ADSR* adsr, float params[]) {
 
 	if ((adsr->phase < (float)EXP_LUT_SIZE - 1.0f)) //detects transition to decay and sustain by detecting buffer overflow
 	{
-		float lookup = lut_lookup(lut_exp, EXP_LUT_SIZE, adsr->phase);
+		float lookup = lut_lookup_no_wrap(lut_exp, adsr->phase);
 		adsr->prev_sample = adsr->scale * lookup + adsr->offset;
 	}
 	else {
