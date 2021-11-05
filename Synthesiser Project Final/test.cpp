@@ -388,98 +388,98 @@ void run_tests() {
 	float* out2 = new float[N];
 	float* adsr = new float[N];
 
-	//filters
+	//FILTERS
 	cout << "_____________________" << endl;
-	cout << "starting filter tests" << endl;
+	cout << "STARTING FILTER TESTS" << endl;
 	cout << "_____________________" << endl;
 	
-	cout << "hp24" << endl;
-	print_to_file(wn, n, "..//testfiles//filter//white.txt");
-	test_filter(wn, out, adsr, n, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / fs, 20000.0f / fs, 5.0f, &iir_calc_hp24_coeff);
-	print_to_file(out, n, "..//testfiles//filter//hp24.txt");
-	cout << "lp24" << endl;
-	test_filter(wn, out, adsr, n, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / fs, 20000.0f / fs, 5.0f, &iir_calc_lp24_coeff);
-	print_to_file(out, n, "..//testfiles//filter//lp24.txt");
-	cout << "bp12" << endl;
-	test_filter(wn, out, adsr, n, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / fs, 20000.0f / fs, 5.0f, &iir_calc_bp12_coeff);
-	print_to_file(out, n, "..//testfiles//filter//bp12.txt");
-	cout << "hp12" << endl;
-	test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / fs, 20000.0f / fs, 5.0f, &iir_calc_hp12_coeff);
-	print_to_file(out, n, "..//testfiles//filter//hp12.txt");
-	cout << "lp12" << endl;
-	test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / fs, 20000.0f / fs, 5.0f, &iir_calc_lp12_coeff);
-	print_to_file(out, n, "..//testfiles//filter//lp12.txt");
-	cout << "writing envelope" << endl;
-	print_to_file(adsr, n, "..//testfiles//filter//adsr.txt");
+	cout << "HP24" << endl;
+	print_to_file(wn, N, "..//testfiles//filter//white.txt");
+	test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_hp24_coeff);
+	print_to_file(out, N, "..//testfiles//filter//hp24.txt");
+	cout << "LP24" << endl;
+	test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_lp24_coeff);
+	print_to_file(out, N, "..//testfiles//filter//lp24.txt");
+	cout << "BP12" << endl;
+	test_filter(wn, out, adsr, N, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_bp12_coeff);
+	print_to_file(out, N, "..//testfiles//filter//bp12.txt");
+	cout << "HP12" << endl;
+	test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_hp12_coeff);
+	print_to_file(out, N, "..//testfiles//filter//hp12.txt");
+	cout << "LP12" << endl;
+	test_filter(wn, out, adsr, 44100, 0.25f, 0.1f, 0.5f, 0.2f, 1000.0f / FS, 20000.0f / FS, 5.0f, &iir_calc_lp12_coeff);
+	print_to_file(out, N, "..//testfiles//filter//lp12.txt");
+	cout << "WRITING ENVELOPE" << endl;
+	print_to_file(adsr, N, "..//testfiles//filter//adsr.txt");
 	int i = 0;
 
 	cout << endl;
 	cout << "_____________________" << endl;
-	cout << "starting wavetable tests" << endl;
+	cout << "STARTING WAVETABLE TESTS" << endl;
 	cout << "_____________________" << endl;
-	//wavetable
+	//WAVETABLE
 	for (float p = 0.0; p < 4.0f; p += 0.5f)
 	{
-		cout << "pos = " << p << endl;
-		test_wavetable(out, n, p);
-		print_to_file(out, n, "..//testfiles//wavetable//" + to_string(i) + ".txt");
+		cout << "POS = " << p << endl;
+		test_wavetable(out, N, p);
+		print_to_file(out, N, "..//testfiles//wavetable//" + to_string(i) + ".txt");
 		i++;
 	}
 
-	cout << "square chirp" << endl;
-	test_wavetable_sweep(out, n, chirp_freq, 3.0f);
-	print_to_file(out, n, "..//testfiles//wavetable//square chirp.txt");
+	cout << "SQUARE CHIRP" << endl;
+	test_wavetable_sweep(out, N, chirp_freq, 3.0f);
+	print_to_file(out, N, "..//testfiles//wavetable//square chirp.txt");
 
 	cout <<  endl;
 	cout << "_____________________" << endl;
-	cout << "starting generator tests" << endl;
+	cout << "STARTING GENERATOR TESTS" << endl;
 	cout << "_____________________" << endl;
-	//generator
-	cout << "vibrato" << endl;
-	test_vibrato(out, n);
-	print_to_file(out, n, "..//testfiles//generator//vibrato.txt");
+	//GENERATOR
+	cout << "VIBRATO" << endl;
+	test_vibrato(out, N);
+	print_to_file(out, N, "..//testfiles//generator//vibrato.txt");
 
 	float w[] = { 0.0f, 0.33f, 0.67f, 1.0f };
 
 	for (int i = 0; i < 4; i++)
 	{
-		cout << "width = " << w[i] << endl;
-		test_stereo_width(out, out2, n, w[i]);
-		print_to_file(out, n, "..//testfiles//generator//width l " + to_string(i) + ".txt");
-		print_to_file(out2, n, "..//testfiles//generator//width r " + to_string(i) + ".txt");
+		cout << "WIDTH = " << w[i] << endl;
+		test_stereo_width(out, out2, N, w[i]);
+		print_to_file(out, N, "..//testfiles//generator//width L " + to_string(i) + ".txt");
+		print_to_file(out2, N, "..//testfiles//generator//width R " + to_string(i) + ".txt");
 	}
 
 	cout << endl;
 	cout << "_____________________" << endl;
-	cout << "starting waveshaper tests" << endl;
+	cout << "STARTING WAVESHAPER TESTS" << endl;
 	cout << "_____________________" << endl;
 	
 
-	//waveshape
+	//WAVESHAPE
 	for (int i = 0; i < 5; i++)
 	{		
 		float ip1 = (float)i + 1.0f;
-		float g_sin = pi / 2.0f * ((float)i + 1.0f);
+		float g_sin = PI / 2.0f * ((float)i + 1.0f);
 		float g_tanh = ip1 * ip1 * 2.0f;
 
-		cout << "g_tanh = " << g_tanh << " g_sin = " << g_sin << endl;
+		cout << "G_TANH = " << g_tanh << " G_SIN = " << g_sin << endl;
 
-		test_waveshape(out, out2, n, chirp_freq, g_tanh, g_sin, true);
-		print_to_file(out, n, "..//testfiles//waveshape//tanh " + to_string(i) + ".txt");
-		print_to_file(out2, n, "..//testfiles//waveshape//sin " + to_string(i) + ".txt");
+		test_waveshape(out, out2, N, chirp_freq, g_tanh, g_sin, true);
+		print_to_file(out, N, "..//testfiles//waveshape//tanh " + to_string(i) + ".txt");
+		print_to_file(out2, N, "..//testfiles//waveshape//sin " + to_string(i) + ".txt");
 
-		test_waveshape(out, out2, n, chirp_freq, g_tanh, g_sin, false);
-		print_to_file(out, n, "..//testfiles//waveshape//tanh " + to_string(i) + " no aa.txt");
-		print_to_file(out2, n, "..//testfiles//waveshape//sin " + to_string(i) + " no aa.txt");
+		test_waveshape(out, out2, N, chirp_freq, g_tanh, g_sin, false);
+		print_to_file(out, N, "..//testfiles//waveshape//tanh " + to_string(i) + " no aa.txt");
+		print_to_file(out2, N, "..//testfiles//waveshape//sin " + to_string(i) + " no aa.txt");
 	}
 
 	cout << endl;
 	cout << "_____________________" << endl;
-	cout << "starting adsr tests" << endl;
+	cout << "STARTING ADSR TESTS" << endl;
 	cout << "_____________________" << endl;
-	cout << "adsr with retrigger" << endl;
-	test_adsr(out, n);
-	print_to_file(out, n, "..//testfiles//adsr//adsr retrigger.txt");
+	cout << "ADSR WITH RETRIGGER" << endl;
+	test_adsr(out, N);
+	print_to_file(out, N, "..//testfiles//adsr//adsr retrigger.txt");
 
 	cout << endl;
 	cout << "_____________________" << endl;

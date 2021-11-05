@@ -1,5 +1,0 @@
-﻿  test.cpp
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\init_luts.h(80,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\IIR.h(76,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\Skripsie Project\test.cpp(53,21): warning C4018: '<': signed/unsigned mismatch
-  Skripsie Project.vcxproj -> C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Skripsie Project\x64\Debug\Skripsie Project.exe

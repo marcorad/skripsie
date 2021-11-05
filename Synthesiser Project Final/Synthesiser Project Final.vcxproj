@@ -24,6 +24,7 @@
     <ProjectGuid>{eec4e04d-4254-4692-a43a-b3a2dd47bd7e}</ProjectGuid>
     <RootNamespace>SynthesiserProjectFinal</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Synthesiser MSVS Project</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
