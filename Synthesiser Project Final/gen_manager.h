@@ -71,7 +71,7 @@ inline generator* gm_get_gen(gen_manager* gm) {
 		//pop off front of available
 		g = gm_pop_off_front_from_available(gm);
 	}
-	else {//none are available (this should be a rare case of key-mashing)
+	else {//none are available
 		g = gm_pop_off_back_from_in_use(gm);		
 		gm_set_gen_playing_note(nullptr, g->midi_note); //make sure that the retrigger of a note-off will not affect the new note
 	}
@@ -90,7 +90,6 @@ inline void gm_make_not_playing_available(gen_manager* gm) {
 		if (!gen_is_playing(g)) {
 			count++;
 			gm_add_to_available(gm, g);
-			gm_set_gen_playing_note(nullptr, g->midi_note); //remove from hashtable
 		}
 		else {
 			gm->in_use[i - count] = g;
@@ -152,7 +151,7 @@ inline void gm_trigger_note_on_freq(gen_manager* gm, gen_config* gc, uint8_t not
 
 inline void gm_trigger_note_off(gen_manager* gm, uint8_t note) {
 	generator* g = gm_get_gen_playing_note(note);
-	gm_set_gen_playing_note(nullptr, note);
+	gm_set_gen_playing_note(nullptr, note); //not playing the note anymore
 	if (g != nullptr) gen_note_off(g); //prevents any weirdness in note off triggers if it's not actually on
 }
 

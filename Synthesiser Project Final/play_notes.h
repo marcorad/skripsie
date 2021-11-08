@@ -43,11 +43,10 @@ void load_notes(const std::string& file, uint8_t track, bool debug = false) {
 		}
 		auto note_on = midi[track][i];
 		note n = { note_on[1], note_on.seconds, midi[track][i].getDurationInSeconds(), note_on[2] };
-		//if (n.duration_seconds > T) { //make sure there are no dumb short triggers, which screws with the triggering
 			note_queue.push_back(n);
-			if(debug) std::cout << "note: " << (int)n.note << " t: " << n.start_seconds << " dt: " << n.duration_seconds << std::endl;
-		//}
-		
+			if(debug) std::cout << note_names[(int)n.note] << " ("  <<  (int)n.note  <<  ")" << 
+				" @ t=[" << n.start_seconds << ", " << (n.start_seconds + n.duration_seconds) << "] (dt=" 
+				<< n.duration_seconds << ")" << std::endl;		
 	}
 	//sort according to trigger on
 	std::sort(note_queue.begin(), note_queue.end(), [](const note& n1, const note& n2){

@@ -503,96 +503,86 @@ void run_tests() {
 
 int main() {	
 
+	cout << "INITIALISING" << endl;
 	init_basic_luts();
 	init_notes_digital_freq_buffer();
-	
-	//print_basic_waveforms();
 
-	//ADSR adsr;
-	//adsr_config(&adsr, 0.05f, 0.05f, 0.5f, 0.05f);
 	int size = FS*3;
 	int off = 3000;
 	float* L = new float[size];
 	float* R = new float[size];
-	//adsr_trigger_on(&adsr);
-	//adsr_write_n_samples(&adsr, buf, size/2 - off);
-	//adsr_trigger_on(&adsr);
-	//adsr_write_n_samples(&adsr, buf + size/2 - off, off);
-	//adsr_trigger_off(&adsr);
-	//adsr_write_n_samples(&adsr, buf + size/2, size/2);
-
-	//print_to_file(buf, size, "..\\testfiles\\adsr.txt");
-
-	//cout << cos_lookup(0.1f) << endl;
-	//cout << cosf(TWO_PI * 0.1f) << endl;
-	//cout << sin_lookup(0.1f) << endl;
-	//cout << sinf(TWO_PI * 0.1f) << endl;
-
-	//wavetable wt;
-	//wt_config_hz(&wt, 4000.0f);
-	
-	//wt_write_n_samples(buf, &wt, size);
-
-	//print_to_file(buf, size, "..\\testfiles\\4k square.txt");
-
-	//IIR iir;
-	//iir_calc_hp_coeff(&iir, 0.25f, 10.f);
-	//print_iir_coeff(iir);
-	//iir_calc_lp_coeff(&iir, 0.25f, 10.f);
-	//print_iir_coeff(iir);
-	//iir_calc_bp_coeff(&iir, 0.25f, 10.f);
-	//print_iir_coeff(iir);
 
 	gen_manager gm;
 	gen_config gc;
 
 	gm_init(&gm);
 
-	load_notes("..\\midifiles\\fireflies.mid", 6, false);	
+	cout << "LOADING MOONLIGHT SONATA" << endl;
+	load_notes("..\\midifiles\\moonlight sonata.mid", 0, true);	
 
-	//configure global params
-	gen_config_volume_envelope(&gc, 0.03f, 0.25f, 0.0f, 0.01f);
+	cout << endl << "_______________" << endl;
+	cout << "CONFIGURATION 1" << endl;
+	gen_config_volume_envelope(&gc, 0.05f, 0.05f, 0.8f, 0.06f);
 	gen_config_wavetables(&gc, 2.0f, 10.0f, 0.8f, 0.3f);
-	gen_config_filter_envelope(&gc, 0.08f, 0.1f, 1.0f, 1000.0f, 1000.0f, 1000.0f, 2.0f);
+	gen_config_filter_envelope(&gc, 0.1f, 0.1f, 1.0f, 1000.0f, 3.0f, 500.0f, 0.7f);
 	gen_config_filter(&gc, &iir_calc_lp12_coeff);
-	gen_config_vibrato(&gc, 10.0f, 7.0f / FS);
-	gen_config_tanh_saturator(&gc, 1.0f); //NO CONFIG REQUIRED HERE
-	//gen_config_no_saturator(&gc);
-	gen_config_sine_saturator(&gc, 2.0f);
+	gen_config_vibrato(&gc, 15.0f, 7.0f / FS);
+	gen_config_tanh_saturator(&gc, 1.0f); 
+	gm_apply_vibrato_config(&gm, &gc);		
+	cout << "WRITING TO WAV" << endl;
+	//write_midi_to_wav(&gm, &gc, "moonlight 1", false);
+	cout << "_______________" << endl;
 
-	print_iir_coeff(gc.filter_sat_AA);
-
-	//apply global params to generator
+	cout << "CONFIGURATION 2" << endl;
+	gen_config_volume_envelope(&gc, 0.05f, 0.2f, 0.5f, 0.01f);
+	gen_config_wavetables(&gc, 2.0f, 0.0f, 0.8f, 0.8f);
+	gen_config_filter_envelope(&gc, 0.15f, 0.1f, 1.0f, 1000.0f, 100.0f, 3.0f, 2.0f);
+	gen_config_filter(&gc, &iir_calc_lp24_coeff);
+	gen_config_vibrato(&gc, 0.0f, 7.0f / FS);
+	gen_config_sine_saturator(&gc, 2 * PI);
 	gm_apply_vibrato_config(&gm, &gc);
+	cout << "WRITING TO WAV" << endl;
+	//write_midi_to_wav(&gm, &gc, "moonlight 2", false);
+	cout << "_______________" << endl;
 
-	////set generator freq (ALWAYS AFTER CONFIG)
-	//gen_freq(&g, &gc, 220.0f / FS, 32);
-	//gen_note_on(&g);
-	//gen_write_n_samples(&g, &gc, L + 0 * size / 3, R + 0 * size / 3, size / 3);
-	//gen_freq(&g, &gc, 440.0f / FS, 64);
-	//gen_note_on(&g);
-	//gen_write_n_samples(&g, &gc, L + 1 * size / 3, R + 1 * size / 3, size / 3);
-	//gen_freq(&g, &gc, 110.0f / FS, 48);
-	//gen_note_on(&g);
-	//gen_write_n_samples(&g, &gc, L + 2 * size / 3, R + 2 * size / 3, size / 3);
+	cout << "CONFIGURATION 3" << endl;
+	gen_config_volume_envelope(&gc, 0.08f, 0.2f, 0.75f, 0.08f);
+	gen_config_wavetables(&gc, 2.5f, 1200.0f, 0.8f, 0.2f);
+	gen_config_filter_envelope(&gc, 0.15f, 0.2f, 1.0f, 1000.0f, 100.0f, 10.0f, 0.7071f);
+	gen_config_filter(&gc, &iir_calc_lp24_coeff);
+	gen_config_vibrato(&gc, 10.0f, 7.0f / FS);
+	gen_config_tanh_saturator(&gc, 5.0f);
+	gm_apply_vibrato_config(&gm, &gc);
+	cout << "WRITING TO WAV" << endl;
+	//write_midi_to_wav(&gm, &gc, "moonlight 3", false);
+	cout << "_______________" << endl;
 
-	//print_to_file(L, size, "..\\testfiles\\220 genL.txt");
+	cout << "CONFIGURATION 4" << endl;
+	gen_config_volume_envelope(&gc, 0.08f, 0.2f, 0.75f, 0.08f);
+	gen_config_wavetables(&gc, 3.2f, 20.0f, 0.8f, 0.5f);
+	gen_config_filter_envelope(&gc, 0.2f, 0.2f, 1.0f, 1000.0f, 1.0f, 3.0f, 3.0f);
+	gen_config_filter(&gc, &iir_calc_hp24_coeff);
+	gen_config_vibrato(&gc, 0.0f, 7.0f / FS);
+	gen_config_no_saturator(&gc);
+	gm_apply_vibrato_config(&gm, &gc);
+	cout << "WRITING TO WAV" << endl;
+	//write_midi_to_wav(&gm, &gc, "moonlight 4", false);
+	cout << "_______________" << endl;
 
-	//write_to_wav(string("test"), L, R, size, (int)FS);
+	cout << "CONFIGURATION 5" << endl;
+	gen_config_volume_envelope(&gc, 0.005f, 0.1f, 0.0f, 0.08f);
+	gen_config_wavetables(&gc, 2.9f, 0.0f, 0.0f, 0.25f);
+	gen_config_filter_envelope(&gc, 0.1f, 0.1f, 1.0f, 1000.0f, 700.0f, 7.0f, 2.0f);
+	gen_config_filter(&gc, &iir_calc_lp24_coeff);
+	gen_config_vibrato(&gc, 0.0f, 7.0f / FS);
+	gen_config_no_saturator(&gc);
+	gm_apply_vibrato_config(&gm, &gc);
+	cout << "WRITING TO WAV" << endl;
+	write_midi_to_wav(&gm, &gc, "moonlight 5", false);
+	cout << "_______________" << endl;
 	
-	//write_midi_to_wav(&gm, &gc, "ff1", true);
-	//test_freq_scaling();
 
-	run_tests();
-
-	//cout << waveshape_sine(PI , 0.5f) << endl;
-	//cout << waveshape_sine(PI, 0.75f) << endl;
-	//cout << waveshape_sine(PI, 1.0f) << endl;
-	//cout << waveshape_sine(PI, 1.25f) << endl;
-	//cout << waveshape_sine(4*PI, 1.0f) << endl;
-
-
-
+	//run_tests();
 	return 0;
 }
 
