@@ -24,10 +24,10 @@ C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(108,41): warning C4244: 'argument': conversion from 'float' to 'uint8_t', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\play_notes.h(127,36): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(44,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(510,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\test.cpp(512,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating code
-  1 of 1097 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  1 of 1117 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+    4 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Synthesiser Project Final.vcxproj -> C:\Users\27849\Documents\Stellenbosch\4\Skripsie\repo\Synthesiser Project Final\Release\Synthesiser MSVS Project.exe

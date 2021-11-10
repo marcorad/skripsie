@@ -455,6 +455,8 @@ void run_tests() {
 	cout << "_____________________" << endl;
 	
 
+	print_to_file(lut_tanh, TANH_LUT_SIZE_P1 , "..//testfiles//waveshape//tanh lut.txt");
+
 	//WAVESHAPE
 	for (int i = 0; i < 5; i++)
 	{		
@@ -578,11 +580,11 @@ int main() {
 	gen_config_no_saturator(&gc);
 	gm_apply_vibrato_config(&gm, &gc);
 	cout << "WRITING TO WAV" << endl;
-	write_midi_to_wav(&gm, &gc, "moonlight 5", false);
+	//write_midi_to_wav(&gm, &gc, "moonlight 5", false);
 	cout << "_______________" << endl;
 	
 
-	//run_tests();
+	run_tests();
 	return 0;
 }
 
