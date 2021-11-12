@@ -1,4 +1,4 @@
-x = importdata("../testfiles/filter/lp12.txt");
+x = importdata("../testfiles/filter/lp24.txt");
 adsr = importdata("../testfiles/filtered adsr.txt");
 window = 1024;
 overlap = 1020;
@@ -23,5 +23,6 @@ plot3(t,adsr * fs / 1000, z,  'LineWidth', 2, 'LineStyle', '--', 'Color', 'black
 legend("Filtered white noise", "ADSR-modulated f_c");
 view(-30,60);
 title("Modulated LP12-filtered white noise");
+
 
 

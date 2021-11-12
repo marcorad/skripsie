@@ -67,8 +67,6 @@ void load_exp_decay(float exp[], uint16_t exp_size) {
     }
 }
 
-
-
 float basic_luts[4][8][LUT_SIZE];
 
 void load_basic_luts() {
@@ -80,7 +78,6 @@ void load_basic_luts() {
         load_wave(basic_luts[SQUARE][i], square_sample, n_harmonics);
     }
 }
-
 
 float lut_exp[EXP_LUT_SIZE];
 

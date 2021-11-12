@@ -23,8 +23,6 @@ end loop
 #include "defines.h"
 #include <fstream>
 
-
-
 // WAVE PCM soundfile format (you can find more in http://soundfile.sapp.org/doc/WaveFormat/ )
 typedef struct header_file
 {
@@ -46,7 +44,6 @@ typedef struct header_file
 typedef struct header_file* header_p;
 
 void write_to_wav(const std::string& name, float bufL[], float bufR[], int num_samples, int fs) {
-
 	using namespace std;
 	header head;
 	head.sample_rate = fs;
@@ -58,14 +55,11 @@ void write_to_wav(const std::string& name, float bufL[], float bufR[], int num_s
 	f.open("..\\wav\\" + name + ".wav", ios::binary);
 	f.write(reinterpret_cast<char*> (&head), sizeof(header));
 
-
 	for (int i = 0; i < num_samples; i++) {
 		short int s = (int)(bufL[i] * (float)INT16_MAX);
 		f.write(reinterpret_cast<char*> (&s), sizeof(short int));
 		s = (int)(bufR[i] * (float)INT16_MAX);
 		f.write(reinterpret_cast<char*> (&s), sizeof(short int));
 	}
-
 	f.close();
-
 }

@@ -18,11 +18,11 @@ struct ADSR {
 
 //MUST CHECK BEFOREHAND IF STATE IS NOT_PLAYING
 inline float adsr_sample(ADSR* adsr, float params[]) {
-	if (adsr->state == SUSTAIN) { //this is first since it presumes that most of the note will be in sustain. This is obviously not always true.
+	if (adsr->state == SUSTAIN) { //expecting notes to spend most time in sustain
 		return params[SUSTAIN]; 
 	}	
 
-	if ((adsr->phase < (float)EXP_LUT_SIZE - 1.0f)) //detects transition to decay and sustain by detecting buffer overflow
+	if ((adsr->phase < (float)EXP_LUT_SIZE - 1.0f)) //next phase from buffer wrap
 	{
 		float lookup = lut_lookup_no_wrap(lut_exp, adsr->phase);
 		adsr->prev_sample = adsr->scale * lookup + adsr->offset;
@@ -68,7 +68,7 @@ inline void adsr_config(float params[], float attack, float decay, float sustain
 inline void adsr_trigger_on(ADSR* adsr) {
 	adsr->state = ATTACK;
 	adsr->phase = 0.0f;
-	adsr->scale = 1.0f - adsr->prev_sample; //for retrigger purposes, will always attack from previous sample in full attack time. This could also decrease attack time accordingly??
+	adsr->scale = 1.0f - adsr->prev_sample; //attack from previous sample (for retrigger purposes)
 	adsr->offset = adsr->state != NOT_PLAYING ? adsr->prev_sample : 0.0f;
 }
 

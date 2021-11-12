@@ -18,35 +18,26 @@ inline void gen_config_no_saturator(gen_config* gc) {
 	iir_calc_lp12_coeff(&gc->filter_sat_AA, DIGITAL_FREQ_20KHZ, 1.0f);
 }
 
-
-
-
 //generates the notes with defined modular structure
 struct generator {
 	wavetable wt_left; //left detuned
 	wavetable wt_right; //right detuned
 	wavetable wt_center; // main freq
-
 	wavetable wt_vibrato; //vibrato wavetable
 	float vibrato_amp; //amplitude of vibrato
-
 	IIR_coeff filter_coeff; //filter coeff
-	IIR_prev_values filter_left_pv; //left filter prev values
-	IIR_prev_values filter_right_pv; //right filter prev values
-
+	IIR_prev_values filter_left_pv; //left filter sample delays
+	IIR_prev_values filter_right_pv; //right filter sample delays
 	ADSR envelope_volume; //volume TODO: remove adsr parameters to be global
-
 	ADSR envelope_filter_cutoff; //cut-off	TODO: remove adsr parameters to be global
 	float filter_freq_start = DIGITAL_FREQ_20KHZ, filter_freq_end = DIGITAL_FREQ_20KHZ; //actual frequency start and end ADSR paramters	
 	float base_freq; //the frequency without any frequency shifting applied
-	float translated_freq; // accounts for frequency shifts (vibrato ??)
+	float translated_freq; //accounts for frequency shifts (NOT IMPLEMENTED)
 	float velocity; //note volume
 	float filter_envelope_amplitude = 0.0; //amplitude of cut-off modulation
-
-	//AA saturation filters, REPLACE ONLY WITH STORAGE OF PREV SAMPLES
+	//AA saturation filters sample delays
 	IIR_prev_values filter_sat_pv_L;
 	IIR_prev_values filter_sat_pv_R;
-
 	//the currently playing note
 	uint8_t midi_note;
 };
@@ -54,7 +45,6 @@ struct generator {
 inline uint8_t gen_is_playing(generator* g) {
 	return g->envelope_volume.state != NOT_PLAYING;
 }
-
 
 inline void gen_vibrato(generator* g, gen_config* gc) {
 	float osc = (wt_sample_no_interpolation(&g->wt_vibrato, 0));
@@ -77,40 +67,32 @@ inline float gen_waveshape_sample(IIR_prev_values* pv, gen_config* gc, float x) 
 inline void gen_sample(generator* g, gen_config* gc, float* buf_L, float* buf_R) {
 	//apply vibrato using FM
 	gen_vibrato(g, gc);
-
 	//sample L, R, C channels
 	float sc = wt_sample(&g->wt_center, gc);
 	float sl = wt_sample(&g->wt_left, gc);
 	float sr = wt_sample(&g->wt_right, gc);
-
 	//blend detuned samples
 	float width = 1.0f - gc->detune_width; //invert to get volume in other channel
 	//detune_width of 1 seperates sr and sl into L and R channels
 	//detune_width of 0 is mono
 	float L = sc + gc->detune_volume * (sl + width * sr);
 	float R = sc + gc->detune_volume * (sr + width * sl);
-
 	//find f0 using envelope
 	float f0 = g->filter_freq_start + adsr_sample(&g->envelope_filter_cutoff, gc->filt_adsr_params) * g->filter_envelope_amplitude;
 	f0 = clamp(f0, DIGITAL_FREQ_20HZ, DIGITAL_FREQ_20KHZ); //limit to audible range (otherwise there are clicks)
-
 	//calculate filter coefficients
 	(*(gc->filter_coeff_func))(&g->filter_coeff, f0, gc->filter_Q);
-
 	//waveshape L and R
 	L = gen_waveshape_sample(&g->filter_sat_pv_L, gc, L);
 	R = gen_waveshape_sample(&g->filter_sat_pv_R, gc, R);
-
 	//apply volume and envelope
 	//this is done before filtering so that we can partially mitigate the transient response, since filtering is linear
 	float volume = adsr_sample(&g->envelope_volume, gc->vol_adsr_params) * g->velocity;
 	L = L * volume;
 	R = R * volume;	
-
 	//filter channels
 	L = iir_filter_sample(&g->filter_coeff, &g->filter_left_pv, L);
-	R = iir_filter_sample(&g->filter_coeff, &g->filter_right_pv, R);	
-	
+	R = iir_filter_sample(&g->filter_coeff, &g->filter_right_pv, R);		
 	//output
 	*buf_L = L;
 	*buf_R = R;
@@ -123,29 +105,18 @@ inline void gen_calc_filter_envelope_freq(generator* g, gen_config* gc) {
 }
 
 //vel must be to midi standards in the range 0-127
-//configure the frequency
-//ALWAYS DO CONFIGURATION AND APPLY IT BEFORE THIS
+//configure the frequency, must trigger seperately
 inline void gen_freq(generator* g, gen_config* gc, float freq, uint8_t vel) {
 	//set velocity
 	float v = (float)vel / 127.0f;
 	g->velocity = v;
 	g->base_freq = freq;
-
-	//tune wavetables
-	
+	//tune wavetables	
 	wt_config_digital_freq(&g->wt_center, freq);
 	wt_config_digital_freq(&g->wt_left, freq * gc->detune_factor_up);
 	wt_config_digital_freq(&g->wt_right, freq * gc->detune_factor_down);
-
-	//trigger envelopes
-	//adsr_trigger_on(&g->envelope_volume);
-	//adsr_trigger_on(&g->envelope_filter_cutoff);	
-
-	//configure start and end filter frequencies
 	gen_calc_filter_envelope_freq(g, gc); //this is also done on configuration of filter, incase it is currently playing
 }
-
-
 
 inline void gen_config_wavetables(gen_config* gc, float pos, float detune, float detune_volume, float detune_width) {	
 	gc->detune = detune;
@@ -157,11 +128,9 @@ inline void gen_config_wavetables(gen_config* gc, float pos, float detune, float
 	gc->detune_factor_down = 1 / df;
 }
 
-
 inline void gen_config_filter(gen_config* gc, void (*coeff)(IIR_coeff*, float, float)) {
 	gc->filter_coeff_func = coeff;
 }
-
 
 inline void gen_config_volume_envelope(gen_config* gc, float a, float d, float s, float r) {
 	gc->vol_A = a;
@@ -185,7 +154,6 @@ inline void gen_config_filter_envelope(gen_config* gc, float a, float d, float s
 
 //trigger the note on
 inline void gen_note_on(generator* g) {
-
 	adsr_reset(&g->envelope_filter_cutoff); //reset filter in case of retrigger
 	adsr_trigger_on(&g->envelope_volume);
 	adsr_trigger_on(&g->envelope_filter_cutoff); //possible retrigger

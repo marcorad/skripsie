@@ -7,7 +7,6 @@ inline float clamp(float x, float min, float max) {
 	return fmaxf(fminf(x, max), min);
 }
 
-
 inline float fract(float x) {
 	return x - floorf(x);
 }

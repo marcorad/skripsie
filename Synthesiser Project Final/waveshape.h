@@ -13,8 +13,6 @@
 #define tanh_grad0 9.0f //can be adjusted. This is the gradient at 0. This will determine what the edges of the LUT looks like
 #define tanh_grad0_inv (1.0f / tanh_grad0)
 
-
-
 float lut_tanh[TANH_LUT_SIZE_P1];
 
 void load_tanh() {
@@ -59,7 +57,6 @@ float waveshape_none(float x, float gain) {
 float waveshape_hard_clipper(float x, float gain) {
     return clamp(gain * x, -1.0f, 1.0f);
 }
-
 
 float waveshape_sine(float x, float gain) {
     //gain *= PI * 0.0625f; //a gain of 64 corresponds to 4pi

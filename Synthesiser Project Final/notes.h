@@ -194,7 +194,6 @@ float get_detune_factor(float cents) {
 	return get_detune_factor_cents_lut(cents); // div by 100 to achieve 2^(1/1200)
 }
 
-//make this faster!
 float detune_cents(float orig_freq, float cents) {
 	return orig_freq * get_detune_factor(cents); // div by 100 to achieve 2^(1/1200)
 }

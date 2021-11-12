@@ -4,9 +4,6 @@
 #include "init_luts.h"
 #include "gen_config.h"
 
-
-
-
 struct wavetable {
 	float stride = 0.0f;
 	float phase = 0.0f; //wt pos pointer
@@ -44,7 +41,6 @@ void wt_write_n_samples(float buffer[], wavetable* wt, gen_config* gc, int N) {
 
 uint8_t harmonic_indices[] = {1,2,2,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7}; // floor(log(n/4)), where n is index
 
-
 //configure in samples/sec and determin correct number of harmonics to avoid aliasing
 inline void wt_config_digital_freq(wavetable* wt, float freq) {
 	wt->stride = freq * (float)LUT_SIZE; //set strides, with no FM applied
@@ -64,6 +60,3 @@ inline void wt_config_hz(wavetable* wt, float freq) {
 inline void wt_apply_fm(wavetable* wt, float df) {
 	wt->stride = wt->base_stride + df * (float) LUT_SIZE;
 }
-
-
-

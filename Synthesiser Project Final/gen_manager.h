@@ -13,8 +13,7 @@ struct gen_manager {
 	uint8_t in_use_head = 0;
 };
 
-//TODO: protect hashtable for case when there are no available gens and hashtable must be emptied at that spot
-
+//DO BEFORE PLAYING
 inline void gm_init(gen_manager* gm) {
 	//make all available
 	for (int i = 0; i < NUM_GENERATORS; i++)
@@ -102,13 +101,9 @@ inline generator* gm_get_gen_playing_note(uint8_t midi_note) {
 	return note_played_hash_table[midi_note];
 }
 
-
-
 float L_temp[PLAYBACK_BUFFER_SIZE];
 float R_temp[PLAYBACK_BUFFER_SIZE];
-
 inline void gm_write_n_samples(gen_manager* gm, gen_config* gc, float bufL[], float bufR[], uint32_t N) {
-
 	for (int i = 0; i < N; i++) //init to zero for addition later
 	{
 		bufL[i] = 0.0f;
@@ -124,15 +119,14 @@ inline void gm_write_n_samples(gen_manager* gm, gen_config* gc, float bufL[], fl
 		bufL[i] = clamp(L, -1.0f, 1.0f);
 		bufR[i] = clamp(R, -1.0f, 1.0f);
 	}
-
 	//make generators that finished decay phase available
 	gm_make_not_playing_available(gm);
 }
 
+//trigger on using the MIDI note frequency
 inline void gm_trigger_note_on(gen_manager* gm, gen_config* gc, uint8_t note, uint8_t vel){
 	generator* g = gm_get_gen_playing_note(note);
-	if (g == nullptr) g = gm_get_gen(gm); //prevents any weirdness in retriggers of notes before a note off
-	
+	if (g == nullptr) g = gm_get_gen(gm); //prevents retriggers of notes before a note off (faulty MIDI)
 	gen_freq(g, gc, notes_digital_freq[note], vel);
 	g->midi_note = note;
 	gm_set_gen_playing_note(g, note);
@@ -155,16 +149,11 @@ inline void gm_trigger_note_off(gen_manager* gm, uint8_t note) {
 	if (g != nullptr) gen_note_off(g); //prevents any weirdness in note off triggers if it's not actually on
 }
 
+//apply vibrato config to generators
 inline void gm_apply_vibrato_config(gen_manager* gm, gen_config* gc) {
 	for (int i = 0; i < NUM_GENERATORS; i++) {
 		gen_apply_vibrato_config(&gm->generators[i], gc);
 	}
 }
-
-//inline void gm_apply_saturator_config(gen_manager* gm, gen_config* gc) {
-//	for (int i = 0; i < NUM_GENERATORS; i++) {
-//		gen_(&gm->generators[i], gc);
-//	}
-//}
 
 
