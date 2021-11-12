@@ -16,8 +16,6 @@
 
 using namespace std;
 
-//TODO: write code that tests all aspects for report
-
 //white noise generator
 void generate_wn(float* buf, int N) {
 	unsigned seed = 42; //LOL
@@ -105,7 +103,6 @@ void test_wavetable(float* buf, int N, float pos) {
 		}
 		off += n;
 	}
-
 }
 
 void test_vibrato(float* buf, int N) {
@@ -120,8 +117,6 @@ void test_vibrato(float* buf, int N) {
 	gen_apply_vibrato_config(&g, &gc);
 	gen_freq(&g, &gc, f0, 127);
 	gen_note_on(&g);
-
-
 
 	for (int i = 0; i < N; i++)
 	{
@@ -175,14 +170,12 @@ void test_waveshape(float* buf_tanh, float* buf_sin, int N, float* freq, float g
 		gen_sample(&g, &gc, buf_tanh + i, &temp);
 	}
 
-	//TODO IMPLEMENT SIN 
 	gen_config_sine_saturator(&gc, g_sin);
 	gen_reset_AA_pv(&g); //reset pv from previous step
 	if (!use_aa)
 		iir_calc_lp12_coeff(&gc.filter_sat_AA, DIGITAL_FREQ_20KHZ, 1.0f);
 	for (int i = 0; i < N; i++)
 	{
-		//WHERE IS THE NOISE COMING FROM?!?!?!?!?!
 		float temp;
 		gen_freq(&g, &gc, freq[i], 127);
 		gen_sample(&g, &gc, buf_sin + i, &temp);
@@ -216,14 +209,12 @@ void test_stereo_width(float* bufL, float* bufR, int N, float width) {
 }
 
 void test_gm_overload(float buf[], int N) {
-
 	gen_manager gm;
 	gen_config gc;
 	gen_config_default(&gc);
 	gm_init(&gm);
 	gc.filter_coeff_func = &iir_calc_no_coeff;
-	gen_config_wavetables(&gc, 0.0f, 0.0f, 0.0f, 0.0f);
-	
+	gen_config_wavetables(&gc, 0.0f, 0.0f, 0.0f, 0.0f);	
 	float* temp = new float[N];
 
 	float freq[16];
@@ -253,7 +244,6 @@ void test_gm_overload(float buf[], int N) {
 
 
 void test_gm_operation(float buf[], int N) {
-
 	gen_manager gm;
 	gen_config gc;
 	gen_config_default(&gc);
@@ -262,7 +252,6 @@ void test_gm_operation(float buf[], int N) {
 	gen_config_wavetables(&gc, 0.0f, 0.0f, 0.0f, 0.0f);
 
 	float* temp = new float[N];
-
 
 	float freq[8];
 	for (int i = 0; i < 8; i++)
@@ -286,7 +275,6 @@ void test_gm_operation(float buf[], int N) {
 			gm_trigger_note_off(&gm, note);
 			note--;
 		}
-
 		gm_write_n_samples(&gm, &gc, buf + off, temp + off, L);
 		count++;		
 	}
@@ -375,8 +363,7 @@ void print_basic_waveforms(){
 }  
 
 
-void run_tests() {
-	
+void run_tests() {	
 	int N = 44100;
 	float* wn = new float[N];
 	generate_wn(wn, N);
@@ -452,8 +439,7 @@ void run_tests() {
 	cout << endl;
 	cout << "_____________________" << endl;
 	cout << "STARTING WAVESHAPER TESTS" << endl;
-	cout << "_____________________" << endl;
-	
+	cout << "_____________________" << endl;	
 
 	print_to_file(lut_tanh, TANH_LUT_SIZE_P1 , "..//testfiles//waveshape//tanh lut.txt");
 
@@ -498,13 +484,11 @@ void run_tests() {
 	cout << "TESTING OVERALL SYSTEM" << endl;
 	test_overall_system(out, out2, N);
 	print_to_file(out, N, "..//testfiles//manager//overall L.txt");
-	print_to_file(out2, N, "..//testfiles//manager//overall R.txt");
-	
+	print_to_file(out2, N, "..//testfiles//manager//overall R.txt");	
 }
 
 
 int main() {	
-
 	cout << "INITIALISING" << endl;
 	init_basic_luts();
 	init_notes_digital_freq_buffer();
@@ -532,7 +516,7 @@ int main() {
 	gen_config_tanh_saturator(&gc, 1.0f); 
 	gm_apply_vibrato_config(&gm, &gc);		
 	cout << "WRITING TO WAV" << endl;
-	//write_midi_to_wav(&gm, &gc, "moonlight 1", false);
+	write_midi_to_wav(&gm, &gc, "moonlight 1", false);
 	cout << "_______________" << endl;
 
 	cout << "CONFIGURATION 2" << endl;
@@ -544,7 +528,7 @@ int main() {
 	gen_config_sine_saturator(&gc, 2 * PI);
 	gm_apply_vibrato_config(&gm, &gc);
 	cout << "WRITING TO WAV" << endl;
-	//write_midi_to_wav(&gm, &gc, "moonlight 2", false);
+	write_midi_to_wav(&gm, &gc, "moonlight 2", false);
 	cout << "_______________" << endl;
 
 	cout << "CONFIGURATION 3" << endl;
@@ -556,7 +540,7 @@ int main() {
 	gen_config_tanh_saturator(&gc, 5.0f);
 	gm_apply_vibrato_config(&gm, &gc);
 	cout << "WRITING TO WAV" << endl;
-	//write_midi_to_wav(&gm, &gc, "moonlight 3", false);
+	write_midi_to_wav(&gm, &gc, "moonlight 3", false);
 	cout << "_______________" << endl;
 
 	cout << "CONFIGURATION 4" << endl;
@@ -568,7 +552,7 @@ int main() {
 	gen_config_no_saturator(&gc);
 	gm_apply_vibrato_config(&gm, &gc);
 	cout << "WRITING TO WAV" << endl;
-	//write_midi_to_wav(&gm, &gc, "moonlight 4", false);
+	write_midi_to_wav(&gm, &gc, "moonlight 4", false);
 	cout << "_______________" << endl;
 
 	cout << "CONFIGURATION 5" << endl;
@@ -580,9 +564,8 @@ int main() {
 	gen_config_no_saturator(&gc);
 	gm_apply_vibrato_config(&gm, &gc);
 	cout << "WRITING TO WAV" << endl;
-	//write_midi_to_wav(&gm, &gc, "moonlight 5", false);
-	cout << "_______________" << endl;
-	
+	write_midi_to_wav(&gm, &gc, "moonlight 5", false);
+	cout << "_______________" << endl;	
 
 	run_tests();
 	return 0;
