@@ -39,7 +39,8 @@ void wt_write_n_samples(float buffer[], wavetable* wt, gen_config* gc, int N) {
 	}
 }
 
-uint8_t harmonic_indices[] = {1,2,2,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7}; // floor(log(n/4)), where n is index
+uint8_t harmonic_indices[] = {1,2,2,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7}; // floor(log(n/4)), where n is index
 
 //configure in samples/sec and determin correct number of harmonics to avoid aliasing
 inline void wt_config_digital_freq(wavetable* wt, float freq) {

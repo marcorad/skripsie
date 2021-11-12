@@ -16,7 +16,7 @@ struct IIR_prev_values {
 
 inline float iir_filter_sample(IIR_coeff* coeff, IIR_prev_values* prev, float x) {
 	float y = coeff->n0 * x;
-	y += coeff->n1 * prev->xm1; //MULAC ops ?
+	y += coeff->n1 * prev->xm1; //MULAC ops
 	y += coeff->n2 * prev->xm2;
 	y += coeff->d1 * prev->ym1;
 	y += coeff->d2 * prev->ym2;

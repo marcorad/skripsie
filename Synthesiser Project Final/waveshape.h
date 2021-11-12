@@ -8,8 +8,6 @@
 #include "waveshape_filter_cutoffs.h"
 
 #define TANH_LUT_SIZE_P1 (TANH_LUT_SIZE + 1)
-
-
 #define tanh_grad0 9.0f //can be adjusted. This is the gradient at 0. This will determine what the edges of the LUT looks like
 #define tanh_grad0_inv (1.0f / tanh_grad0)
 
@@ -59,8 +57,6 @@ float waveshape_hard_clipper(float x, float gain) {
 }
 
 float waveshape_sine(float x, float gain) {
-    //gain *= PI * 0.0625f; //a gain of 64 corresponds to 4pi
-    //gain of 1 has amplitude 1, also modulates index to allow for periodic behaviour in the sin lookup
     float t = fract(gain * x * PI_INV * 0.5f); 
     return sin_lookup(t);
 }
