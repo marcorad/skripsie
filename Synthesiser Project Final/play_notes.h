@@ -76,9 +76,7 @@ void write_midi_to_wav(gen_manager* gm, gen_config* gc, const std::string& name,
 	unsigned int i = 0;
 	std::vector<note> trigger_off = {};
 
-	while (t <= end_t) {	
-		
-
+	while (t <= end_t) {
 		//lambda to see if note must be triggered off
 		auto l = [&](const note& n) {
 			return n.start_seconds + n.duration_seconds <= t ; 
@@ -125,5 +123,4 @@ void write_midi_to_wav(gen_manager* gm, gen_config* gc, const std::string& name,
 
 	//write to file
 	write_to_wav(name, bufL, bufR, N, FS);
-
 }
