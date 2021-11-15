@@ -11,7 +11,14 @@ Y = abs(fft(tanh(A * y)));
 [m, fund] = max(Y);
 fund = 101;
 Y = 20 * log10 (Y / Y(101));
-%plot(Y);
+if A==5
+    plot(0:99999, Y);
+    title("Numerical analysis for bandwidth estimation");
+    xlim([0,3000]);
+    ylim([-80, 5]);
+    xlabel("k");
+    ylabel("Difference relative to the fundamental (dB)");
+end
 
 count = 0;
 
